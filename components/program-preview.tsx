@@ -1,98 +1,130 @@
 "use client"
 
-const programs = [
+import { useState } from "react"
+import Image from "next/image"
+import Link from "next/link"
+
+const tabs = [
   {
-    name: "CreKiC Course",
-    subtitle: "For Ages 3–5",
-    accentColor: "#F6C400",
-    steps: [
-      { label: "Step 1", description: "Children explore the world through their five senses and expressive play." },
-      { label: "Step 2", description: "Creative expression begins with observing real objects up close." },
-    ],
+    id: "crekic",
+    name: "CreKiC",
+    image: "https://raw.githubusercontent.com/aladinyun/noljak-global/main/public/images/program-crekic.jpg",
+    label: "CreKiC Course",
+    labelColor: "#F6C400",
+    headline: "Where learning begins with the whole body.",
+    age: "Ages 3–5",
+    description: "Children grow through sensory play, emotional expression, and performance-based art activities.",
+    cta: "Explore CreKiC →",
+    ctaHref: "#crekic",
   },
   {
-    name: "Basic Course",
-    subtitle: "For Ages 3 – Elementary",
-    accentColor: "#5BB7E8",
-    steps: [
-      { label: "Step 3", description: "Children develop their own ideas through structured observation projects." },
-      { label: "Step 4", description: "Thinking deepens as children connect observation to personal expression." },
-    ],
+    id: "basic",
+    name: "Basic",
+    image: "https://raw.githubusercontent.com/aladinyun/noljak-global/main/public/images/program-basic.png",
+    label: "Basic Course",
+    labelColor: "#5BB7E8",
+    headline: "Thinking starts with real observation.",
+    age: "Ages 5–7",
+    description: "Children observe real objects, build their own ideas, and express them through drawing and making.",
+    cta: "Explore Basic →",
+    ctaHref: "#basic",
   },
   {
-    name: "Creator Course",
-    subtitle: "For Ages 7+",
-    accentColor: "#FF8A65",
-    steps: [
-      { label: "Step 5", description: "Multi-layered creative projects expand thinking and artistic expression." },
-      { label: "Step 6", description: "Children design and present their own original creative works." },
-    ],
+    id: "creator",
+    name: "Creator",
+    image: "https://raw.githubusercontent.com/aladinyun/noljak-global/main/public/images/program-creator.jpg",
+    label: "Creator Course",
+    labelColor: "#FF8A65",
+    headline: "Ideas become original creations.",
+    age: "Ages 7–Elementary",
+    description: "Children expand their thinking through multi-layered projects and present their own original creative works.",
+    cta: "Explore Creator →",
+    ctaHref: "#creator",
   },
 ]
 
 export function ProgramPreview() {
+  const [activeTab, setActiveTab] = useState("crekic")
+  const activeProgram = tabs.find((tab) => tab.id === activeTab) || tabs[0]
+
   return (
-    <section id="programs" className="bg-[#FFFDF5] py-[120px] px-4 md:px-8">
-      <div className="max-w-7xl mx-auto flex flex-col items-center gap-16">
-        {/* Row 1 — Headline */}
-        <h2 className="font-heading font-bold text-[#0F1B3D] text-[28px] md:text-[44px] text-center leading-tight max-w-4xl text-balance">
-          From age 3 to elementary — build creativity with 6 years of structured curriculum!
-        </h2>
+    <section id="programs" className="relative h-[90svh] w-full overflow-hidden">
+      {/* Background Images with Fade Transition */}
+      {tabs.map((tab) => (
+        <div
+          key={tab.id}
+          className="absolute inset-0 transition-opacity duration-500"
+          style={{ opacity: activeTab === tab.id ? 1 : 0 }}
+        >
+          <Image
+            src={tab.image}
+            alt={tab.name}
+            fill
+            className="object-cover"
+            priority={tab.id === "crekic"}
+          />
+          {/* Dark Overlay */}
+          <div className="absolute inset-0 bg-black/45" />
+        </div>
+      ))}
 
-        {/* Row 2 — Program Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full">
-          {programs.map((program) => (
-            <div
-              key={program.name}
-              className="bg-white rounded-2xl shadow-md overflow-hidden transition-transform duration-300 hover:scale-[1.03]"
-            >
-              {/* Top Accent Bar */}
-              <div
-                className="h-2 w-full"
-                style={{ backgroundColor: program.accentColor }}
-              />
-
-              <div className="p-6">
-                {/* Program Label */}
-                <h3 className="font-heading font-bold text-[#0F1B3D] text-xl mb-1">
-                  {program.name}
-                </h3>
-                <p className="font-sans text-[#5F6B7A] text-sm mb-6">
-                  {program.subtitle}
-                </p>
-
-                {/* Step Cards — Horizontal Layout */}
-                <div className="grid grid-cols-2 gap-4">
-                  {program.steps.map((step) => (
-                    <div
-                      key={step.label}
-                      className="rounded-xl overflow-hidden"
-                    >
-                      {/* Image Placeholder */}
-                      <div className="bg-gray-200 h-24 w-full flex items-center justify-center">
-                        <span className="text-gray-400 text-sm">Image</span>
-                      </div>
-                      {/* Step Info */}
-                      <div className="bg-gray-50 p-3">
-                        <p className="font-heading font-semibold text-[#0F1B3D] text-sm mb-1">
-                          {step.label}
-                        </p>
-                        <p className="font-sans text-[#5F6B7A] text-[13px] leading-snug">
-                          {step.description}
-                        </p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          ))}
+      {/* Content */}
+      <div className="relative z-10 h-full flex flex-col">
+        {/* Tabs */}
+        <div className="flex justify-center pt-12">
+          <div className="flex gap-8 px-8 py-3 rounded-full" style={{ backgroundColor: "rgba(0, 0, 0, 0.5)" }}>
+            {tabs.map((tab) => (
+              <button
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id)}
+                className={`font-heading font-bold text-[18px] pb-2 border-b-2 transition-all duration-300 ${
+                  activeTab === tab.id
+                    ? "text-[#F6C400] border-[#F6C400]"
+                    : "text-white/70 border-transparent hover:text-white"
+                }`}
+              >
+                {tab.name}
+              </button>
+            ))}
+          </div>
         </div>
 
-        {/* Row 3 — Supporting Message */}
-        <p className="font-sans text-[#5F6B7A] text-base md:text-lg text-center max-w-[680px] leading-relaxed">
-          Experience Noljak&apos;s curriculum — beginning with all five senses, observing the world, and designing it through art.
-        </p>
+        {/* Text Content - Bottom Left */}
+        <div className="flex-1 flex items-end pb-[10%]">
+          <div className="max-w-[600px] px-6 md:pl-20 md:pr-0">
+            {/* Label */}
+            <p
+              className="font-sans font-bold text-sm uppercase tracking-wide mb-4"
+              style={{ color: activeProgram.labelColor }}
+            >
+              {activeProgram.label}
+            </p>
+
+            {/* Headline */}
+            <h2 className="font-heading font-bold text-white text-3xl md:text-[48px] leading-tight mb-4">
+              {activeProgram.headline}
+            </h2>
+
+            {/* Age */}
+            <p className="font-sans text-white text-lg mb-4">
+              {activeProgram.age}
+            </p>
+
+            {/* Description */}
+            <p className="font-sans text-white text-base leading-relaxed mb-6 opacity-90">
+              {activeProgram.description}
+            </p>
+
+            {/* CTA */}
+            <Link
+              href={activeProgram.ctaHref}
+              className="font-sans font-bold text-base transition-opacity hover:opacity-80"
+              style={{ color: activeProgram.labelColor }}
+            >
+              {activeProgram.cta}
+            </Link>
+          </div>
+        </div>
       </div>
     </section>
   )

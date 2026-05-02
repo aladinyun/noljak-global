@@ -50,35 +50,11 @@ const cards = [
   },
   {
     id: 6,
-    platform: "Instagram",
+    platform: "Facebook",
     title: "From Korea to the World",
     description: "Celebrating our global community of young creators.",
     tags: ["Global"],
-    image: "/images/placeholder-instagram-3.jpg",
-  },
-  {
-    id: 7,
-    platform: "Facebook",
-    title: "Parent Workshop Highlights",
-    description: "Insights from our recent family engagement session.",
-    tags: ["Parents", "Workshop"],
-    image: "/images/placeholder-facebook-1.jpg",
-  },
-  {
-    id: 8,
-    platform: "YouTube",
-    title: "Teacher Training at Noljak",
-    description: "How we prepare educators for creative teaching.",
-    tags: ["Teachers", "Training"],
-    image: "/images/placeholder-youtube-2.jpg",
-  },
-  {
-    id: 9,
-    platform: "Facebook",
-    title: "New Center Opening Soon",
-    description: "Exciting news about our upcoming location.",
-    tags: ["News", "Expansion"],
-    image: "/images/placeholder-facebook-2.jpg",
+    image: "/images/placeholder-facebook.jpg",
   },
 ]
 
@@ -142,7 +118,7 @@ export function NowNoljak() {
           ))}
         </div>
 
-        {/* Row 4-6 — 9 Cards in 3x3 grid */}
+        {/* Row 4-5 — 6 Cards in 3x2 grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
           {filteredCards.map((card) => (
             <div
@@ -182,6 +158,14 @@ export function NowNoljak() {
             </div>
           ))}
         </div>
+
+        {/* See More Button */}
+        <a
+          href="/now-noljak"
+          className="inline-block px-9 py-3 border-[1.5px] border-[#0F1B3D] text-[#0F1B3D] font-bold rounded-full transition-all duration-300 hover:bg-[#0F1B3D] hover:text-white"
+        >
+          See More
+        </a>
 
         {/* Modal */}
         <Dialog open={!!selectedCard} onOpenChange={() => setSelectedCard(null)}>
