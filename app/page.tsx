@@ -1,5 +1,3 @@
-import { AnnouncementBanner } from "@/components/announcement-banner"
-import { Navigation } from "@/components/navigation"
 import { HeroSection } from "@/components/hero-section"
 import { WhatIsNoljak } from "@/components/what-is-noljak"
 import { ProgramPreview } from "@/components/program-preview"
@@ -10,21 +8,7 @@ import { Footer } from "@/components/footer"
 export default function Home() {
   return (
     <main className="min-h-screen">
-      {/* Announcement Banner */}
-      <AnnouncementBanner />
-      
-      {/* Hero Section with Navigation */}
-      <div className="relative">
-        <Navigation />
-        <HeroSection />
-      </div>
-
-      {/* Section 1: What is Noljak? */}
-      <WhatIsNoljak />
-
-      {/* Section 2: Program Preview */}
-      <ProgramPreview />
-
+      <HeroSection />
       {/* Section 3: Now Noljak */}
       <NowNoljak />
 

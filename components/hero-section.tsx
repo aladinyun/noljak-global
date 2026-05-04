@@ -20,7 +20,7 @@ export function HeroSection() {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 flex flex-col items-center justify-center h-full px-6 pt-20">
+      <div className="relative z-10 flex flex-col items-center justify-center h-full px-6">
         <div className="max-w-4xl mx-auto text-center">
           {/* Headline */}
           <h1 className="text-4xl md:text-5xl lg:text-[64px] font-bold text-white leading-tight tracking-tight font-[var(--font-heading)] animate-fade-in-up text-balance">

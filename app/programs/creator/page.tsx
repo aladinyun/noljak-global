@@ -67,7 +67,7 @@ export default function CreatorPage() {
       <Navigation />
 
       {/* Section 1: Hero */}
-      <section className="relative min-h-[70vh] bg-[#FF8A65] flex flex-col items-center justify-center px-4 overflow-hidden">
+      <section className="relative min-h-[70vh] bg-[#FF8A65] flex flex-col items-center justify-center px-4 overflow-hidden pt-[80px]">
         <div className="text-center z-10">
           <p className="fade-up opacity-0 translate-y-4 transition-all duration-500 uppercase text-[#0F1B3D] text-[13px] tracking-[0.15em] mb-4">
             COURSE 03

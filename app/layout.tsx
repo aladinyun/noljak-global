@@ -1,6 +1,8 @@
 import type { Metadata, Viewport } from 'next'
 import { Plus_Jakarta_Sans, Inter } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
+import { AnnouncementBanner } from '@/components/announcement-banner'
+import { Navigation } from '@/components/navigation'
 import './globals.css'
 
 const plusJakartaSans = Plus_Jakarta_Sans({
@@ -55,9 +57,9 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${plusJakartaSans.variable} ${inter.variable}`}>
       <body className="font-sans antialiased bg-background">
-        <div className="pt-[44px]">
-          {children}
-        </div>
+        <AnnouncementBanner />
+        <Navigation />
+        {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
     </html>

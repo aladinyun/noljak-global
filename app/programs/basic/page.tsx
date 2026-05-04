@@ -29,7 +29,7 @@ export default function BasicPage() {
       <Navigation />
 
       {/* Section 1: Hero */}
-      <section className="relative min-h-[70vh] bg-[#5BB7E8] flex flex-col items-center justify-center px-4 pt-24 pb-20 overflow-hidden">
+      <section className="relative min-h-[70vh] bg-[#5BB7E8] flex flex-col items-center justify-center px-4 pt-[80px] pb-20 overflow-hidden">
         <div className="text-center z-10">
           <p className="fade-up opacity-0 translate-y-4 transition-all duration-500 uppercase text-[#0F1B3D] text-[13px] tracking-[0.15em] mb-4">
             COURSE 02

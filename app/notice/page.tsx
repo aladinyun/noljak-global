@@ -1,7 +1,6 @@
 "use client"
 
 import { useState } from "react"
-import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
 import Link from "next/link"
 import { ChevronDown } from "lucide-react"
@@ -97,10 +96,8 @@ export default function NoticePage() {
 
   return (
     <main className="min-h-screen bg-[#FFFDF5]">
-      <Navigation />
-
       {/* Hero Section */}
-      <section className="bg-[#0F1B3D] min-h-[40vh] flex items-center justify-center py-20">
+      <section className="bg-[#0F1B3D] min-h-[40vh] flex items-center justify-center py-20 pt-[80px]">
         <div className="max-w-[800px] mx-auto px-4 md:px-8 text-center">
           <p className="text-[#F6C400] text-[13px] uppercase tracking-[0.15em] font-sans font-bold mb-4">
             OFFICIAL NOTICE

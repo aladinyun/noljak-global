@@ -28,7 +28,7 @@ export default function CreKiCPage() {
       <Navigation />
 
       {/* Section 1: Hero */}
-      <section className="min-h-[70vh] bg-[#F6C400] flex flex-col items-center justify-center relative overflow-hidden py-20">
+      <section className="min-h-[70vh] bg-[#F6C400] flex flex-col items-center justify-center relative overflow-hidden py-20 pt-[80px]">
         <div className="text-center z-10 px-4">
           <p className="fade-up opacity-0 translate-y-4 transition-all duration-500 uppercase text-[#0F1B3D] text-[13px] tracking-[0.15em] mb-6">
             COURSE 01

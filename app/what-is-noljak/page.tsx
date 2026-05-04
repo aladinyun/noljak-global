@@ -1,7 +1,6 @@
 "use client"
 
 import { useEffect, useRef } from "react"
-import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
 import Link from "next/link"
 import Image from "next/image"
@@ -29,10 +28,8 @@ export default function WhatIsNoljak() {
 
   return (
     <main className="min-h-screen bg-[#FFFDF5]">
-      <Navigation />
-
       {/* Section 1: Hero */}
-      <section className="relative min-h-[70vh] bg-[#0F1B3D] flex items-center justify-center overflow-hidden">
+      <section className="relative min-h-[70vh] bg-[#0F1B3D] flex items-center justify-center overflow-hidden pt-[80px]">
         {/* Decorative circle */}
         <div 
           className="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] rounded-full border-[3px] border-[#F6C400] opacity-5"

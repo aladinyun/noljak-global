@@ -1,7 +1,6 @@
 "use client"
 
 import { useState, useEffect, useRef } from "react"
-import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
 import Link from "next/link"
 import { Search, MapPin } from "lucide-react"
@@ -112,10 +111,8 @@ export default function FindCenterPage() {
 
   return (
     <main className="min-h-screen bg-[#FFFDF5]">
-      <Navigation />
-
       {/* Section 1: Hero */}
-      <section className="min-h-[50vh] bg-[#FFFDF5] flex items-center justify-center pt-32 pb-16">
+      <section className="min-h-[50vh] bg-[#FFFDF5] flex items-center justify-center pt-[80px] pb-16">
         <div className="max-w-[1200px] mx-auto px-4 md:px-8 text-center">
           <p className="fade-up opacity-0 translate-y-4 transition-all duration-500 uppercase text-[#F6C400] text-[13px] font-bold tracking-[0.15em] mb-4">
             FIND CENTER
