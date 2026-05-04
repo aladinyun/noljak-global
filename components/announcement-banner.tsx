@@ -9,7 +9,7 @@ export function AnnouncementBanner() {
   if (!isVisible) return null
 
   return (
-    <div className="w-full bg-[#0F1B3D] py-3 px-4">
+    <div className="relative z-[60] w-full bg-[#0F1B3D] py-3 px-4">
       <div className="w-full flex items-center justify-center relative">
         <p className="text-white text-sm font-medium text-center">
           Now open in Hanoi, Vietnam — Vinhomes Gardenia

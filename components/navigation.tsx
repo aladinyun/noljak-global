@@ -12,11 +12,11 @@ import {
 import { Button } from "@/components/ui/button"
 
 const navLinks = [
-  { href: "#what-is-noljak", label: "What is Noljak?" },
-  { href: "#programs", label: "Programs" },
-  { href: "#now-noljak", label: "Now Noljak" },
-  { href: "#find-center", label: "Find Center" },
-  { href: "#global-business", label: "Global Business" },
+  { href: "/what-is-noljak", label: "What is Noljak?" },
+  { href: "/programs", label: "Programs" },
+  { href: "/now-noljak", label: "Now Noljak" },
+  { href: "/find-center", label: "Find Center" },
+  { href: "/global-business", label: "Global Business" },
 ]
 
 const languages = [
@@ -30,7 +30,7 @@ export function Navigation() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   return (
-    <nav className="absolute top-0 left-0 right-0 z-50 w-full">
+    <nav className="absolute top-0 left-0 right-0 z-50 w-full bg-[#0F1B3D] transition-all duration-300">
       <div className="max-w-7xl mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
