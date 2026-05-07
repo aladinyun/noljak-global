@@ -39,11 +39,11 @@ export function Footer() {
             <div className="font-sans text-[#5F6B7A] text-[13px] mt-auto">
               <p>© 2026 NOLJAKEDU CO., LTD. All Rights Reserved.</p>
               <p className="mt-1">
-                <Link href="/privacy" className="hover:text-[#F6C400] transition-colors">
+                <Link href="/privacy-policy" className="hover:text-[#F6C400] transition-colors">
                   Privacy Policy
                 </Link>
                 {" | "}
-                <Link href="/terms" className="hover:text-[#F6C400] transition-colors">
+                <Link href="/terms-of-use" className="hover:text-[#F6C400] transition-colors">
                   Terms of Use
                 </Link>
               </p>
