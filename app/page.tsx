@@ -9,6 +9,13 @@ export default function Home() {
   return (
     <main className="min-h-screen">
       <HeroSection />
+
+      {/* Section 1: What is Noljak? */}
+      <WhatIsNoljak />
+
+      {/* Section 2: Program Preview */}
+      <ProgramPreview />
+
       {/* Section 3: Now Noljak */}
       <NowNoljak />
 

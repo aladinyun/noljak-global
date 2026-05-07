@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import Link from "next/link"
 import { X } from "lucide-react"
 
 export function AnnouncementBanner() {
@@ -9,13 +10,19 @@ export function AnnouncementBanner() {
   if (!isVisible) return null
 
   return (
-    <div className="relative z-[90] w-full overflow-x-hidden bg-[#0F1B3D] py-3 px-4">
+    <div className="w-full bg-[#0F1B3D] py-3 px-4">
       <div className="w-full flex items-center justify-center relative">
-        <p className="text-white text-sm font-medium text-center">
+        <Link 
+          href="/notice" 
+          className="text-white text-sm font-medium text-center hover:underline transition-all"
+        >
           Now open in Hanoi, Vietnam — Vinhomes Gardenia
-        </p>
+        </Link>
         <button
-          onClick={() => setIsVisible(false)}
+          onClick={(e) => {
+            e.stopPropagation()
+            setIsVisible(false)
+          }}
           className="absolute right-4 text-white/70 hover:text-white transition-colors p-1"
           aria-label="Dismiss announcement"
         >

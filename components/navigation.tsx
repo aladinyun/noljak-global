@@ -1,8 +1,7 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import Link from "next/link"
-import { usePathname } from "next/navigation"
 import { ChevronDown, Menu, X } from "lucide-react"
 import {
   DropdownMenu,
@@ -12,10 +11,16 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { Button } from "@/components/ui/button"
 
-const navLinks = [
-  { href: "/what-is-noljak", label: "What is Noljak?" },
-  {
-    href: "/programs",
+type NavItem = {
+  href: string
+  label: string
+  dropdown?: { href: string; label: string }[]
+}
+
+const navLinks: NavItem[] = [
+  { href: "#what-is-noljak", label: "What is Noljak?" },
+  { 
+    href: "#programs", 
     label: "Programs",
     dropdown: [
       { href: "/programs/philosophy", label: "Philosophy" },
@@ -25,9 +30,29 @@ const navLinks = [
       { href: "/programs/others", label: "Others" },
     ]
   },
-  { href: "/now-noljak", label: "Now Noljak" },
-  { href: "/find-center", label: "Find Center" },
-  { href: "/global-business", label: "Global Business" },
+  { href: "#now-noljak", label: "Now Noljak" },
+  { 
+    href: "#find-center", 
+    label: "Find Center",
+    dropdown: [
+      { href: "/find-center/kr", label: "KR" },
+      { href: "/find-center/us", label: "US" },
+      { href: "/find-center/vn", label: "VN" },
+      { href: "/find-center/ph", label: "PH" },
+      { href: "/find-center/de", label: "DE" },
+      { href: "/find-center/others", label: "Others" },
+    ]
+  },
+  { 
+    href: "#global-business", 
+    label: "Global Business",
+    dropdown: [
+      { href: "/global-business/support", label: "Our Support" },
+      { href: "/global-business/how-it-works", label: "How It Works" },
+      { href: "/global-business/success-stories", label: "Success Stories" },
+      { href: "/global-business/get-started", label: "Get Started" },
+    ]
+  },
 ]
 
 const languages = [
@@ -39,20 +64,10 @@ const languages = [
 export function Navigation() {
   const [currentLang, setCurrentLang] = useState("EN")
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const [isProgramsDropdownOpen, setIsProgramsDropdownOpen] = useState(false)
-  const pathname = usePathname()
-  const [isScrolled, setIsScrolled] = useState(false)
-
-  useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 10)
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null)
 
   return (
-    <nav className={`fixed top-[44px] left-0 right-0 z-[100] w-full transition-all duration-300 ${
-      pathname === "/" && !isScrolled ? "bg-[#0F1B3D]/70 backdrop-blur-sm" : "bg-[#0F1B3D]"
-    }`}>
+    <nav className="absolute top-0 left-0 right-0 z-50 w-full">
       <div className="max-w-7xl mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
@@ -64,29 +79,32 @@ export function Navigation() {
           <div className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
               link.dropdown ? (
-                <DropdownMenu key={link.href}>
-                  <DropdownMenuTrigger asChild>
-                    <Button
-                      variant="ghost"
-                      className="text-white/90 hover:text-white text-base font-medium transition-colors gap-1 px-3"
-                    >
-                      {link.label}
-                      <ChevronDown className="w-4 h-4" />
-                    </Button>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent align="start" className="min-w-[160px]">
-                    {link.dropdown.map((item, index) => (
-                      <DropdownMenuItem key={item.href} asChild>
+                <div
+                  key={link.href}
+                  className="relative"
+                  onMouseEnter={() => setOpenDropdown(link.href)}
+                  onMouseLeave={() => setOpenDropdown(null)}
+                >
+                  <button
+                    className="flex items-center gap-1 text-white/90 hover:text-white text-base font-medium transition-colors"
+                  >
+                    {link.label}
+                    <ChevronDown className="w-4 h-4" />
+                  </button>
+                  {openDropdown === link.href && (
+                    <div className="absolute top-full left-0 mt-2 bg-white rounded-lg shadow-lg py-2 min-w-[160px]">
+                      {link.dropdown.map((item) => (
                         <Link
+                          key={item.href}
                           href={item.href}
-                          className={`w-full cursor-pointer ${index === 0 ? "mt-2" : ""}`}
+                          className="block px-5 py-2.5 font-sans text-[#0F1B3D] text-sm hover:bg-[#FFFDF5] hover:text-[#F6C400] transition-colors"
                         >
                           {item.label}
                         </Link>
-                      </DropdownMenuItem>
-                    ))}
-                  </DropdownMenuContent>
-                </DropdownMenu>
+                      ))}
+                    </div>
+                  )}
+                </div>
               ) : (
                 <Link
                   key={link.href}
@@ -141,28 +159,22 @@ export function Navigation() {
             <div className="flex flex-col gap-4">
               {navLinks.map((link) => (
                 link.dropdown ? (
-                  <div key={link.href}>
-                    <button
-                      onClick={() => setIsProgramsDropdownOpen(!isProgramsDropdownOpen)}
-                      className="text-white/90 hover:text-white text-base font-medium transition-colors flex items-center gap-2 w-full text-left"
-                    >
+                  <div key={link.href} className="flex flex-col gap-2">
+                    <span className="text-white/90 text-base font-medium">
                       {link.label}
-                      <ChevronDown className={`w-4 h-4 transition-transform ${isProgramsDropdownOpen ? 'rotate-180' : ''}`} />
-                    </button>
-                    {isProgramsDropdownOpen && (
-                      <div className="mt-2 ml-4 flex flex-col gap-2">
-                        {link.dropdown.map((item) => (
-                          <Link
-                            key={item.href}
-                            href={item.href}
-                            className="text-white/70 hover:text-white text-sm font-medium transition-colors"
-                            onClick={() => setIsMobileMenuOpen(false)}
-                          >
-                            {item.label}
-                          </Link>
-                        ))}
-                      </div>
-                    )}
+                    </span>
+                    <div className="pl-4 flex flex-col gap-2">
+                      {link.dropdown.map((item) => (
+                        <Link
+                          key={item.href}
+                          href={item.href}
+                          className="text-white/70 hover:text-white text-sm transition-colors"
+                          onClick={() => setIsMobileMenuOpen(false)}
+                        >
+                          {item.label}
+                        </Link>
+                      ))}
+                    </div>
                   </div>
                 ) : (
                   <Link
@@ -186,7 +198,7 @@ export function Navigation() {
                       }}
                       className={`text-sm font-medium transition-colors ${
                         currentLang === lang.code
-                          ? "text-noljak-yellow"
+                          ? "text-[#F6C400]"
                           : "text-white/70 hover:text-white"
                       }`}
                     >
