@@ -123,7 +123,7 @@ export function FindCenter() {
             {stats.map((stat, index) => (
               <div key={stat.label} className="flex items-center gap-6 md:gap-10">
                 <div className="flex flex-col items-center text-center">
-                  <span className="font-heading font-bold text-[#0F1B3D] text-[20px] leading-none">
+                  <span className="font-heading font-bold text-[#0F1B3D] text-[32px] leading-none">
                     {stat.value}
                   </span>
                   <span className="font-sans text-[#5F6B7A] text-[14px] mt-1">
@@ -138,7 +138,7 @@ export function FindCenter() {
           </div>
 
           {/* Row 3 — World Map (EqualEarth projection, centered at 60°E) */}
-          <div className="w-full max-w-4xl">
+          <div className="w-[97.6%] mx-auto">
             <svg
               viewBox={`0 0 ${mapWidth} ${mapHeight}`}
               className="w-full h-auto"
@@ -165,15 +165,19 @@ export function FindCenter() {
                   onMouseLeave={() => setHoveredCountry(null)}
                   style={{ cursor: "pointer" }}
                 >
-                  {/* White border circle */}
-                  <circle
-                    r="10"
+                  {/* White border rounded square */}
+                  <rect
+                    x="-10"
+                    y="-10"
+                    width="20"
+                    height="20"
+                    rx="4"
                     fill="#FFFFFF"
                   />
                   {/* Flag image as pattern */}
                   <defs>
                     <clipPath id={`clip-${country.id}`}>
-                      <circle r="8" />
+                      <rect x="-8" y="-8" width="16" height="16" rx="4" />
                     </clipPath>
                   </defs>
                   <image

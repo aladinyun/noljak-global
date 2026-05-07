@@ -20,7 +20,7 @@ export function HeroSection() {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 flex flex-col items-center justify-center h-full px-6">
+      <div className="relative z-10 flex flex-col items-center justify-center h-full px-6 pt-20">
         <div className="max-w-4xl mx-auto text-center">
           {/* Headline */}
           <h1 className="text-4xl md:text-5xl lg:text-[64px] font-bold text-white leading-tight tracking-tight font-[var(--font-heading)] animate-fade-in-up text-balance">
@@ -42,7 +42,7 @@ export function HeroSection() {
             <Button
               asChild
               size="lg"
-              className="bg-[#F6C400] hover:bg-[#E5B600] text-[#0F1B3D] font-bold px-8 py-6 text-base rounded-lg transition-all duration-300"
+              className="bg-[#F6C400] hover:bg-[#0F1B3D] text-[#0F1B3D] hover:text-[#F6C400] font-bold px-8 py-6 text-base rounded-lg transition-all duration-300"
             >
               <Link href="#programs">Explore Programs</Link>
             </Button>

@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import { useRouter } from "next/navigation"
 import Link from "next/link"
 import { ChevronDown, Menu, X } from "lucide-react"
 import {
@@ -18,9 +19,9 @@ type NavItem = {
 }
 
 const navLinks: NavItem[] = [
-  { href: "#what-is-noljak", label: "What is Noljak?" },
-  { 
-    href: "#programs", 
+  { href: "/what-is-noljak", label: "What is Noljak?" },
+  {
+    href: "/programs",
     label: "Programs",
     dropdown: [
       { href: "/programs/philosophy", label: "Philosophy" },
@@ -30,9 +31,9 @@ const navLinks: NavItem[] = [
       { href: "/programs/others", label: "Others" },
     ]
   },
-  { href: "#now-noljak", label: "Now Noljak" },
-  { 
-    href: "#find-center", 
+  { href: "/now-noljak", label: "Now Noljak" },
+  {
+    href: "/find-center",
     label: "Find Center",
     dropdown: [
       { href: "/find-center/kr", label: "KR" },
@@ -43,8 +44,8 @@ const navLinks: NavItem[] = [
       { href: "/find-center/others", label: "Others" },
     ]
   },
-  { 
-    href: "#global-business", 
+  {
+    href: "/global-business",
     label: "Global Business",
     dropdown: [
       { href: "/global-business/support", label: "Our Support" },
@@ -62,9 +63,9 @@ const languages = [
 ]
 
 export function Navigation() {
+  const router = useRouter()
   const [currentLang, setCurrentLang] = useState("EN")
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const [openDropdown, setOpenDropdown] = useState<string | null>(null)
 
   return (
     <nav className="absolute top-0 left-0 right-0 z-50 w-full">
@@ -79,31 +80,25 @@ export function Navigation() {
           <div className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
               link.dropdown ? (
-                <div
-                  key={link.href}
-                  className="relative"
-                  onMouseEnter={() => setOpenDropdown(link.href)}
-                  onMouseLeave={() => setOpenDropdown(null)}
-                >
+                <div key={link.href} className="relative group pb-2">
                   <button
-                    className="flex items-center gap-1 text-white/90 hover:text-white text-base font-medium transition-colors"
+                    onClick={() => router.push(link.dropdown![0].href)}
+                    className="text-white/90 hover:text-white text-base font-medium transition-colors flex items-center gap-1 px-3 py-2 cursor-pointer"
                   >
                     {link.label}
                     <ChevronDown className="w-4 h-4" />
                   </button>
-                  {openDropdown === link.href && (
-                    <div className="absolute top-full left-0 mt-2 bg-white rounded-lg shadow-lg py-2 min-w-[160px]">
-                      {link.dropdown.map((item) => (
-                        <Link
-                          key={item.href}
-                          href={item.href}
-                          className="block px-5 py-2.5 font-sans text-[#0F1B3D] text-sm hover:bg-[#FFFDF5] hover:text-[#F6C400] transition-colors"
-                        >
-                          {item.label}
-                        </Link>
-                      ))}
-                    </div>
-                  )}
+                  <div className="absolute top-full left-0 w-40 bg-white rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 pt-2">
+                    {link.dropdown.map((item) => (
+                      <Link
+                        key={item.href}
+                        href={item.href}
+                        className="block px-4 py-2 text-sm text-[#0F1B3D] hover:bg-[#FFFDF5] first:rounded-t-md last:rounded-b-md"
+                      >
+                        {item.label}
+                      </Link>
+                    ))}
+                  </div>
                 </div>
               ) : (
                 <Link

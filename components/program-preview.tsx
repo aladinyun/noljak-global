@@ -1,7 +1,6 @@
 "use client"
 
 import { useState } from "react"
-import Image from "next/image"
 import Link from "next/link"
 
 const tabs = [
@@ -56,12 +55,11 @@ export function ProgramPreview() {
           className="absolute inset-0 transition-opacity duration-500"
           style={{ opacity: activeTab === tab.id ? 1 : 0 }}
         >
-          <Image
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
             src={tab.image}
             alt={tab.name}
-            fill
-            className="object-cover"
-            priority={tab.id === "crekic"}
+            className="absolute inset-0 w-full h-full object-cover"
           />
           {/* Dark Overlay */}
           <div className="absolute inset-0 bg-black/45" />

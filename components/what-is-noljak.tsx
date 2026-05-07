@@ -66,7 +66,7 @@ export function WhatIsNoljak() {
               </svg>
             </div>
             <h3 className="font-heading font-semibold text-[#0F1B3D] text-xl text-center">
-              For Ages 3–7
+              For Ages 3–Elementary
             </h3>
             <p className="font-sans text-[#5F6B7A] text-[15px] text-center leading-relaxed">
               Designed for young children from age 3 through early elementary.
