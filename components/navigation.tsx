@@ -32,28 +32,8 @@ const navLinks: NavItem[] = [
     ]
   },
   { href: "/now-noljak", label: "Now Noljak" },
-  {
-    href: "/find-center",
-    label: "Find Center",
-    dropdown: [
-      { href: "/find-center/kr", label: "KR" },
-      { href: "/find-center/us", label: "US" },
-      { href: "/find-center/vn", label: "VN" },
-      { href: "/find-center/ph", label: "PH" },
-      { href: "/find-center/de", label: "DE" },
-      { href: "/find-center/others", label: "Others" },
-    ]
-  },
-  {
-    href: "/global-business",
-    label: "Global Business",
-    dropdown: [
-      { href: "/global-business/support", label: "Our Support" },
-      { href: "/global-business/how-it-works", label: "How It Works" },
-      { href: "/global-business/success-stories", label: "Success Stories" },
-      { href: "/global-business/get-started", label: "Get Started" },
-    ]
-  },
+  { href: "/find-center", label: "Find Center" },
+  { href: "/global-business", label: "Global Business" },
 ]
 
 const languages = [
@@ -82,7 +62,7 @@ export function Navigation() {
               link.dropdown ? (
                 <div key={link.href} className="relative group pb-2">
                   <button
-                    onClick={() => router.push(link.dropdown![0].href)}
+                    onClick={() => router.push(link.href)}
                     className="text-white/90 hover:text-white text-base font-medium transition-colors flex items-center gap-1 px-3 py-2 cursor-pointer"
                   >
                     {link.label}

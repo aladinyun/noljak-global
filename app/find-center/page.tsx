@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect } from "react"
 import { Footer } from "@/components/footer"
 import Link from "next/link"
 import { Search, MapPin } from "lucide-react"
@@ -47,21 +47,31 @@ const centers = [
     flag: "🇺🇸",
     country: "USA",
     region: "usa",
-    name: "Noljak USA Creative Center",
-    address: "United States",
-    contact: "contact@noljakedu.com",
+    name: "Noljak Kids Art",
+    address: "1180 S. Idaho St. Unit G, La Habra, CA 90631",
+    contact: "714-317-9607",
   },
 ]
 
 const regionTabs = [
-  { id: "all", label: "All" },
-  { id: "korea", label: "Korea" },
-  { id: "usa", label: "USA" },
-  { id: "vietnam", label: "Vietnam" },
-  { id: "philippines", label: "Philippines" },
-  { id: "germany", label: "Germany" },
-  { id: "others", label: "Others" },
+  { id: "all",         label: "All",         hash: ""       },
+  { id: "korea",       label: "Korea",       hash: "kr"     },
+  { id: "usa",         label: "USA",         hash: "us"     },
+  { id: "vietnam",     label: "Vietnam",     hash: "vn"     },
+  { id: "philippines", label: "Philippines", hash: "ph"     },
+  { id: "germany",     label: "Germany",     hash: "de"     },
+  { id: "others",      label: "Others",      hash: "others" },
 ]
+
+const regionGroups = [
+  { id: "kr", label: "Korea",       region: "korea",       flag: "🇰🇷" },
+  { id: "us", label: "USA",         region: "usa",         flag: "🇺🇸" },
+  { id: "vn", label: "Vietnam",     region: "vietnam",     flag: "🇻🇳" },
+  { id: "ph", label: "Philippines", region: "philippines", flag: "🇵🇭" },
+  { id: "de", label: "Germany",     region: "germany",     flag: "🇩🇪" },
+  { id: "others", label: "Others",  region: "others",      flag: "🌍" },
+]
+
 
 const mapDots = [
   { id: "korea", name: "Korea", top: "35%", left: "72%" },
@@ -78,7 +88,6 @@ const mapDots = [
 ]
 
 export default function FindCenterPage() {
-  const [activeRegion, setActiveRegion] = useState("all")
   const [searchQuery, setSearchQuery] = useState("")
   const [hoveredDot, setHoveredDot] = useState<string | null>(null)
 
@@ -99,15 +108,12 @@ export default function FindCenterPage() {
     return () => observer.disconnect()
   }, [])
 
-  const filteredCenters = centers.filter((center) => {
-    const matchesRegion = activeRegion === "all" || center.region === activeRegion
-    const matchesSearch =
-      searchQuery === "" ||
-      center.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      center.country.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      center.address.toLowerCase().includes(searchQuery.toLowerCase())
-    return matchesRegion && matchesSearch
-  })
+  const filteredCenters = centers.filter((center) =>
+    searchQuery === "" ||
+    center.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    center.country.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    center.address.toLowerCase().includes(searchQuery.toLowerCase())
+  )
 
   return (
     <main className="min-h-screen bg-[#FFFDF5]">
@@ -154,17 +160,13 @@ export default function FindCenterPage() {
         <div className="max-w-[1200px] mx-auto px-4 md:px-8">
           <div className="fade-up opacity-0 translate-y-4 transition-all duration-500 flex justify-center gap-2 overflow-x-auto pb-2">
             {regionTabs.map((tab) => (
-              <button
+              <a
                 key={tab.id}
-                onClick={() => setActiveRegion(tab.id)}
-                className={`px-7 py-2.5 rounded-full font-sans text-sm font-medium whitespace-nowrap transition-all duration-300 ${
-                  activeRegion === tab.id
-                    ? "bg-[#0F1B3D] text-white"
-                    : "bg-transparent border border-[#E8ECF1] text-[#5F6B7A] hover:border-[#0F1B3D] hover:text-[#0F1B3D]"
-                }`}
+                href={tab.hash ? `#${tab.hash}` : "#"}
+                className="px-7 py-2.5 rounded-full font-sans text-sm font-medium whitespace-nowrap transition-all duration-300 bg-transparent border border-[#E8ECF1] text-[#5F6B7A] hover:border-[#0F1B3D] hover:text-[#0F1B3D]"
               >
                 {tab.label}
-              </button>
+              </a>
             ))}
           </div>
         </div>
@@ -271,45 +273,15 @@ export default function FindCenterPage() {
         </div>
       </section>
 
-      {/* Section 5: Center List */}
+      {/* Section 5: Center List grouped by region */}
       <section className="bg-[#FFFDF5] py-20">
         <div className="max-w-[1200px] mx-auto px-4 md:px-8">
           <h2 className="fade-up opacity-0 translate-y-4 transition-all duration-500 font-heading font-bold text-[#0F1B3D] text-[28px] md:text-[44px] mb-10">
             Centers by region.
           </h2>
 
-          {filteredCenters.length > 0 ? (
-            <div className="flex flex-col gap-4">
-              {filteredCenters.map((center, index) => (
-                <div
-                  key={center.id}
-                  className="fade-up opacity-0 translate-y-4 transition-all duration-500 bg-white rounded-2xl p-6 md:p-7 flex flex-col md:flex-row md:items-center md:justify-between gap-4"
-                  style={{ transitionDelay: `${index * 50}ms` }}
-                >
-                  <div>
-                    <p className="font-sans font-bold text-[13px] text-[#5F6B7A] uppercase mb-2">
-                      <span className="mr-2">{center.flag}</span>
-                      {center.country}
-                    </p>
-                    <h3 className="font-heading font-bold text-[#0F1B3D] text-lg md:text-xl mb-2">
-                      {center.name}
-                    </h3>
-                    <p className="font-sans text-[#5F6B7A] text-sm mb-1">{center.address}</p>
-                    <p className="font-sans text-[#5F6B7A] text-sm">{center.contact}</p>
-                  </div>
-                  <a
-                    href={`https://maps.google.com/?q=${encodeURIComponent(center.address)}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center px-5 py-2.5 border border-[#E8ECF1] rounded-lg font-sans font-bold text-[13px] text-[#0F1B3D] hover:bg-[#F6C400] hover:border-[#F6C400] transition-all whitespace-nowrap"
-                  >
-                    Get Directions →
-                  </a>
-                </div>
-              ))}
-            </div>
-          ) : (
-            /* Section 6: No Center Found */
+          {filteredCenters.length === 0 ? (
+            /* No results from search */
             <div className="fade-up opacity-0 translate-y-4 transition-all duration-500 text-center py-20">
               <MapPin className="w-16 h-16 text-[#E8ECF1] mx-auto mb-6" />
               <h3 className="font-heading font-bold text-[#0F1B3D] text-2xl mb-3">
@@ -324,6 +296,80 @@ export default function FindCenterPage() {
               >
                 Bring Noljak to Your City →
               </Link>
+            </div>
+          ) : (
+            <div className="flex flex-col gap-12">
+              {regionGroups.map((group) => {
+                const groupCenters = centers.filter((c) => {
+                  const matchesRegion = c.region === group.region
+                  const matchesSearch =
+                    searchQuery === "" ||
+                    c.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                    c.country.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                    c.address.toLowerCase().includes(searchQuery.toLowerCase())
+                  return matchesRegion && matchesSearch
+                })
+
+                if (groupCenters.length === 0) return null
+
+                return (
+                  <section key={group.id} id={group.id} className="scroll-mt-64">
+                    <h3 className="font-heading font-bold text-[#0F1B3D] text-xl md:text-2xl mb-4">
+                      <span className="mr-2">{group.flag}</span>{group.label}
+                    </h3>
+                    <div className="flex flex-col gap-4">
+                      {groupCenters.map((center, index) => (
+                        <div
+                          key={center.id}
+                          className="fade-up opacity-0 translate-y-4 transition-all duration-500 bg-white rounded-2xl p-6 md:p-7 flex flex-col md:flex-row md:items-center md:justify-between gap-4"
+                          style={{ transitionDelay: `${index * 50}ms` }}
+                        >
+                          <div>
+                            <p className="font-sans font-bold text-[13px] text-[#5F6B7A] uppercase mb-2">
+                              <span className="mr-2">{center.flag}</span>
+                              {center.country}
+                            </p>
+                            <h3 className="font-heading font-bold text-[#0F1B3D] text-lg md:text-xl mb-2">
+                              {center.name}
+                            </h3>
+                            <p className="font-sans text-[#5F6B7A] text-sm mb-1">{center.address}</p>
+                            <p className="font-sans text-[#5F6B7A] text-sm">{center.contact}</p>
+                          </div>
+                          <a
+                            href={`https://maps.google.com/?q=${encodeURIComponent(center.address)}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center justify-center px-5 py-2.5 border border-[#E8ECF1] rounded-lg font-sans font-bold text-[13px] text-[#0F1B3D] hover:bg-[#F6C400] hover:border-[#F6C400] transition-all whitespace-nowrap"
+                          >
+                            Get Directions →
+                          </a>
+                        </div>
+                      ))}
+                    </div>
+                  </section>
+                )
+              })}
+
+              <section id="others" className="scroll-mt-64 fade-up opacity-0 translate-y-4 transition-all duration-500 bg-white rounded-2xl p-8 md:p-10">
+                  <h3 className="font-heading font-bold text-[#0F1B3D] text-xl md:text-2xl mb-8">
+                    Others
+                  </h3>
+                  <p className="font-sans text-[#5F6B7A] text-base mb-2">
+                    Noljak centers available in:
+                  </p>
+                  <p className="font-sans font-medium text-[#0F1B3D] text-base mb-4">
+                    Germany, Philippines, Vietnam, and more...
+                  </p>
+                  <p className="font-sans text-[#5F6B7A] text-base mb-6">
+                    Contact us to find a center near you or to become a partner.
+                  </p>
+                  <a
+                    href="mailto:contact@noljakedu.com"
+                    className="inline-flex items-center justify-center px-6 py-2.5 border border-[#E8ECF1] rounded-lg font-sans font-bold text-[13px] text-[#0F1B3D] hover:bg-[#F6C400] hover:border-[#F6C400] transition-all"
+                  >
+                    Contact Us →
+                  </a>
+                </section>
             </div>
           )}
         </div>
