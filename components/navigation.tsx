@@ -68,7 +68,7 @@ export function Navigation() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   return (
-    <nav className="absolute top-0 left-0 right-0 z-50 w-full">
+    <nav className="fixed left-0 right-0 z-50 w-full bg-[#0F1B3D] transition-[top] duration-300" style={{ top: "var(--nav-top, 44px)" }}>
       <div className="max-w-7xl mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
@@ -88,7 +88,7 @@ export function Navigation() {
                     {link.label}
                     <ChevronDown className="w-4 h-4" />
                   </button>
-                  <div className="absolute top-full left-0 w-40 bg-white rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 pt-2">
+                  <div className="absolute top-full left-0 w-40 bg-white rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-[60] pt-2">
                     {link.dropdown.map((item) => (
                       <Link
                         key={item.href}

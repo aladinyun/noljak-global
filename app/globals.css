@@ -4,6 +4,8 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
+  --nav-top: 44px;
+
   /* NOLJAK Brand Colors */
   --noljak-yellow: #F6C400;
   --noljak-yellow-hover: #E0B000;
