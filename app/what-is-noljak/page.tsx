@@ -28,64 +28,62 @@ export default function WhatIsNoljak() {
 
   return (
     <main className="min-h-screen bg-[#FFFDF5]">
-      {/* Section 1: Hero */}
-      <section className="relative min-h-[70vh] bg-[#0F1B3D] flex items-center justify-center overflow-hidden pt-[80px]">
-        {/* Decorative circle */}
-        <div 
-          className="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] rounded-full border-[3px] border-[#F6C400] opacity-5"
-          aria-hidden="true"
-        />
-        <div className="relative z-10 max-w-[1200px] mx-auto px-4 md:px-8 py-20 text-center">
-          <p className="fade-up opacity-0 translate-y-4 transition-all duration-500 text-[#F6C400] text-[13px] font-semibold uppercase tracking-[0.15em] mb-6">
-            WHAT IS NOLJAK?
-          </p>
-          <h1 className="fade-up opacity-0 translate-y-4 transition-all duration-500 delay-100 font-heading font-bold text-white text-[36px] md:text-[64px] leading-tight mb-6">
-            Play meets Creation.
-          </h1>
-          <p className="fade-up opacity-0 translate-y-4 transition-all duration-500 delay-200 font-sans text-white/80 text-base md:text-lg max-w-[680px] mx-auto leading-relaxed">
-            We see every child as an infinite being — who grows by creating, one step at a time.
-          </p>
+      {/* Section 2: What is Noljak */}
+      <section className="bg-[#0F1B3D] pt-[160px] pb-[160px]">
+        <div className="max-w-[800px] mx-auto px-4 md:px-8 text-center flex flex-col items-center gap-6">
+          <h2 className="font-heading font-bold text-white text-[28px] md:text-[44px] leading-tight">
+            The world&apos;s only art-based creative education for the AI generation.
+          </h2>
+          <div className="font-sans text-[18px] leading-[1.8] text-left flex flex-col gap-4" style={{ color: "#5F6B7A" }}>
+            <p>
+              Noljak is a creative education program rooted in Thinking Observation — designed for children ages 3 to elementary school. Through small-group, project-based art classes, we help children develop the creativity that will define their success in the AI era.
+            </p>
+            <p>
+              English and math matter. But in the end, creativity is the real competitive edge. And creativity has a golden time — it starts early, and it starts with Noljak.
+            </p>
+          </div>
+          <div className="flex flex-wrap justify-center gap-3 mt-2">
+            {["Ages 3–Elementary", "Small Group Classes", "Project-Based Learning"].map((tag) => (
+              <span
+                key={tag}
+                className="font-sans text-sm px-4 py-2 rounded-full border"
+                style={{ borderColor: "#F6C400", color: "#F6C400" }}
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* Section 2: The Name */}
+      {/* Section 3: The Name */}
       <section className="bg-[#FFFDF5] py-20 md:py-[120px]">
         <div className="max-w-[1200px] mx-auto px-4 md:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             {/* Left: Logo display */}
             <div className="fade-up opacity-0 translate-y-4 transition-all duration-500 flex flex-col items-center">
               <Image
-                src="/images/noljak-logo.png"
+                src="/images/noljak_logo.png"
                 alt="Noljak Logo"
-                width={400}
-                height={200}
+                width={300}
+                height={300}
                 className="object-contain"
               />
-              <div className="mt-3 text-center">
-                <p className="leading-tight">
-                  <span className="font-heading font-bold text-[#0F1B3D] text-[48px]">nol</span>
-                  <span className="font-heading text-[#5F6B7A] text-[24px]">-i</span>
-                  <span className="font-heading text-[#0F1B3D] text-[30px]">{" + "}</span>
-                  <span className="font-heading text-[#5F6B7A] text-[24px]">chang</span>
-                  <span className="font-heading font-bold text-[#0F1B3D] text-[48px]">jak</span>
-                </p>
-                <p className="font-heading font-bold text-[48px] mt-2" style={{ letterSpacing: "0.3em" }}>
-                  <span className="text-[#CC0000]">n</span>
-                  <span className="text-[#2D6A2D]">o</span>
-                  <span className="text-[#F6C400]">l</span>
-                  <span className="text-[#5BB7E8]">j</span>
-                  <span className="text-[#2D6A2D]">a</span>
-                  <span className="text-[#CC0000]">k</span>
-                </p>
-              </div>
             </div>
             {/* Right: Body text */}
-            <div className="fade-up opacity-0 translate-y-4 transition-all duration-500 delay-150">
-              <h2 className="font-heading font-bold text-[#0F1B3D] text-[28px] md:text-[44px] leading-tight mb-6">
-                Where did the name come from?
+            <div className="fade-up opacity-0 translate-y-4 transition-all duration-500 delay-150 flex flex-col gap-4">
+              <p className="font-sans font-bold uppercase tracking-widest text-[13px]" style={{ color: "#5BB7E8" }}>
+                THE NAME
+              </p>
+              <h2 className="font-heading font-bold text-[#0F1B3D] text-[28px] md:text-[36px] leading-tight">
+                NOLJAK = Nol-i(놀이) + Chang-Jak(창작)
               </h2>
+              <div className="w-12 h-[3px] rounded-full" style={{ backgroundColor: "#F6C400" }} />
               <p className="font-sans text-[#5F6B7A] text-base md:text-lg leading-relaxed">
-                Noljak was born from a simple belief: children grow best when they play and create freely. We don&apos;t see children as passive learners — we see them as infinite creators.
+                NOLJAK is born from two Korean words — Nol-i (놀이, Play) and Chang-Jak (창작, Creation). We believe the purity of play is the origin of all creation. When children observe and think through play, their creative expression truly shines.
+              </p>
+              <p className="font-sans text-[#5F6B7A] text-sm">
+                Play + Creation → NOLJAK
               </p>
             </div>
           </div>
@@ -93,84 +91,124 @@ export default function WhatIsNoljak() {
       </section>
 
       {/* Section 3: Why Art? */}
-      <section className="bg-white py-20 md:py-[120px]">
-        <div className="max-w-[1200px] mx-auto px-4 md:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-            {/* Right column on mobile (image first), Left column on desktop */}
-            <div className="order-2 lg:order-1">
-              {/* Text content */}
-              <div className="mb-12">
-                <h2 className="fade-up opacity-0 translate-y-4 transition-all duration-500 font-heading font-bold text-[#0F1B3D] text-[28px] md:text-[44px] leading-tight mb-6">
-                  Why did we choose Art as our tool?
-                </h2>
-                <p className="fade-up opacity-0 translate-y-4 transition-all duration-500 delay-100 font-sans text-[#5F6B7A] text-base md:text-lg leading-relaxed">
-                  Because creativity is the one skill every child will need — no matter what the future looks like. Art has no fixed answer. It teaches children to observe, think, choose, and build. That process creates problem-solvers.
+      <section className="bg-[#0F1B3D]">
+        {/* Hero Image */}
+        <div className="relative w-full" style={{ height: "500px" }}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/images/whatisnoljak-1.jpg"
+            alt="Children engaging in creative art activities"
+            className="w-full h-full object-cover"
+            style={{ objectPosition: "center center" }}
+          />
+          <div className="absolute inset-0" style={{ background: "rgba(15,27,61,0.6)" }} />
+          <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4 md:px-8 gap-6">
+            <h2 className="font-heading font-bold text-white text-[28px] md:text-[48px] leading-tight max-w-[800px]">
+              Why did we choose Art as our tool?
+            </h2>
+            <p className="font-sans text-[18px] leading-relaxed max-w-[640px]" style={{ color: "#CBD5E1" }}>
+              Because creativity is the one skill every child will need — no matter what the future looks like.
+            </p>
+          </div>
+        </div>
+
+        {/* Card Grid */}
+        <div className="max-w-[1200px] mx-auto px-4 md:px-8 py-20">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {[
+              {
+                icon: (
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0F1B3D" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M12 2a10 10 0 1 0 10 10" /><path d="M12 8v4l3 3" />
+                  </svg>
+                ),
+                title: "In art, every child is right.",
+                desc: "There is no single correct answer — only your answer. That's why every child becomes the hero of their own creative journey.",
+                delay: "delay-150",
+              },
+              {
+                icon: (
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0F1B3D" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M12 20V10" /><path d="M18 20V4" /><path d="M6 20v-4" />
+                  </svg>
+                ),
+                title: "Self-directed growth",
+                desc: "Imagination becomes reality. Children choose, observe, and complete their own unique work — and grow through every step of that process.",
+                delay: "delay-200",
+              },
+              {
+                icon: (
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0F1B3D" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <circle cx="12" cy="12" r="10" /><path d="M12 8v4l2 2" />
+                  </svg>
+                ),
+                title: "Creative problem-solvers",
+                desc: "What if I had 10 arms like an octopus? Noljak gives children the power to solve imaginative challenges that no computer can — because real creativity starts in the mind.",
+                delay: "delay-[250ms]",
+              },
+              {
+                icon: (
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0F1B3D" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <circle cx="12" cy="12" r="10" /><path d="M8 13s1.5 2 4 2 4-2 4-2" /><line x1="9" y1="9" x2="9.01" y2="9" /><line x1="15" y1="9" x2="15.01" y2="9" />
+                  </svg>
+                ),
+                title: "Focus Through Joy",
+                desc: "Art is fun — and fun builds focus. When children enjoy what they do, they concentrate deeper and longer.",
+                delay: "delay-[300ms]",
+              },
+              {
+                icon: (
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0F1B3D" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="2" y="3" width="20" height="14" rx="2" /><path d="M8 21h8" /><path d="M12 17v4" />
+                  </svg>
+                ),
+                title: "Process Becomes Product",
+                desc: "Every artwork has a beginning, middle, and end. Art teaches children to see a project through — from idea to completion.",
+                delay: "delay-[350ms]",
+              },
+              {
+                icon: (
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0F1B3D" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="2" y="6" width="20" height="12" rx="2" /><path d="M12 12h.01" /><path d="M17 12h.01" /><path d="M7 12h.01" />
+                  </svg>
+                ),
+                title: "Ready for the AI Era",
+                desc: "In the age of AI, fluency in both language and image is essential. Art builds the visual thinking skills children will need most.",
+                delay: "delay-[400ms]",
+              },
+            ].map((card) => (
+              <div
+                key={card.title}
+                className={`fade-up opacity-0 translate-y-4 transition-all duration-300 ${card.delay} flex flex-col gap-4 p-8 rounded-2xl cursor-default group`}
+                style={{
+                  background: "rgba(255,255,255,0.1)",
+                  border: "1px solid rgba(255,255,255,0.2)",
+                }}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLDivElement).style.transform = "translateY(-4px)"
+                  ;(e.currentTarget as HTMLDivElement).style.borderColor = "rgba(246,196,0,0.4)"
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLDivElement).style.transform = "translateY(0)"
+                  ;(e.currentTarget as HTMLDivElement).style.borderColor = "rgba(255,255,255,0.1)"
+                }}
+              >
+                <div className="flex items-center gap-3">
+                  <div
+                    className="w-11 h-11 rounded-full flex items-center justify-center flex-shrink-0"
+                    style={{ background: "#F6C400" }}
+                  >
+                    {card.icon}
+                  </div>
+                  <h3 className="font-heading font-bold text-white text-[18px]">
+                    {card.title}
+                  </h3>
+                </div>
+                <p className="font-sans text-[16px] leading-relaxed" style={{ color: "#94A3B8" }}>
+                  {card.desc}
                 </p>
               </div>
-
-              {/* 3 Cards */}
-              <div className="flex flex-col gap-6">
-                {/* Card 1 */}
-                <div className="fade-up opacity-0 translate-y-4 transition-all duration-500 delay-150 bg-[#FFFDF5] rounded-2xl p-8">
-                  <div className="w-12 h-12 mb-6">
-                    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <circle cx="24" cy="24" r="20" stroke="#F6C400" strokeWidth="3" strokeDasharray="6 4" />
-                      <path d="M16 24h16M24 16v16" stroke="#F6C400" strokeWidth="3" strokeLinecap="round" />
-                    </svg>
-                  </div>
-                  <h3 className="font-heading font-bold text-[#0F1B3D] text-xl mb-3">
-                    No fixed answers
-                  </h3>
-                  <p className="font-sans text-[#5F6B7A] text-sm leading-relaxed">
-                    Art is a process, not a test.
-                  </p>
-                </div>
-
-                {/* Card 2 */}
-                <div className="fade-up opacity-0 translate-y-4 transition-all duration-500 delay-200 bg-[#FFFDF5] rounded-2xl p-8">
-                  <div className="w-12 h-12 mb-6">
-                    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M24 8v8m0 16v8M8 24h8m16 0h8" stroke="#F6C400" strokeWidth="3" strokeLinecap="round" />
-                      <circle cx="24" cy="24" r="8" stroke="#F6C400" strokeWidth="3" />
-                    </svg>
-                  </div>
-                  <h3 className="font-heading font-bold text-[#0F1B3D] text-xl mb-3">
-                    Self-directed growth
-                  </h3>
-                  <p className="font-sans text-[#5F6B7A] text-sm leading-relaxed">
-                    Children choose, explore, and complete.
-                  </p>
-                </div>
-
-                {/* Card 3 */}
-                <div className="fade-up opacity-0 translate-y-4 transition-all duration-500 delay-[250ms] bg-[#FFFDF5] rounded-2xl p-8">
-                  <div className="w-12 h-12 mb-6">
-                    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M12 36l12-24 12 24" stroke="#F6C400" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
-                      <path d="M16 28h16" stroke="#F6C400" strokeWidth="3" strokeLinecap="round" />
-                    </svg>
-                  </div>
-                  <h3 className="font-heading font-bold text-[#0F1B3D] text-xl mb-3">
-                    Creative problem-solvers
-                  </h3>
-                  <p className="font-sans text-[#5F6B7A] text-sm leading-relaxed">
-                    The result is a child who thinks independently.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Left column on mobile (image), Right column on desktop */}
-            <div className="order-1 lg:order-2 fade-up opacity-0 translate-y-4 transition-all duration-500">
-              <Image
-                src="/images/program-basic.png"
-                alt="A child observing a flower with a magnifying glass"
-                width={600}
-                height={700}
-                className="w-full h-full object-cover rounded-2xl"
-                style={{ minHeight: "100%" }}
-              />
-            </div>
+            ))}
           </div>
         </div>
       </section>
