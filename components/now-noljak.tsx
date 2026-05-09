@@ -3,7 +3,6 @@
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
-import { X } from "lucide-react"
 
 const platforms = ["전체", "Medium", "Instagram", "Facebook", "YouTube", "Blog"]
 
@@ -14,7 +13,7 @@ const cards = [
     title: "Why Observation Matters in Early Childhood",
     description: "Exploring how children learn through careful looking and thinking.",
     tags: ["Education", "Philosophy"],
-    image: "/images/placeholder-medium.jpg",
+    image: "/images/now-01.jpg",
   },
   {
     id: 2,
@@ -22,7 +21,7 @@ const cards = [
     title: "A Day at Noljak Hanoi",
     description: "Watch real moments from our newest center in Vietnam.",
     tags: ["Classroom", "Vietnam"],
-    image: "/images/placeholder-youtube.jpg",
+    image: "/images/now-02.png",
   },
   {
     id: 3,
@@ -30,7 +29,7 @@ const cards = [
     title: "The CreKiC Curriculum Explained",
     description: "Understanding our flagship program for young learners.",
     tags: ["Curriculum"],
-    image: "/images/placeholder-blog.jpg",
+    image: "/images/now-03.jpg",
   },
   {
     id: 4,
@@ -38,7 +37,7 @@ const cards = [
     title: "Little Hands, Big Ideas",
     description: "Creative projects from our 4-year-old artists.",
     tags: ["Art", "Creativity"],
-    image: "/images/placeholder-instagram-1.jpg",
+    image: "/images/now-04.jpg",
   },
   {
     id: 5,
@@ -46,7 +45,7 @@ const cards = [
     title: "Observing Nature Together",
     description: "Students discover textures and colors in leaves.",
     tags: ["Nature", "Observation"],
-    image: "/images/placeholder-instagram-2.jpg",
+    image: "/images/now-05.jpg",
   },
   {
     id: 6,
@@ -54,7 +53,7 @@ const cards = [
     title: "From Korea to the World",
     description: "Celebrating our global community of young creators.",
     tags: ["Global"],
-    image: "/images/placeholder-facebook.jpg",
+    image: "/images/now-06.jpg",
   },
 ]
 
@@ -128,8 +127,9 @@ export function NowNoljak() {
             >
               {/* Platform Badge */}
               <div className="relative">
-                <div className="aspect-video bg-[#E8ECF1] flex items-center justify-center">
-                  <span className="text-[#5F6B7A] text-sm">Image Placeholder</span>
+                <div className="aspect-video overflow-hidden">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={card.image} alt={card.title} className="w-full h-full object-cover" />
                 </div>
                 <span className={`absolute top-3 left-3 px-2 py-1 rounded text-xs font-medium ${platformColors[card.platform]}`}>
                   {card.platform}
@@ -177,8 +177,9 @@ export function NowNoljak() {
             </DialogHeader>
             <div className="flex flex-col gap-4">
               {/* Image */}
-              <div className="aspect-video bg-[#E8ECF1] rounded-lg flex items-center justify-center">
-                <span className="text-[#5F6B7A]">Full Image Placeholder</span>
+              <div className="aspect-video rounded-lg overflow-hidden">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={selectedCard?.image} alt={selectedCard?.title} className="w-full h-full object-cover" />
               </div>
 
               {/* Platform Badge */}

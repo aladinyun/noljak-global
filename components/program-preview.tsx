@@ -7,7 +7,7 @@ const tabs = [
   {
     id: "crekic",
     name: "CreKiC",
-    image: "https://raw.githubusercontent.com/aladinyun/noljak-global/main/public/images/program-crekic.jpg",
+    image: "/images/program-crekic-1.jpg",
     label: "CreKiC Course",
     labelColor: "#F6C400",
     headline: "Where learning begins with the whole body.",
@@ -19,7 +19,7 @@ const tabs = [
   {
     id: "basic",
     name: "Basic",
-    image: "https://raw.githubusercontent.com/aladinyun/noljak-global/main/public/images/program-basic.png",
+    image: "/images/program-basic-1.jpg",
     label: "Basic Course",
     labelColor: "#5BB7E8",
     headline: "Thinking starts with real observation.",
@@ -31,7 +31,7 @@ const tabs = [
   {
     id: "creator",
     name: "Creator",
-    image: "https://raw.githubusercontent.com/aladinyun/noljak-global/main/public/images/program-creator.jpg",
+    image: "/images/program-creator-1.jpg",
     label: "Creator Course",
     labelColor: "#FF8A65",
     headline: "Ideas become original creations.",

@@ -8,11 +8,11 @@ export function HeroSection() {
       {/* Background Image */}
       <div className="absolute inset-0">
         <Image
-          src="/images/hero-child-observing.jpg"
+          src="/images/hero-main.jpg"
           alt="A young child wearing a yellow Noljak apron, curiously observing a real squid with both hands in a warm classroom setting"
           fill
           priority
-          className="object-cover"
+          className="object-cover object-top"
           sizes="100vw"
         />
         {/* Dark gradient overlay from bottom */}
