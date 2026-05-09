@@ -27,18 +27,56 @@ export default function PhilosophyPage() {
     <main className="min-h-screen">
       <Navigation />
 
-      {/* Section 1: Hero */}
-      <section className="bg-[#FFFDF5] min-h-[70vh] flex items-center justify-center py-20 md:py-[120px] pt-[80px]">
-        <div className="max-w-[1200px] mx-auto px-4 md:px-8 text-center">
-          <p className="fade-up opacity-0 translate-y-4 transition-all duration-500 uppercase text-[#F6C400] text-[13px] tracking-[0.15em] font-semibold mb-6">
-            PHILOSOPHY
-          </p>
-          <h1 className="fade-up opacity-0 translate-y-4 transition-all duration-500 delay-100 font-heading font-bold text-[#0F1B3D] text-[36px] md:text-[64px] leading-tight mb-4">
-            Children do not grow by copying.
-          </h1>
-          <p className="fade-up opacity-0 translate-y-4 transition-all duration-500 delay-200 font-sans text-[#5F6B7A] text-[20px] md:text-[24px]">
-            They grow by observing, thinking, and creating.
-          </p>
+      {/* Section 1: Hero — Founder */}
+      <section className="bg-[#0F1B3D] py-24 md:py-32">
+        <div className="max-w-[1200px] mx-auto px-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+
+            {/* Left: Founder photo */}
+            <div className="fade-up opacity-0 translate-y-4 transition-all duration-500">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/images/founder-jangsunkyung-1.jpg"
+                alt="Jang Sun-kyung, Founder and Director of Noljak"
+                className="w-full object-cover"
+                style={{ height: "600px", borderRadius: "24px", objectPosition: "center center" }}
+              />
+            </div>
+
+            {/* Right: Bio + Quotes */}
+            <div className="fade-up opacity-0 translate-y-4 transition-all duration-500 delay-150 flex flex-col">
+              <p className="font-sans font-bold uppercase text-[13px]" style={{ color: "#F6C400", letterSpacing: "0.15em" }}>
+                FOUNDER & DIRECTOR
+              </p>
+              <h1 className="font-heading font-bold text-white mt-3" style={{ fontSize: "48px" }}>
+                Jang Sun-kyung
+              </h1>
+              <p className="font-sans mt-2 text-[18px]" style={{ color: "#94A3B8" }}>
+                Director, Noljak Creative Education Institute
+              </p>
+              <div className="bg-[#F6C400] h-[3px] w-[60px] my-6 rounded-full" />
+              <p className="font-sans text-[16px] leading-relaxed mb-8" style={{ color: "#94A3B8" }}>
+                30+ years in early childhood education. Developer of all Noljak programs — CreKiC, Basic, and Creator.
+              </p>
+
+              {/* Quote cards */}
+              <div className="flex flex-col gap-4">
+                {[
+                  "If a lesson is easy for the teacher, it is not designed for the child — it is designed for the teacher.",
+                  "Real objects. Real senses. The most beautiful learning is the most precious experience for children.",
+                  "When we emphasize the result, children stop learning. Children live in the process.",
+                  "Observation is the foundation of everything — art, study, and life all begin with observation.",
+                ].map((quote, i) => (
+                  <div key={i} className="border-l-2 border-[#F6C400] pl-4">
+                    <p className="font-sans italic text-white text-[15px] leading-relaxed">
+                      &ldquo;{quote}&rdquo;
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+          </div>
         </div>
       </section>
 
@@ -52,20 +90,21 @@ export default function PhilosophyPage() {
                 GOLDEN TIME
               </p>
               <h2 className="fade-up opacity-0 translate-y-4 transition-all duration-500 delay-100 font-heading font-bold text-[#0F1B3D] text-[28px] md:text-[44px] leading-tight mb-6">
-                Ages 4–10. The most important window of growth.
+                Ages 3–10. The most important window of growth.
               </h2>
               <p className="fade-up opacity-0 translate-y-4 transition-all duration-500 delay-150 font-sans text-[#5F6B7A] text-base md:text-lg leading-relaxed">
                 This is when a child&apos;s senses turn into thoughts. When experience becomes knowledge. Noljak designed a precise 6-year roadmap for exactly this window — because what happens here shapes everything that follows.
               </p>
             </div>
-            {/* Right: Large number display */}
-            <div className="fade-up opacity-0 translate-y-4 transition-all duration-500 delay-200 text-center lg:text-right">
-              <p className="font-heading font-bold text-[120px] md:text-[160px] leading-none text-[#F6C400]/20">
-                4–10
-              </p>
-              <p className="font-sans text-[#5F6B7A] text-[16px] mt-4">
-                The Golden Years
-              </p>
+            {/* Right: Image */}
+            <div className="fade-up opacity-0 translate-y-4 transition-all duration-500 delay-200 flex justify-center lg:justify-end">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/images/golden-time-1.png"
+                alt="Golden Time illustration"
+                style={{ width: "300px" }}
+                className="object-contain"
+              />
             </div>
           </div>
         </div>
@@ -75,13 +114,15 @@ export default function PhilosophyPage() {
       <section className="bg-[#FFFDF5] py-20 md:py-[120px]">
         <div className="max-w-[1200px] mx-auto px-4 md:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-            {/* Left: Decorative Icon */}
+            {/* Left: Image */}
             <div className="fade-up opacity-0 translate-y-4 transition-all duration-500 flex justify-center lg:justify-start">
-              <svg width="280" height="280" viewBox="0 0 280 280" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="120" cy="120" r="80" stroke="#F6C400" strokeWidth="12" fill="none" />
-                <line x1="178" y1="178" x2="260" y2="260" stroke="#F6C400" strokeWidth="12" strokeLinecap="round" />
-                <circle cx="100" cy="100" r="20" fill="#F6C400" fillOpacity="0.3" />
-              </svg>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/images/golden-time-2.png"
+                alt="Thinking Observation illustration"
+                style={{ width: "300px" }}
+                className="object-contain"
+              />
             </div>
             {/* Right: Text */}
             <div>
@@ -125,14 +166,15 @@ export default function PhilosophyPage() {
                 </p>
               </blockquote>
             </div>
-            {/* Right: Decorative Icon */}
+            {/* Right: Image */}
             <div className="fade-up opacity-0 translate-y-4 transition-all duration-500 delay-100 flex justify-center lg:justify-end order-first lg:order-last">
-              <svg width="280" height="280" viewBox="0 0 280 280" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M60 220L220 60" stroke="#FF8A65" strokeWidth="24" strokeLinecap="round" />
-                <path d="M200 40L240 80L220 60L200 40Z" fill="#FF8A65" />
-                <path d="M40 240L60 220L80 200" stroke="#FF8A65" strokeWidth="8" strokeLinecap="round" />
-                <circle cx="50" cy="230" r="15" fill="#FF8A65" fillOpacity="0.3" />
-              </svg>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/images/golden-time-3.png"
+                alt="Creative Expression illustration"
+                style={{ width: "300px" }}
+                className="object-contain"
+              />
             </div>
           </div>
         </div>

@@ -1,7 +1,6 @@
 "use client"
 
 import { useState } from "react"
-import { useRouter } from "next/navigation"
 import Link from "next/link"
 import { ChevronDown, Menu, X } from "lucide-react"
 import {
@@ -43,7 +42,6 @@ const languages = [
 ]
 
 export function Navigation() {
-  const router = useRouter()
   const [currentLang, setCurrentLang] = useState("EN")
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
@@ -62,7 +60,6 @@ export function Navigation() {
               link.dropdown ? (
                 <div key={link.href} className="relative group pb-2">
                   <button
-                    onClick={() => router.push(link.href)}
                     className="text-white/90 hover:text-white text-base font-medium transition-colors flex items-center gap-1 px-3 py-2 cursor-pointer"
                   >
                     {link.label}
