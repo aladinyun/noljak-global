@@ -324,7 +324,7 @@ export default function CreatorPage() {
           </h2>
           <div className="fade-up opacity-0 translate-y-4 transition-all duration-500 delay-150 flex flex-col sm:flex-row gap-4 justify-center">
             <Link
-              href="/contact"
+              href="/global-business"
               className="inline-block px-8 py-4 bg-[#0F1B3D] text-white font-bold rounded-full hover:bg-white hover:text-[#0F1B3D] transition-all duration-300"
             >
               Talk to a Consultant

@@ -400,16 +400,16 @@ export default function PhilosophyPage() {
           </h2>
           <div className="fade-up opacity-0 translate-y-4 transition-all duration-500 delay-150 flex flex-col sm:flex-row gap-4 justify-center">
             <Link
-              href="/programs"
+              href="/programs/crekic"
               className="inline-block bg-[#F6C400] text-[#0F1B3D] font-bold text-base px-8 py-4 rounded-full hover:bg-[#0F1B3D] hover:text-[#F6C400] transition-all duration-300 border-2 border-[#F6C400]"
             >
               Explore Programs
             </Link>
             <Link
-              href="/find-center"
+              href="/now-noljak"
               className="inline-block bg-transparent text-white font-bold text-base px-8 py-4 rounded-full border-2 border-white hover:bg-white hover:text-[#0F1B3D] transition-all duration-300"
             >
-              Find a Center
+              See Now Noljak
             </Link>
           </div>
         </div>
