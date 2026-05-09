@@ -2,7 +2,6 @@
 
 import { useEffect, useRef } from "react"
 import { Footer } from "@/components/footer"
-import Link from "next/link"
 import Image from "next/image"
 
 export default function WhatIsNoljak() {
@@ -28,64 +27,55 @@ export default function WhatIsNoljak() {
 
   return (
     <main className="min-h-screen bg-[#FFFDF5]">
-      {/* Section 2: What is Noljak */}
-      <section className="bg-[#0F1B3D] pt-[160px] pb-[160px]">
-        <div className="max-w-[800px] mx-auto px-4 md:px-8 text-center flex flex-col items-center gap-6">
-          <h2 className="font-heading font-bold text-white text-[28px] md:text-[44px] leading-tight">
-            The world&apos;s only art-based creative education for the AI generation.
-          </h2>
-          <div className="font-sans text-[18px] leading-[1.8] text-left flex flex-col gap-4" style={{ color: "#5F6B7A" }}>
-            <p>
-              Noljak is a creative education program rooted in Thinking Observation — designed for children ages 3 to elementary school. Through small-group, project-based art classes, we help children develop the creativity that will define their success in the AI era.
-            </p>
-            <p>
-              English and math matter. But in the end, creativity is the real competitive edge. And creativity has a golden time — it starts early, and it starts with Noljak.
-            </p>
-          </div>
-          <div className="flex flex-wrap justify-center gap-3 mt-2">
-            {["Ages 3–Elementary", "Small Group Classes", "Project-Based Learning"].map((tag) => (
-              <span
-                key={tag}
-                className="font-sans text-sm px-4 py-2 rounded-full border"
-                style={{ borderColor: "#F6C400", color: "#F6C400" }}
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* Section 2: Intro + The Name (combined) */}
+      <section className="bg-[#FFFDF5] pt-[200px] pb-[120px]">
+        <div className="max-w-[1200px] mx-auto px-4 md:px-8 flex flex-col gap-16">
 
-      {/* Section 3: The Name */}
-      <section className="bg-[#FFFDF5] py-20 md:py-[120px]">
-        <div className="max-w-[1200px] mx-auto px-4 md:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-            {/* Left: Logo display */}
-            <div className="fade-up opacity-0 translate-y-4 transition-all duration-500 flex flex-col items-center">
+          {/* Full-width headline */}
+          <h1 className="fade-up opacity-0 translate-y-4 transition-all duration-500 font-heading font-bold text-[#0F1B3D] text-[32px] md:text-[48px] leading-tight">
+            Noljak is the world&apos;s only art-based creative education for the AI generation.
+          </h1>
+
+          {/* 2-column: Logo left, Content right */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 items-center">
+
+            {/* Left: Logo */}
+            <div className="fade-up opacity-0 translate-y-4 transition-all duration-500">
               <Image
                 src="/images/noljak_logo.png"
                 alt="Noljak Logo"
-                width={300}
-                height={300}
-                className="object-contain"
+                width={600}
+                height={600}
+                className="object-contain w-full"
               />
             </div>
-            {/* Right: Body text */}
-            <div className="fade-up opacity-0 translate-y-4 transition-all duration-500 delay-150 flex flex-col gap-4">
-              <p className="font-sans font-bold uppercase tracking-widest text-[13px]" style={{ color: "#5BB7E8" }}>
-                THE NAME
-              </p>
-              <h2 className="font-heading font-bold text-[#0F1B3D] text-[28px] md:text-[36px] leading-tight">
-                NOLJAK = Nol-i(놀이) + Chang-Jak(창작)
-              </h2>
-              <div className="w-12 h-[3px] rounded-full" style={{ backgroundColor: "#F6C400" }} />
-              <p className="font-sans text-[#5F6B7A] text-base md:text-lg leading-relaxed">
-                NOLJAK is born from two Korean words — Nol-i (놀이, Play) and Chang-Jak (창작, Creation). We believe the purity of play is the origin of all creation. When children observe and think through play, their creative expression truly shines.
-              </p>
-              <p className="font-sans text-[#5F6B7A] text-sm">
-                Play + Creation → NOLJAK
-              </p>
+
+            {/* Right: Body + Footnote + Tags */}
+            <div className="fade-up opacity-0 translate-y-4 transition-all duration-500 delay-150 flex flex-col gap-6">
+              <div className="font-sans text-[#5F6B7A] text-[18px] leading-[1.8] flex flex-col gap-4">
+                <p>
+                  Noljak is a creative education program rooted in Thinking Observation — designed for children ages 3 to elementary school. Through small-group, project-based art classes, we help children develop the creativity that will define their success in the AI era.
+                </p>
+                <p>
+                  English and math matter. But in the end, creativity is the real competitive edge. And creativity has a golden time — it starts early, and it starts with Noljak.
+                </p>
+              </div>
+
+              {/* Footnote */}
+              <div className="font-sans text-[#9CA3AF] text-[14px] leading-relaxed flex flex-col gap-1 border-l-2 border-[#E5E7EB] pl-4">
+                <p>NOLJAK = Nol-i(놀이) + Chang-Jak(창작)</p>
+                <p>Play + Creation → NOLJAK</p>
+              </div>
+
+              {/* Tags */}
+              <div className="grid grid-cols-2 gap-2 mt-6 max-w-lg">
+                <span className="bg-[#F6C400] text-[#0F1B3D] text-[14px] font-bold px-8 py-3 rounded-full text-center">Ages 3–Elementary</span>
+                <span className="bg-[#F6C400] text-[#0F1B3D] text-[14px] font-bold px-8 py-3 rounded-full text-center">Korea&apos;s #1 Creative Education</span>
+                <span className="bg-[#F6C400] text-[#0F1B3D] text-[14px] font-bold px-8 py-3 rounded-full text-center">Real Object &amp; Project-Based</span>
+                <span className="bg-[#F6C400] text-[#0F1B3D] text-[14px] font-bold px-8 py-3 rounded-full text-center">Small Group Classes</span>
+              </div>
             </div>
+
           </div>
         </div>
       </section>
@@ -214,108 +204,30 @@ export default function WhatIsNoljak() {
       </section>
 
       {/* Section 4: Our Slogan */}
-      <section className="bg-[#0F1B3D] py-20 md:py-[120px]">
-        <div className="max-w-[1200px] mx-auto px-4 md:px-8 text-center">
-          <p className="fade-up opacity-0 translate-y-4 transition-all duration-500 font-heading font-bold text-white text-[32px] md:text-[56px] leading-tight">
-            Thinking Observation.
+      <section className="bg-[#FFFDF5] py-[120px]">
+        <div className="max-w-[1200px] mx-auto px-4 md:px-8 text-center flex flex-col items-center gap-6">
+          <p className="fade-up opacity-0 translate-y-4 transition-all duration-500 font-sans font-bold uppercase text-[13px]" style={{ color: "#F6C400", letterSpacing: "0.15em" }}>
+            OUR SLOGAN
           </p>
-          <div className="fade-up opacity-0 translate-y-4 transition-all duration-500 delay-100 w-24 h-[2px] bg-[#F6C400] mx-auto my-6" />
-          <p className="fade-up opacity-0 translate-y-4 transition-all duration-500 delay-150 font-heading font-bold text-white text-[32px] md:text-[56px] leading-tight mb-8">
-            Creative Expression.
+          <div className="fade-up opacity-0 translate-y-4 transition-all duration-500 delay-100 flex flex-col items-center gap-2">
+            <h2 className="font-heading font-bold text-[#0F1B3D] text-[36px] md:text-[64px] leading-tight">
+              Thinking Observation!
+            </h2>
+            <h2 className="font-heading font-bold text-[#0F1B3D] text-[36px] md:text-[64px] leading-tight">
+              Creative Expression!
+            </h2>
+          </div>
+          <div className="fade-up opacity-0 translate-y-4 transition-all duration-500 delay-150 h-[3px] rounded-full bg-[#F6C400]" style={{ width: "60px" }} />
+          <p className="fade-up opacity-0 translate-y-4 transition-all duration-500 delay-200 font-sans text-[#5F6B7A] text-[20px]">
+            This is the core of everything Noljak does — from the classroom to the world.
           </p>
-          <p className="fade-up opacity-0 translate-y-4 transition-all duration-500 delay-200 font-sans text-[#5F6B7A] text-base md:text-lg">
+          <p className="fade-up opacity-0 translate-y-4 transition-all duration-500 delay-[250ms] font-sans italic text-[#5F6B7A] text-[16px]">
             생각하는 관찰이 창의적인 표현을 만듭니다.
           </p>
         </div>
       </section>
 
-      {/* Section 5: Our 5 Promises */}
-      <section className="bg-[#FFFDF5] py-20 md:py-[120px]">
-        <div className="max-w-[1200px] mx-auto px-4 md:px-8">
-          <h2 className="fade-up opacity-0 translate-y-4 transition-all duration-500 font-heading font-bold text-[#0F1B3D] text-[28px] md:text-[44px] text-center leading-tight mb-16">
-            Our 5 Promises to Every Child
-          </h2>
-
-          <div className="flex flex-col gap-12 md:gap-16">
-            {/* Promise 1 */}
-            <div className="fade-up opacity-0 translate-y-4 transition-all duration-500 flex flex-col md:flex-row items-start gap-6 md:gap-12">
-              <div className="relative">
-                <span className="font-heading font-bold text-[#F6C400] text-[80px] leading-none opacity-15">01</span>
-              </div>
-              <div className="flex-1">
-                <h3 className="font-heading font-bold text-[#0F1B3D] text-xl md:text-2xl mb-3">
-                  Honest & Eye-Level Connection
-                </h3>
-                <p className="font-sans text-[#5F6B7A] text-base leading-relaxed">
-                  We never draw for your child. Every line belongs to them.
-                </p>
-              </div>
-            </div>
-
-            {/* Promise 2 */}
-            <div className="fade-up opacity-0 translate-y-4 transition-all duration-500 flex flex-col md:flex-row-reverse items-start gap-6 md:gap-12">
-              <div className="relative md:text-right">
-                <span className="font-heading font-bold text-[#F6C400] text-[80px] leading-none opacity-15">02</span>
-              </div>
-              <div className="flex-1 md:text-right">
-                <h3 className="font-heading font-bold text-[#0F1B3D] text-xl md:text-2xl mb-3">
-                  Deep Listening & Dialogue
-                </h3>
-                <p className="font-sans text-[#5F6B7A] text-base leading-relaxed">
-                  We ask, we listen, we guide — never instruct.
-                </p>
-              </div>
-            </div>
-
-            {/* Promise 3 */}
-            <div className="fade-up opacity-0 translate-y-4 transition-all duration-500 flex flex-col md:flex-row items-start gap-6 md:gap-12">
-              <div className="relative">
-                <span className="font-heading font-bold text-[#F6C400] text-[80px] leading-none opacity-15">03</span>
-              </div>
-              <div className="flex-1">
-                <h3 className="font-heading font-bold text-[#0F1B3D] text-xl md:text-2xl mb-3">
-                  Learning through the Body
-                </h3>
-                <p className="font-sans text-[#5F6B7A] text-base leading-relaxed">
-                  Real objects, real touch, real thinking.
-                </p>
-              </div>
-            </div>
-
-            {/* Promise 4 */}
-            <div className="fade-up opacity-0 translate-y-4 transition-all duration-500 flex flex-col md:flex-row-reverse items-start gap-6 md:gap-12">
-              <div className="relative md:text-right">
-                <span className="font-heading font-bold text-[#F6C400] text-[80px] leading-none opacity-15">04</span>
-              </div>
-              <div className="flex-1 md:text-right">
-                <h3 className="font-heading font-bold text-[#0F1B3D] text-xl md:text-2xl mb-3">
-                  Small Group System
-                </h3>
-                <p className="font-sans text-[#5F6B7A] text-base leading-relaxed">
-                  Every child is seen, heard, and guided individually.
-                </p>
-              </div>
-            </div>
-
-            {/* Promise 5 */}
-            <div className="fade-up opacity-0 translate-y-4 transition-all duration-500 flex flex-col md:flex-row items-start gap-6 md:gap-12">
-              <div className="relative">
-                <span className="font-heading font-bold text-[#F6C400] text-[80px] leading-none opacity-15">05</span>
-              </div>
-              <div className="flex-1">
-                <h3 className="font-heading font-bold text-[#0F1B3D] text-xl md:text-2xl mb-3">
-                  Timed Session Management
-                </h3>
-                <p className="font-sans text-[#5F6B7A] text-base leading-relaxed">
-                  Structured time for deep focus and creative habit.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Section 6: Less Plastic */}
+      {/* Section 5: Less Plastic (moved before 5 Promises) */}
       <section className="bg-white py-20 md:py-[120px]">
         <div className="max-w-[1200px] mx-auto px-4 md:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
@@ -331,50 +243,106 @@ export default function WhatIsNoljak() {
                 Noljak uses real objects — not plastic toys, not printed kits. Real materials spark real thinking. And they protect the world our children will grow up in.
               </p>
             </div>
-            {/* Right: Illustration */}
-            <div className="fade-up opacity-0 translate-y-4 transition-all duration-500 delay-150 flex justify-center lg:justify-end">
-              <svg width="300" height="300" viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
-                {/* Hand */}
-                <path 
-                  d="M150 280c-30 0-60-20-70-50-5-15-5-30 0-45l30-80c5-15 20-25 35-25s30 10 35 25l30 80c5 15 5 30 0 45-10 30-30 50-60 50z" 
-                  fill="#FFFDF5" 
-                  stroke="#0F1B3D" 
-                  strokeWidth="3"
-                />
-                {/* Leaf stem */}
-                <path 
-                  d="M150 180v-80" 
-                  stroke="#5BB7E8" 
-                  strokeWidth="4" 
-                  strokeLinecap="round"
-                />
-                {/* Leaf left */}
-                <path 
-                  d="M150 120c-30-10-50-30-50-60 30 10 50 30 50 60z" 
-                  fill="#5BB7E8" 
-                  opacity="0.3"
-                />
-                <path 
-                  d="M150 120c-30-10-50-30-50-60 30 10 50 30 50 60z" 
-                  stroke="#5BB7E8" 
-                  strokeWidth="2"
-                />
-                {/* Leaf right */}
-                <path 
-                  d="M150 100c30-10 50-30 50-60-30 10-50 30-50 60z" 
-                  fill="#F6C400" 
-                  opacity="0.3"
-                />
-                <path 
-                  d="M150 100c30-10 50-30 50-60-30 10-50 30-50 60z" 
-                  stroke="#F6C400" 
-                  strokeWidth="2"
-                />
-                {/* Small circles */}
-                <circle cx="100" cy="200" r="8" fill="#FF8A65" opacity="0.5" />
-                <circle cx="200" cy="220" r="6" fill="#5BB7E8" opacity="0.5" />
-                <circle cx="180" cy="180" r="4" fill="#F6C400" opacity="0.5" />
-              </svg>
+            {/* Right: Image */}
+            <div className="fade-up opacity-0 translate-y-4 transition-all duration-500 delay-150">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/images/whatisnoljak-commitment.jpg"
+                alt="Children exploring real materials at Noljak"
+                className="w-full object-cover object-top rounded-2xl"
+                style={{ height: "400px" }}
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Section 6: Our 5 Promises */}
+      <section className="bg-[#0F1B3D] py-20 md:py-[120px]">
+        <div className="max-w-[1200px] mx-auto px-4 md:px-8">
+          <div className="text-center mb-16 flex flex-col items-center gap-4">
+            <p className="fade-up opacity-0 translate-y-4 transition-all duration-500 font-sans font-bold uppercase text-[13px]" style={{ color: "#F6C400", letterSpacing: "0.15em" }}>
+              OUR PROMISE
+            </p>
+            <h2 className="fade-up opacity-0 translate-y-4 transition-all duration-500 delay-100 font-heading font-bold text-white text-[28px] md:text-[44px] leading-tight">
+              Our 5 Promises to Every Child
+            </h2>
+          </div>
+
+          <div className="flex flex-col gap-12 md:gap-16">
+            {/* Promise 1 */}
+            <div className="fade-up opacity-0 translate-y-4 transition-all duration-500 flex flex-col md:flex-row items-start gap-6 md:gap-12">
+              <div className="relative">
+                <span className="font-heading font-bold text-[#F6C400] text-[80px] leading-none opacity-15">01</span>
+              </div>
+              <div className="flex-1">
+                <h3 className="font-heading font-bold text-white text-xl md:text-2xl mb-3">
+                  Honest & Eye-Level Connection
+                </h3>
+                <p className="font-sans text-[#94A3B8] text-base leading-relaxed">
+                  We never draw for your child. Every line belongs to them.
+                </p>
+              </div>
+            </div>
+
+            {/* Promise 2 */}
+            <div className="fade-up opacity-0 translate-y-4 transition-all duration-500 flex flex-col md:flex-row-reverse items-start gap-6 md:gap-12">
+              <div className="relative md:text-right">
+                <span className="font-heading font-bold text-[#F6C400] text-[80px] leading-none opacity-15">02</span>
+              </div>
+              <div className="flex-1 md:text-right">
+                <h3 className="font-heading font-bold text-white text-xl md:text-2xl mb-3">
+                  Deep Listening & Dialogue
+                </h3>
+                <p className="font-sans text-[#94A3B8] text-base leading-relaxed">
+                  We ask, we listen, we guide — never instruct.
+                </p>
+              </div>
+            </div>
+
+            {/* Promise 3 */}
+            <div className="fade-up opacity-0 translate-y-4 transition-all duration-500 flex flex-col md:flex-row items-start gap-6 md:gap-12">
+              <div className="relative">
+                <span className="font-heading font-bold text-[#F6C400] text-[80px] leading-none opacity-15">03</span>
+              </div>
+              <div className="flex-1">
+                <h3 className="font-heading font-bold text-white text-xl md:text-2xl mb-3">
+                  Learning through the Body
+                </h3>
+                <p className="font-sans text-[#94A3B8] text-base leading-relaxed">
+                  Real objects, real touch, real thinking.
+                </p>
+              </div>
+            </div>
+
+            {/* Promise 4 */}
+            <div className="fade-up opacity-0 translate-y-4 transition-all duration-500 flex flex-col md:flex-row-reverse items-start gap-6 md:gap-12">
+              <div className="relative md:text-right">
+                <span className="font-heading font-bold text-[#F6C400] text-[80px] leading-none opacity-15">04</span>
+              </div>
+              <div className="flex-1 md:text-right">
+                <h3 className="font-heading font-bold text-white text-xl md:text-2xl mb-3">
+                  Small Group System
+                </h3>
+                <p className="font-sans text-[#94A3B8] text-base leading-relaxed">
+                  Every child is seen, heard, and guided individually.
+                </p>
+              </div>
+            </div>
+
+            {/* Promise 5 */}
+            <div className="fade-up opacity-0 translate-y-4 transition-all duration-500 flex flex-col md:flex-row items-start gap-6 md:gap-12">
+              <div className="relative">
+                <span className="font-heading font-bold text-[#F6C400] text-[80px] leading-none opacity-15">05</span>
+              </div>
+              <div className="flex-1">
+                <h3 className="font-heading font-bold text-white text-xl md:text-2xl mb-3">
+                  Timed Session Management
+                </h3>
+                <p className="font-sans text-[#94A3B8] text-base leading-relaxed">
+                  Structured time for deep focus and creative habit.
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -387,18 +355,22 @@ export default function WhatIsNoljak() {
             Ready to explore?
           </h2>
           <div className="fade-up opacity-0 translate-y-4 transition-all duration-500 delay-100 flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              href="/programs/philosophy"
+            <a
+              href="https://medium.com/@noljak"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-block px-8 py-4 bg-[#0F1B3D] text-white font-bold rounded-full transition-all duration-300 hover:bg-white hover:text-[#0F1B3D]"
             >
-              Explore Our Philosophy
-            </Link>
-            <Link
-              href="/find-center"
+              Read Our Story
+            </a>
+            <a
+              href="https://medium.com/@noljak"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-block px-8 py-4 bg-transparent border-2 border-[#0F1B3D] text-[#0F1B3D] font-bold rounded-full transition-all duration-300 hover:bg-[#0F1B3D] hover:text-white"
             >
-              Find a Center Near You
-            </Link>
+              Meet the Founder
+            </a>
           </div>
         </div>
       </section>
