@@ -4,6 +4,7 @@ import { useEffect } from "react"
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
 import Link from "next/link"
+import { Cpu, Sparkles } from "lucide-react"
 
 export default function PhilosophyPage() {
   useEffect(() => {
@@ -364,18 +365,24 @@ export default function PhilosophyPage() {
                 In a world flooded with data, Noljak builds that — one real object at a time. The child who touches a real squid, feels its texture, smells it, and draws it from memory — that child carries data no AI will ever have.
               </p>
             </div>
-            {/* Right: Comparison cards */}
-            <div className="flex flex-col gap-6">
+            {/* Right: Comparison cards — aligned to body text start */}
+            <div className="flex flex-col gap-6 mt-[calc(1rem+1.75rem+1.5rem)]">
               {/* Card 1: AI */}
               <div className="fade-up opacity-0 translate-y-4 transition-all duration-500 delay-200 bg-[#E8ECF1] rounded-xl p-8">
-                <p className="font-sans text-[#5F6B7A] text-sm font-semibold mb-3">AI</p>
+                <div className="flex items-center gap-2 mb-3">
+                  <Cpu size={24} color="#5F6B7A" />
+                  <p className="font-sans text-[#5F6B7A] text-sm font-semibold">AI</p>
+                </div>
                 <p className="font-sans text-[#0F1B3D] text-lg">
                   Processes data. Generates patterns. Replicates.
                 </p>
               </div>
               {/* Card 2: Child */}
               <div className="fade-up opacity-0 translate-y-4 transition-all duration-500 delay-[250ms] bg-[#F6C400] rounded-xl p-8">
-                <p className="font-heading font-bold text-[#0F1B3D] text-sm mb-3">Child</p>
+                <div className="flex items-center gap-2 mb-3">
+                  <Sparkles size={24} color="#0F1B3D" />
+                  <p className="font-heading font-bold text-[#0F1B3D] text-sm">Child</p>
+                </div>
                 <p className="font-sans text-[#0F1B3D] text-lg">
                   Touches. Smells. Feels. Creates something entirely new.
                 </p>
