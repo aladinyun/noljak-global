@@ -27,9 +27,7 @@ export default function GlobalBusinessPage() {
       {/* Section 1: Hero */}
       <section className="bg-[#0F1B3D] min-h-[80vh] flex items-center justify-center py-20 md:py-[120px] pt-[80px]">
         <div className="max-w-[1200px] mx-auto px-4 md:px-8 text-center">
-          <p className="fade-up opacity-0 translate-y-4 transition-all duration-500 uppercase text-[#F6C400] text-[13px] font-bold tracking-[0.15em] mb-6">
-            GLOBAL BUSINESS
-          </p>
+          
           <h1 className="fade-up opacity-0 translate-y-4 transition-all duration-500 delay-100 font-heading font-bold text-white text-[36px] md:text-[64px] leading-tight mb-6">
             Bring Noljak to your city.
           </h1>
