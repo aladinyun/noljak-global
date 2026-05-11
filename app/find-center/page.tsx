@@ -118,12 +118,9 @@ export default function FindCenterPage() {
   return (
     <main className="min-h-screen bg-[#FFFDF5]">
       {/* Section 1: Hero */}
-      <section className="min-h-[50vh] bg-[#FFFDF5] flex items-center justify-center pt-[80px] pb-16">
+      <section className="min-h-0 bg-[#FFFDF5] flex items-center justify-center pt-[160px] pb-16">
         <div className="max-w-[1200px] mx-auto px-4 md:px-8 text-center">
-          <p className="fade-up opacity-0 translate-y-4 transition-all duration-500 uppercase text-[#F6C400] text-[13px] font-bold tracking-[0.15em] mb-4">
-            FIND CENTER
-          </p>
-          <h1 className="fade-up opacity-0 translate-y-4 transition-all duration-500 delay-100 font-heading font-bold text-[#0F1B3D] text-[36px] md:text-[64px] leading-tight mb-6">
+                    <h1 className="fade-up opacity-0 translate-y-4 transition-all duration-500 delay-100 font-heading font-bold text-[#0F1B3D] text-[36px] md:text-[64px] leading-tight mb-6">
             Find Noljak near you.
           </h1>
           <p className="fade-up opacity-0 translate-y-4 transition-all duration-500 delay-150 font-sans text-[#5F6B7A] text-lg md:text-xl max-w-[600px] mx-auto">
