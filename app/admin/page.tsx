@@ -15,7 +15,7 @@ export default function AdminDashboard() {
     { title: 'Find Center', desc: '교육원 정보 관리', icon: '📍', path: '/admin/find-center', disabled: true },
     { title: 'Now Noljak', desc: 'SNS 카드 관리', icon: '📸', path: '/admin/now-noljak', disabled: false },
     { title: 'Global Business', desc: '문의 수신 관리', icon: '✉️', path: '/admin/global-business', disabled: true },
-    { title: '계정 관리', desc: '관리자 계정 추가/삭제', icon: '👤', path: '/admin/accounts', disabled: true },
+    { title: '계정 관리', desc: '관리자 계정 추가/삭제', icon: '👤', path: '/admin/accounts', disabled: false },
   ]
 
   return (
@@ -27,7 +27,7 @@ export default function AdminDashboard() {
           </div>
           <span className="text-white font-bold text-lg">NOLJAK Admin</span>
         </div>
-        <button onClick={handleLogout} className="text-[#5F6B7A] hover:text-white text-sm transition">
+        <button onClick={handleLogout} className="text-white hover:text-[#F6C400] text-sm transition">
           로그아웃
         </button>
       </header>
