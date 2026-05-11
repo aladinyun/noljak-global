@@ -71,6 +71,7 @@ export default function FindCenterPage() {
 
   const regionTabs = [
     { id: "all", label: "All" },
+    { id: "korea", label: "Korea" },
     ...Array.from(new Set(centers.map(c => c.country)))
       .sort()
       .map(country => ({ id: country.toLowerCase(), label: country }))
@@ -258,29 +259,27 @@ export default function FindCenterPage() {
             Centers by region.
           </h2>
 
-          {loading && (
+          {loading ? (
             <div className="text-center py-20 text-[#5F6B7A]">Loading centers...</div>
-          )}
-
-          {!loading && filteredCenters.length === 0 && (
+          ) : activeRegion === "korea" ? (
             <div className="fade-up opacity-0 translate-y-4 transition-all duration-500 text-center py-20">
-              <MapPin className="w-16 h-16 text-[#E8ECF1] mx-auto mb-6" />
-              <h3 className="font-heading font-bold text-[#0F1B3D] text-2xl mb-3">
-                No Noljak center in your city yet.
+              <p className="font-sans font-bold text-[13px] text-[#F6C400] uppercase tracking-[0.15em] mb-4">KOREA</p>
+              <h3 className="font-heading font-bold text-[#0F1B3D] text-[28px] md:text-[44px] mb-4">
+                400+ centers across Korea.
               </h3>
-              <p className="font-sans text-[#5F6B7A] text-base mb-8">
-                Be the first to bring Noljak to your community.
+              <p className="font-sans text-[#5F6B7A] text-base md:text-lg max-w-[480px] mx-auto mb-10">
+                Find your nearest Noljak center on our Korean website.
               </p>
-              <Link
-                href="/global-business"
-                className="inline-block bg-[#F6C400] text-[#0F1B3D] font-bold px-8 py-3 rounded-full hover:bg-[#E5B600] transition-colors"
+              <a
+                href="http://noljakmyart.com/study/school.asp"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block bg-[#F6C400] text-[#0F1B3D] font-bold px-8 py-3.5 rounded-full hover:bg-[#E5B600] transition-colors"
               >
-                Bring Noljak to Your City →
-              </Link>
+                Find a Center in Korea →
+              </a>
             </div>
-          )}
-
-          {!loading && filteredCenters.length > 0 && (
+          ) : filteredCenters.length > 0 ? (
             <div className="flex flex-col gap-12">
               {uniqueCountries.map((country) => {
                 const countryCenters = filteredCenters.filter(c => c.country === country)
@@ -330,6 +329,22 @@ export default function FindCenterPage() {
                   </section>
                 )
               })}
+            </div>
+          ) : (
+            <div className="fade-up opacity-0 translate-y-4 transition-all duration-500 text-center py-20">
+              <MapPin className="w-16 h-16 text-[#E8ECF1] mx-auto mb-6" />
+              <h3 className="font-heading font-bold text-[#0F1B3D] text-2xl mb-3">
+                No Noljak center in your city yet.
+              </h3>
+              <p className="font-sans text-[#5F6B7A] text-base mb-8">
+                Be the first to bring Noljak to your community.
+              </p>
+              <Link
+                href="/global-business"
+                className="inline-block bg-[#F6C400] text-[#0F1B3D] font-bold px-8 py-3 rounded-full hover:bg-[#E5B600] transition-colors"
+              >
+                Bring Noljak to Your City →
+              </Link>
             </div>
           )}
         </div>
