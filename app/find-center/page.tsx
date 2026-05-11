@@ -54,20 +54,28 @@ export default function FindCenterPage() {
 
   // Scroll animation
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.remove("opacity-0", "translate-y-4")
-          }
-        })
-      },
-      { threshold: 0.1 }
-    )
+    const elements = document.querySelectorAll(".fade-up")
+    elements.forEach((el) => {
+      el.classList.add("opacity-0", "translate-y-4")
+    })
 
-    document.querySelectorAll(".fade-up").forEach((el) => observer.observe(el))
-    return () => observer.disconnect()
-  }, [centers])
+    const timer = setTimeout(() => {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.remove("opacity-0", "translate-y-4")
+            }
+          })
+        },
+        { threshold: 0.1 }
+      )
+      document.querySelectorAll(".fade-up").forEach((el) => observer.observe(el))
+      return () => observer.disconnect()
+    }, 50)
+
+    return () => clearTimeout(timer)
+  }, [centers, activeRegion, searchQuery])
 
   const regionTabs = [
     { id: "all", label: "All" },
