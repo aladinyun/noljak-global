@@ -67,7 +67,7 @@ export default function FindCenterPage() {
 
     document.querySelectorAll(".fade-up").forEach((el) => observer.observe(el))
     return () => observer.disconnect()
-  }, [])
+  }, [centers])
 
   const regionTabs = [
     { id: "all", label: "All" },
