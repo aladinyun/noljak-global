@@ -1,9 +1,12 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import dynamic from "next/dynamic"
 import { Footer } from "@/components/footer"
 import Link from "next/link"
 import { Search, MapPin } from "lucide-react"
+
+const WorldMap = dynamic(() => import("@/components/world-map"), { ssr: false })
 
 type Center = {
   id: string
@@ -21,26 +24,12 @@ type Center = {
   sort_order: number
 }
 
-const mapDots = [
-  { id: "korea", name: "Korea", top: "35%", left: "72%" },
-  { id: "usa", name: "USA", top: "38%", left: "20%" },
-  { id: "germany", name: "Germany", top: "28%", left: "48%" },
-  { id: "vietnam", name: "Vietnam", top: "48%", left: "68%" },
-  { id: "philippines", name: "Philippines", top: "50%", left: "73%" },
-  { id: "canada", name: "Canada", top: "28%", left: "18%" },
-  { id: "uk", name: "UK", top: "25%", left: "45%" },
-  { id: "australia", name: "Australia", top: "68%", left: "75%" },
-  { id: "china", name: "China", top: "38%", left: "68%" },
-  { id: "japan", name: "Japan", top: "35%", left: "76%" },
-  { id: "thailand", name: "Thailand", top: "46%", left: "66%" },
-]
 
 export default function FindCenterPage() {
   const [centers, setCenters] = useState<Center[]>([])
   const [loading, setLoading] = useState(true)
   const [searchQuery, setSearchQuery] = useState("")
   const [activeRegion, setActiveRegion] = useState("all")
-  const [hoveredDot, setHoveredDot] = useState<string | null>(null)
 
   useEffect(() => {
     fetch('/api/centers')
@@ -172,72 +161,8 @@ export default function FindCenterPage() {
           </div>
 
           {/* Map Container */}
-          <div className="fade-up opacity-0 translate-y-4 transition-all duration-500 delay-150 relative max-w-[900px] mx-auto mb-16">
-            <svg
-              viewBox="0 0 1000 500"
-              className="w-full h-auto"
-              style={{ backgroundColor: "#E8ECF1", borderRadius: "16px" }}
-            >
-              {/* Simplified world map paths */}
-              <path
-                d="M150,180 Q200,150 280,160 Q320,170 350,200 Q370,230 340,260 Q300,290 250,280 Q180,270 150,230 Q130,200 150,180"
-                fill="#D4D4D4"
-                stroke="#FFFFFF"
-                strokeWidth="0.5"
-              />
-              <path
-                d="M100,200 Q130,180 180,185 Q220,190 240,220 Q250,250 220,280 Q180,310 130,300 Q80,280 70,240 Q60,210 100,200"
-                fill="#D4D4D4"
-                stroke="#FFFFFF"
-                strokeWidth="0.5"
-              />
-              <path
-                d="M420,120 Q500,100 580,110 Q650,120 700,150 Q740,180 720,220 Q690,260 620,270 Q550,280 480,260 Q420,240 400,200 Q380,160 420,120"
-                fill="#D4D4D4"
-                stroke="#FFFFFF"
-                strokeWidth="0.5"
-              />
-              <path
-                d="M440,200 Q480,180 540,185 Q600,190 650,220 Q680,250 660,290 Q620,340 550,350 Q480,360 430,330 Q390,300 400,260 Q410,220 440,200"
-                fill="#D4D4D4"
-                stroke="#FFFFFF"
-                strokeWidth="0.5"
-              />
-              <path
-                d="M650,140 Q720,120 800,130 Q870,140 920,180 Q950,220 930,270 Q890,320 820,340 Q740,360 670,330 Q610,300 620,250 Q630,190 650,140"
-                fill="#D4D4D4"
-                stroke="#FFFFFF"
-                strokeWidth="0.5"
-              />
-              <path
-                d="M700,320 Q760,300 830,310 Q890,320 920,360 Q940,400 900,440 Q840,470 770,460 Q700,450 670,410 Q650,370 700,320"
-                fill="#D4D4D4"
-                stroke="#FFFFFF"
-                strokeWidth="0.5"
-              />
-            </svg>
-
-            {/* Map Dots */}
-            {mapDots.map((dot) => (
-              <div
-                key={dot.id}
-                className="absolute cursor-pointer group"
-                style={{ top: dot.top, left: dot.left, transform: "translate(-50%, -50%)" }}
-                onMouseEnter={() => setHoveredDot(dot.id)}
-                onMouseLeave={() => setHoveredDot(null)}
-              >
-                {/* Pulse animation ring */}
-                <div className="absolute inset-0 w-3 h-3 bg-[#F6C400] rounded-full animate-ping opacity-75" />
-                {/* Dot */}
-                <div className="relative w-3 h-3 bg-[#F6C400] rounded-full transition-transform hover:scale-150" />
-                {/* Tooltip */}
-                {hoveredDot === dot.id && (
-                  <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-1.5 bg-white rounded-lg shadow-lg whitespace-nowrap z-10">
-                    <span className="font-sans font-bold text-[13px] text-[#0F1B3D]">{dot.name}</span>
-                  </div>
-                )}
-              </div>
-            ))}
+          <div className="fade-up opacity-0 translate-y-4 transition-all duration-500 delay-150 max-w-[900px] mx-auto mb-16">
+            <WorldMap />
           </div>
 
           {/* Stats */}
