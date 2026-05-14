@@ -1,23 +1,35 @@
 "use client"
 
+import { useTranslations } from "next-intl"
 import { Button } from "@/components/ui/button"
-
-const filterTabs = [
-  { id: "kr", label: "Korea" },
-  { id: "us", label: "USA" },
-  { id: "de", label: "Germany" },
-  { id: "vn", label: "Vietnam" },
-  { id: "ph", label: "Philippines" },
-  { id: "others", label: "Others" },
-]
-
-const stats = [
-  { value: "11", label: "Countries" },
-  { value: "400+", label: "Centers" },
-  { value: "15", label: "Years" },
-]
+import { useRouter } from "next/navigation"
+import { useLocale } from "next-intl"
 
 export function FindCenter() {
+  const t = useTranslations("findCenter")
+  const locale = useLocale()
+  const router = useRouter()
+
+  const filterTabs = [
+    { id: "kr", label: "Korea" },
+    { id: "us", label: "USA" },
+    { id: "de", label: "Germany" },
+    { id: "vn", label: "Vietnam" },
+    { id: "ph", label: "Philippines" },
+    { id: "others", label: t("others") },
+  ]
+
+  const stats = [
+    { value: "11", label: t("countries") },
+    { value: "400+", label: t("centers") },
+    { value: "15", label: t("years") },
+  ]
+
+  const handleMapClick = () => {
+    const prefix = locale === "en" ? "" : `/${locale}`
+    router.push(`${prefix}/find-center`)
+  }
+
   const scrollToInquiry = () => {
     document.getElementById("global-business-form")?.scrollIntoView({ behavior: "smooth" })
   }
@@ -26,10 +38,11 @@ export function FindCenter() {
     <section id="find-center" className="bg-[#FFFDF5] py-[60px]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col items-center gap-4">
+
           {/* Row 1 — Headline */}
           <div className="text-center">
             <h2 className="font-heading font-bold text-[#0F1B3D] text-[28px] md:text-[44px] leading-tight">
-              Find Noljak near you.
+              {t("title")}
             </h2>
           </div>
 
@@ -55,16 +68,13 @@ export function FindCenter() {
           {/* Row 3 — World Map */}
           <div
             className="w-[85%] mx-auto cursor-pointer rounded-2xl overflow-hidden relative mt-4"
-            onClick={() => window.location.href = '/find-center'}
+            onClick={handleMapClick}
           >
             <img
               src="/images/world-map.jpg"
               alt="Noljak Global Centers Map"
               className="w-full block"
-              style={{
-                filter: "grayscale(30%) brightness(0.95)",
-                display: "block"
-              }}
+              style={{ filter: "grayscale(30%) brightness(0.95)", display: "block" }}
             />
           </div>
 
@@ -85,8 +95,9 @@ export function FindCenter() {
             onClick={scrollToInquiry}
             className="bg-[#F6C400] hover:bg-[#E5B600] text-[#0F1B3D] font-bold text-base px-10 py-4 h-auto rounded-full transition-all duration-300"
           >
-            Global Business — Bring Noljak to Your City
+            {t("cta")}
           </Button>
+
         </div>
       </div>
     </section>

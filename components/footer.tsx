@@ -1,10 +1,13 @@
+"use client"
+
 import Link from "next/link"
+import { useTranslations } from "next-intl"
 
 const programs = [
-  { name: "CreKiC", href: "#programs" },
-  { name: "Basic", href: "#programs" },
-  { name: "Creator", href: "#programs" },
-  { name: "Others", href: "#programs" },
+  { name: "CreKiC", href: "/programs/crekic" },
+  { name: "Basic", href: "/programs/basic" },
+  { name: "Creator", href: "/programs/creator" },
+  { name: "Others", href: "/programs/others" },
 ]
 
 const socialLinks = [
@@ -15,17 +18,15 @@ const socialLinks = [
 ]
 
 export function Footer() {
+  const t = useTranslations("footer")
+
   return (
     <footer className="bg-[#0F1B3D] py-20">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
-        {/* 4 Column Grid */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-8 text-center md:text-left">
-          {/* Column 1 — Company Info */}
           <div className="flex flex-col gap-6">
             <div>
-              <span className="font-heading font-bold text-white text-2xl">
-                noljak
-              </span>
+              <span className="font-heading font-bold text-white text-2xl">noljak</span>
             </div>
             <div className="font-sans text-white text-sm leading-relaxed">
               <p>NOLJAKEDU CO., LTD</p>
@@ -37,31 +38,21 @@ export function Footer() {
               <p>+82-2-1661-7968</p>
             </div>
             <div className="font-sans text-[#5F6B7A] text-[13px] mt-auto">
-              <p>© 2026 NOLJAKEDU CO., LTD. All Rights Reserved.</p>
+              <p>{t("rights")}</p>
               <p className="mt-1">
-                <Link href="/privacy-policy" className="hover:text-[#F6C400] transition-colors">
-                  Privacy Policy
-                </Link>
+                <Link href="/privacy-policy" className="hover:text-[#F6C400] transition-colors">{t("privacy")}</Link>
                 {" | "}
-                <Link href="/terms-of-use" className="hover:text-[#F6C400] transition-colors">
-                  Terms of Use
-                </Link>
+                <Link href="/terms-of-use" className="hover:text-[#F6C400] transition-colors">{t("terms")}</Link>
               </p>
             </div>
           </div>
 
-          {/* Column 2 — Programs */}
           <div className="flex flex-col gap-4">
-            <h3 className="font-sans font-bold text-white text-base">
-              Programs
-            </h3>
+            <h3 className="font-sans font-bold text-white text-base">{t("programs")}</h3>
             <ul className="flex flex-col gap-2">
               {programs.map((program) => (
                 <li key={program.name}>
-                  <Link
-                    href={program.href}
-                    className="font-sans text-white text-sm hover:text-[#F6C400] transition-colors"
-                  >
+                  <Link href={program.href} className="font-sans text-white text-sm hover:text-[#F6C400] transition-colors">
                     {program.name}
                   </Link>
                 </li>
@@ -69,20 +60,12 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Column 3 — Social Links */}
           <div className="flex flex-col gap-4">
-            <h3 className="font-sans font-bold text-white text-base">
-              Follow Us
-            </h3>
+            <h3 className="font-sans font-bold text-white text-base">{t("followUs")}</h3>
             <ul className="flex flex-col gap-2">
               {socialLinks.map((social) => (
                 <li key={social.name}>
-                  <Link
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="font-sans text-white text-sm hover:text-[#F6C400] transition-colors"
-                  >
+                  <Link href={social.href} target="_blank" rel="noopener noreferrer" className="font-sans text-white text-sm hover:text-[#F6C400] transition-colors">
                     {social.name}
                   </Link>
                 </li>
@@ -90,18 +73,10 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Column 4 — Partner */}
           <div className="flex flex-col gap-4">
-            <h3 className="font-sans font-bold text-white text-base">
-              Partner
-            </h3>
-            <Link
-              href="https://academy.noljak.global"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-sans text-white text-sm hover:text-[#F6C400] hover:underline transition-colors cursor-pointer"
-            >
-              Noljak Partner Portal
+            <h3 className="font-sans font-bold text-white text-base">{t("partner")}</h3>
+            <Link href="https://academy.noljak.global" target="_blank" rel="noopener noreferrer" className="font-sans text-white text-sm hover:text-[#F6C400] hover:underline transition-colors">
+              {t("partnerPortal")}
             </Link>
           </div>
         </div>

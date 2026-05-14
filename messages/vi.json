@@ -13,21 +13,61 @@
   },
   "hero": {
     "tagline": "Nơi trẻ em quan sát, tư duy và sáng tạo",
-    "sub": "Thương hiệu giáo dục sáng tạo toàn cầu cho trẻ 3–7 tuổi",
+    "sub": "Thương hiệu giáo dục sáng tạo toàn cầu cho trẻ 3-7 tuổi",
+    "quote": "Trẻ em quan sát vật thật, tự hình thành ý tưởng và thể hiện qua vẽ và làm.",
     "cta1": "Tìm trung tâm",
     "cta2": "Khám phá chương trình"
+  },
+  "whatIsNoljak": {
+    "headline": "Giáo dục sáng tạo cho trẻ nhỏ, bắt đầu từ quan sát tư duy — Noljak từ Hàn Quốc!",
+    "card1Title": "Từ Hàn Quốc",
+    "card1Desc": "Thương hiệu giáo dục sáng tạo sinh ra tại Hàn Quốc, đang phát triển toàn cầu.",
+    "card2Title": "Cho trẻ 3 tuổi đến tiểu học",
+    "card2Desc": "Được thiết kế cho trẻ nhỏ từ 3 tuổi đến đầu cấp tiểu học.",
+    "card3Title": "Nghệ thuật & Sáng tạo",
+    "card3Desc": "Nghệ thuật là phương tiện. Tư duy và sáng tạo là mục tiêu.",
+    "supportingMessage": "Noljak nuôi dưỡng sự sáng tạo của trẻ em tại 11 quốc gia trên thế giới thông qua chương trình học có hệ thống dựa trên triết lý giáo dục rõ ràng."
+  },
+  "programs": {
+    "crekicLabel": "Khóa học CreKiC",
+    "crekicHeadline": "Nơi việc học bắt đầu bằng toàn bộ cơ thể.",
+    "crekicAge": "3-5 tuổi",
+    "crekicDesc": "Trẻ em phát triển qua trò chơi cảm giác, biểu đạt cảm xúc và các hoạt động nghệ thuật.",
+    "crekicCta": "Khám phá CreKiC →",
+    "basicLabel": "Khóa học Cơ bản",
+    "basicHeadline": "Tư duy bắt đầu từ quan sát thực tế.",
+    "basicAge": "5-7 tuổi",
+    "basicDesc": "Trẻ em quan sát vật thật, tự hình thành ý tưởng và thể hiện qua vẽ và làm.",
+    "basicCta": "Khám phá Cơ bản →",
+    "creatorLabel": "Khóa học Sáng tạo",
+    "creatorHeadline": "Ý tưởng trở thành tác phẩm độc đáo.",
+    "creatorAge": "7 tuổi đến tiểu học",
+    "creatorDesc": "Trẻ em mở rộng tư duy qua các dự án đa tầng và trình bày tác phẩm sáng tạo của riêng mình.",
+    "creatorCta": "Khám phá Sáng tạo →"
+  },
+  "nowNoljak": {
+    "title": "Noljak Now",
+    "subtitle": "Xem Noljak đang diễn ra trên toàn thế giới.",
+    "description": "Từ Hàn Quốc đến toàn cầu, khám phá những khoảnh khắc lớp học thực tế về quan sát, tư duy và biểu đạt sáng tạo.",
+    "all": "Tất cả",
+    "seeMore": "Xem thêm",
+    "goTo": "Đến"
   },
   "findCenter": {
     "title": "Tìm Noljak gần bạn.",
     "countries": "Quốc gia",
     "centers": "Trung tâm",
     "years": "Năm",
+    "others": "Khác",
     "cta": "Kinh doanh toàn cầu — Đưa Noljak đến thành phố của bạn"
   },
   "footer": {
-    "rights": "Bảo lưu mọi quyền.",
+    "programs": "Chương trình",
+    "followUs": "Theo dõi",
+    "partner": "Đối tác",
+    "partnerPortal": "Cổng thông tin đối tác Noljak",
     "privacy": "Chính sách bảo mật",
     "terms": "Điều khoản sử dụng",
-    "contact": "Liên hệ"
+    "rights": "© 2026 NOLJAKEDU CO., LTD. All Rights Reserved."
   }
 }

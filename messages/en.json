@@ -13,21 +13,61 @@
   },
   "hero": {
     "tagline": "Where Children Observe, Think, and Create",
-    "sub": "A global creative education brand for ages 3–7",
+    "sub": "A global creative education brand for ages 3-7",
+    "quote": "Children observe real objects, build their own ideas, and express them through drawing and making.",
     "cta1": "Find a Center",
     "cta2": "Explore Programs"
+  },
+  "whatIsNoljak": {
+    "headline": "Creative education for young children, starting with thinking observation — from Korea, it's Noljak!",
+    "card1Title": "From Korea",
+    "card1Desc": "A creative education brand born in Korea, now growing globally.",
+    "card2Title": "For Ages 3–Elementary",
+    "card2Desc": "Designed for young children from age 3 through early elementary.",
+    "card3Title": "Art & Creativity",
+    "card3Desc": "Art is the medium. Thinking and creating is the goal.",
+    "supportingMessage": "Noljak nurtures the creativity of children in 11 countries worldwide through a systematic curriculum grounded in a clear educational philosophy."
+  },
+  "programs": {
+    "crekicLabel": "CreKiC Course",
+    "crekicHeadline": "Where learning begins with the whole body.",
+    "crekicAge": "Ages 3–5",
+    "crekicDesc": "Children grow through sensory play, emotional expression, and performance-based art activities.",
+    "crekicCta": "Explore CreKiC →",
+    "basicLabel": "Basic Course",
+    "basicHeadline": "Thinking starts with real observation.",
+    "basicAge": "Ages 5–7",
+    "basicDesc": "Children observe real objects, build their own ideas, and express them through drawing and making.",
+    "basicCta": "Explore Basic →",
+    "creatorLabel": "Creator Course",
+    "creatorHeadline": "Ideas become original creations.",
+    "creatorAge": "Ages 7–Elementary",
+    "creatorDesc": "Children expand their thinking through multi-layered projects and present their own original creative works.",
+    "creatorCta": "Explore Creator →"
+  },
+  "nowNoljak": {
+    "title": "Now Noljak",
+    "subtitle": "See Noljak happening around the world.",
+    "description": "From Korea to Global and beyond, discover real classroom moments of observation, thinking, and creative expression.",
+    "all": "All",
+    "seeMore": "See More",
+    "goTo": "Go to"
   },
   "findCenter": {
     "title": "Find Noljak near you.",
     "countries": "Countries",
     "centers": "Centers",
     "years": "Years",
+    "others": "Others",
     "cta": "Global Business — Bring Noljak to Your City"
   },
   "footer": {
-    "rights": "All rights reserved.",
+    "programs": "Programs",
+    "followUs": "Follow Us",
+    "partner": "Partner",
+    "partnerPortal": "Noljak Partner Portal",
     "privacy": "Privacy Policy",
     "terms": "Terms of Use",
-    "contact": "Contact Us"
+    "rights": "© 2026 NOLJAKEDU CO., LTD. All Rights Reserved."
   }
 }
