@@ -1,9 +1,6 @@
 "use client"
 
-import dynamic from "next/dynamic"
 import { Button } from "@/components/ui/button"
-
-const Map = dynamic(() => import("@/components/find-center-map"), { ssr: false })
 
 const filterTabs = [
   { id: "kr", label: "Korea" },
@@ -56,8 +53,19 @@ export function FindCenter() {
           </div>
 
           {/* Row 3 — World Map */}
-          <div className="w-[97.6%] mx-auto -mt-4">
-            <Map />
+          <div
+            className="w-[85%] mx-auto cursor-pointer rounded-2xl overflow-hidden relative mt-4"
+            onClick={() => window.location.href = '/find-center'}
+          >
+            <img
+              src="/images/world-map.jpg"
+              alt="Noljak Global Centers Map"
+              className="w-full block"
+              style={{
+                filter: "grayscale(30%) brightness(0.95)",
+                display: "block"
+              }}
+            />
           </div>
 
           {/* Row 4 — Filter Tabs */}
