@@ -1,0 +1,33 @@
+{
+  "nav": {
+    "whatIsNoljak": "Noljak là gì?",
+    "programs": "Chương trình",
+    "philosophy": "Triết lý",
+    "crekic": "CreKiC",
+    "basic": "Cơ bản",
+    "creator": "Sáng tạo",
+    "others": "Khác",
+    "nowNoljak": "Noljak Now",
+    "findCenter": "Tìm trung tâm",
+    "globalBusiness": "Kinh doanh toàn cầu"
+  },
+  "hero": {
+    "tagline": "Nơi trẻ em quan sát, tư duy và sáng tạo",
+    "sub": "Thương hiệu giáo dục sáng tạo toàn cầu cho trẻ 3–7 tuổi",
+    "cta1": "Tìm trung tâm",
+    "cta2": "Khám phá chương trình"
+  },
+  "findCenter": {
+    "title": "Tìm Noljak gần bạn.",
+    "countries": "Quốc gia",
+    "centers": "Trung tâm",
+    "years": "Năm",
+    "cta": "Kinh doanh toàn cầu — Đưa Noljak đến thành phố của bạn"
+  },
+  "footer": {
+    "rights": "Bảo lưu mọi quyền.",
+    "privacy": "Chính sách bảo mật",
+    "terms": "Điều khoản sử dụng",
+    "contact": "Liên hệ"
+  }
+}

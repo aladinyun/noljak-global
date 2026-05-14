@@ -1,0 +1,33 @@
+{
+  "nav": {
+    "whatIsNoljak": "놀작이란?",
+    "programs": "프로그램",
+    "philosophy": "교육철학",
+    "crekic": "크레키크",
+    "basic": "베이직",
+    "creator": "크리에이터",
+    "others": "기타",
+    "nowNoljak": "놀작 지금",
+    "findCenter": "센터 찾기",
+    "globalBusiness": "글로벌 비즈니스"
+  },
+  "hero": {
+    "tagline": "아이들이 관찰하고, 생각하고, 창작하는 곳",
+    "sub": "3~7세를 위한 글로벌 창의교육 브랜드",
+    "cta1": "센터 찾기",
+    "cta2": "프로그램 보기"
+  },
+  "findCenter": {
+    "title": "가까운 놀작을 찾아보세요.",
+    "countries": "개국",
+    "centers": "개 센터",
+    "years": "년",
+    "cta": "글로벌 비즈니스 — 우리 도시에 놀작을"
+  },
+  "footer": {
+    "rights": "All rights reserved.",
+    "privacy": "개인정보처리방침",
+    "terms": "이용약관",
+    "contact": "문의하기"
+  }
+}

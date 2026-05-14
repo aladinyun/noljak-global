@@ -1,7 +1,6 @@
 "use client"
 
 import { useEffect } from "react"
-import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
 import Link from "next/link"
 
@@ -25,7 +24,6 @@ export default function OthersPage() {
 
   return (
     <main className="min-h-screen bg-white">
-      <Navigation />
 
       {/* Section 1: Hero */}
       <section className="min-h-[60vh] bg-[#0F1B3D] flex items-center justify-center py-20 md:py-[120px] pt-[80px]">

@@ -1,3 +1,7 @@
+import createNextIntlPlugin from 'next-intl/plugin'
+
+const withNextIntl = createNextIntlPlugin('./i18n.ts')
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   typescript: {
@@ -11,4 +15,5 @@ const nextConfig = {
     JWT_SECRET: process.env.JWT_SECRET,
   },
 }
-export default nextConfig
+
+export default withNextIntl(nextConfig)

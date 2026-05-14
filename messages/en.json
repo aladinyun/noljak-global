@@ -1,0 +1,33 @@
+{
+  "nav": {
+    "whatIsNoljak": "What is Noljak?",
+    "programs": "Programs",
+    "philosophy": "Philosophy",
+    "crekic": "CreKiC",
+    "basic": "Basic",
+    "creator": "Creator",
+    "others": "Others",
+    "nowNoljak": "Now Noljak",
+    "findCenter": "Find Center",
+    "globalBusiness": "Global Business"
+  },
+  "hero": {
+    "tagline": "Where Children Observe, Think, and Create",
+    "sub": "A global creative education brand for ages 3–7",
+    "cta1": "Find a Center",
+    "cta2": "Explore Programs"
+  },
+  "findCenter": {
+    "title": "Find Noljak near you.",
+    "countries": "Countries",
+    "centers": "Centers",
+    "years": "Years",
+    "cta": "Global Business — Bring Noljak to Your City"
+  },
+  "footer": {
+    "rights": "All rights reserved.",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Use",
+    "contact": "Contact Us"
+  }
+}

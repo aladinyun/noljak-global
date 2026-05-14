@@ -1,7 +1,6 @@
 "use client"
 
 import { useEffect } from "react"
-import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
 import Link from "next/link"
 
@@ -64,7 +63,6 @@ export default function CreatorPage() {
 
   return (
     <main className="min-h-screen bg-white">
-      <Navigation />
 
       {/* Section 1: Hero */}
       <section className="relative min-h-[70vh] bg-[#FF8A65] flex flex-col items-center justify-center px-4 overflow-hidden pt-[80px]">

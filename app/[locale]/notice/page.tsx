@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { Navigation } from '@/components/navigation'
 import { Footer } from '@/components/footer'
 
 interface Notice {
@@ -29,7 +28,6 @@ export default function NoticePage() {
 
   return (
     <div className='min-h-screen bg-white'>
-      <Navigation />
       <main className='max-w-3xl mx-auto px-6 pt-40 py-20'>
         <h1 className='text-4xl font-bold text-[#0F1B3D] mb-2'>Notice</h1>
         <p className='text-[#5F6B7A] text-lg mb-12'>NOLJAK Announcements</p>

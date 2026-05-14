@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from 'react'
 import { useParams, useRouter } from 'next/navigation'
-import { Navigation } from '@/components/navigation'
 import { Footer } from '@/components/footer'
 
 interface Notice {
@@ -33,7 +32,6 @@ export default function NoticeDetailPage() {
   if (loading) {
     return (
       <div className='min-h-screen bg-white'>
-        <Navigation />
         <main className='max-w-3xl mx-auto px-6 py-20'>
           <p className='text-[#5F6B7A]'>불러오는 중...</p>
         </main>
@@ -44,7 +42,6 @@ export default function NoticeDetailPage() {
   if (!notice) {
     return (
       <div className='min-h-screen bg-white'>
-        <Navigation />
         <main className='max-w-3xl mx-auto px-6 py-20'>
           <p className='text-[#5F6B7A]'>공지를 찾을 수 없습니다.</p>
           <button onClick={() => router.push('/notice')} className='mt-4 text-[#F6C400] hover:underline text-sm'>
@@ -57,7 +54,6 @@ export default function NoticeDetailPage() {
 
   return (
     <div className='min-h-screen bg-white'>
-      <Navigation />
       <main className='max-w-3xl mx-auto px-6 py-20'>
         <button
           onClick={() => router.push('/notice')}

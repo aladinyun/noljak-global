@@ -2,6 +2,8 @@
 
 import { useState } from "react"
 import Link from "next/link"
+import { usePathname } from "next/navigation"
+import { useLocale, useTranslations } from "next-intl"
 import { ChevronDown, Menu, X } from "lucide-react"
 import {
   DropdownMenu,
@@ -9,180 +11,153 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { Button } from "@/components/ui/button"
-
-type NavItem = {
-  href: string
-  label: string
-  dropdown?: { href: string; label: string }[]
-}
-
-const navLinks: NavItem[] = [
-  { href: "/what-is-noljak", label: "What is Noljak?" },
-  {
-    href: "/programs",
-    label: "Programs",
-    dropdown: [
-      { href: "/programs/philosophy", label: "Philosophy" },
-      { href: "/programs/crekic", label: "CreKiC" },
-      { href: "/programs/basic", label: "Basic" },
-      { href: "/programs/creator", label: "Creator" },
-      { href: "/programs/others", label: "Others" },
-    ]
-  },
-  { href: "/now-noljak", label: "Now Noljak" },
-  { href: "/find-center", label: "Find Center" },
-  { href: "/global-business", label: "Global Business" },
-]
 
 const languages = [
-  { code: "EN", label: "English" },
-  { code: "KR", label: "Korean" },
-  { code: "VN", label: "Vietnamese" },
+  { code: "en", label: "EN" },
+  { code: "ko", label: "KR" },
+  { code: "vi", label: "VN" },
 ]
 
 export function Navigation() {
-  const [currentLang, setCurrentLang] = useState("EN")
+  const t = useTranslations("nav")
+  const locale = useLocale()
+  const pathname = usePathname()
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
+  const switchLocale = (newLocale: string) => {
+    const locales = ["en", "ko", "vi"]
+    const segments = pathname.split("/").filter(Boolean)
+
+    if (segments.length > 0 && locales.includes(segments[0])) {
+      segments.shift()
+    }
+
+    const basePath = segments.length > 0 ? "/" + segments.join("/") : "/"
+
+    if (newLocale === "en") {
+      window.location.href = basePath
+    } else {
+      window.location.href = "/" + newLocale + basePath
+    }
+  }
+
+  const navLinks = [
+    { href: "/what-is-noljak", label: t("whatIsNoljak") },
+    {
+      href: "/programs",
+      label: t("programs"),
+      dropdown: [
+        { href: "/programs/philosophy", label: t("philosophy") },
+        { href: "/programs/crekic", label: t("crekic") },
+        { href: "/programs/basic", label: t("basic") },
+        { href: "/programs/creator", label: t("creator") },
+        { href: "/programs/others", label: t("others") },
+      ]
+    },
+    { href: "/now-noljak", label: t("nowNoljak") },
+    { href: "/find-center", label: t("findCenter") },
+    { href: "/global-business", label: t("globalBusiness") },
+  ]
+
+  const currentLangLabel = languages.find(l => l.code === locale)?.label || "EN"
+
   return (
-    <nav className="fixed left-0 right-0 z-50 w-full bg-[#0F1B3D] transition-[top] duration-300" style={{ top: "var(--nav-top, 44px)" }}>
-      <div className="max-w-7xl mx-auto px-6 py-4">
-        <div className="flex items-center justify-between">
-          {/* Logo */}
-          <Link href="/" className="text-white text-2xl font-bold font-[var(--font-heading)]">
-            noljak
-          </Link>
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-[#0F1B3D] h-[60px] flex items-center px-6 md:px-12">
+      {/* Logo */}
+      <Link href="/" className="text-white font-bold text-xl mr-10 font-heading">
+        noljak
+      </Link>
 
-          {/* Desktop Menu - Center */}
-          <div className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
-              link.dropdown ? (
-                <div key={link.href} className="relative group pb-2">
-                  <button
-                    className="text-white/90 hover:text-white text-base font-medium transition-colors flex items-center gap-1 px-3 py-2 cursor-pointer"
-                  >
-                    {link.label}
-                    <ChevronDown className="w-4 h-4" />
-                  </button>
-                  <div className="absolute top-full left-0 w-40 bg-white rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-[60] pt-2">
-                    {link.dropdown.map((item) => (
-                      <Link
-                        key={item.href}
-                        href={item.href}
-                        className="block px-4 py-2 text-sm text-[#0F1B3D] hover:bg-[#FFFDF5] first:rounded-t-md last:rounded-b-md"
-                      >
-                        {item.label}
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-              ) : (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className="text-white/90 hover:text-white text-base font-medium transition-colors"
-                >
-                  {link.label}
-                </Link>
-              )
-            ))}
-          </div>
-
-          {/* Language Selector - Right */}
-          <div className="hidden md:block">
-            <DropdownMenu>
+      {/* Desktop Nav */}
+      <div className="hidden md:flex items-center gap-6 flex-1 justify-center">
+        {navLinks.map((item) =>
+          item.dropdown ? (
+            <DropdownMenu key={item.href}>
               <DropdownMenuTrigger asChild>
-                <Button
-                  variant="ghost"
-                  className="text-white hover:bg-white/10 hover:text-white gap-1 px-3"
-                >
-                  {currentLang}
-                  <ChevronDown className="w-4 h-4" />
-                </Button>
+                <button className="text-white text-sm flex items-center gap-1 hover:text-[#F6C400] transition-colors">
+                  {item.label} <ChevronDown size={14} />
+                </button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="min-w-[120px]">
-                {languages.map((lang) => (
-                  <DropdownMenuItem
-                    key={lang.code}
-                    onClick={() => setCurrentLang(lang.code)}
-                    className={currentLang === lang.code ? "bg-muted" : ""}
-                  >
-                    {lang.label}
+              <DropdownMenuContent className="bg-white shadow-lg rounded-lg p-1">
+                {item.dropdown.map((sub) => (
+                  <DropdownMenuItem key={sub.href} asChild>
+                    <Link href={sub.href} className="text-[#0F1B3D] text-sm px-3 py-2 hover:bg-[#F6C400]/10 rounded">
+                      {sub.label}
+                    </Link>
                   </DropdownMenuItem>
                 ))}
               </DropdownMenuContent>
             </DropdownMenu>
-          </div>
-
-          {/* Mobile Menu Button */}
-          <button
-            className="md:hidden text-white p-2"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            aria-label="Toggle menu"
-          >
-            {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
-        </div>
-
-        {/* Mobile Menu */}
-        {isMobileMenuOpen && (
-          <div className="md:hidden mt-4 pb-4 border-t border-white/20 pt-4">
-            <div className="flex flex-col gap-4">
-              {navLinks.map((link) => (
-                link.dropdown ? (
-                  <div key={link.href} className="flex flex-col gap-2">
-                    <span className="text-white/90 text-base font-medium">
-                      {link.label}
-                    </span>
-                    <div className="pl-4 flex flex-col gap-2">
-                      {link.dropdown.map((item) => (
-                        <Link
-                          key={item.href}
-                          href={item.href}
-                          className="text-white/70 hover:text-white text-sm transition-colors"
-                          onClick={() => setIsMobileMenuOpen(false)}
-                        >
-                          {item.label}
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
-                ) : (
-                  <Link
-                    key={link.href}
-                    href={link.href}
-                    className="text-white/90 hover:text-white text-base font-medium transition-colors"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    {link.label}
-                  </Link>
-                )
-              ))}
-              <div className="border-t border-white/20 pt-4 mt-2">
-                <div className="flex gap-4">
-                  {languages.map((lang) => (
-                    <button
-                      key={lang.code}
-                      onClick={() => {
-                        setCurrentLang(lang.code)
-                        setIsMobileMenuOpen(false)
-                      }}
-                      className={`text-sm font-medium transition-colors ${
-                        currentLang === lang.code
-                          ? "text-[#F6C400]"
-                          : "text-white/70 hover:text-white"
-                      }`}
-                    >
-                      {lang.code}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
+          ) : (
+            <Link
+              key={item.href}
+              href={item.href}
+              className="text-white text-sm hover:text-[#F6C400] transition-colors"
+            >
+              {item.label}
+            </Link>
+          )
         )}
       </div>
+
+      {/* Language Selector */}
+      <div className="hidden md:block ml-auto">
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <button className="text-white text-sm flex items-center gap-1 hover:text-[#F6C400] transition-colors">
+              {currentLangLabel} <ChevronDown size={14} />
+            </button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent className="bg-white shadow-lg rounded-lg p-1">
+            {languages.map((lang) => (
+              <DropdownMenuItem
+                key={lang.code}
+                onClick={() => switchLocale(lang.code)}
+                className={`text-sm px-3 py-2 cursor-pointer rounded hover:bg-[#F6C400]/10 ${
+                  locale === lang.code ? "font-bold text-[#0F1B3D]" : "text-[#5F6B7A]"
+                }`}
+              >
+                {lang.label}
+              </DropdownMenuItem>
+            ))}
+          </DropdownMenuContent>
+        </DropdownMenu>
+      </div>
+
+      {/* Mobile Menu Button */}
+      <button
+        className="md:hidden ml-auto text-white"
+        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+      >
+        {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+      </button>
+
+      {/* Mobile Menu */}
+      {isMobileMenuOpen && (
+        <div className="absolute top-[60px] left-0 right-0 bg-[#0F1B3D] flex flex-col p-6 gap-4 md:hidden">
+          {navLinks.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className="text-white text-sm hover:text-[#F6C400]"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              {item.label}
+            </Link>
+          ))}
+          <div className="flex gap-4 mt-4">
+            {languages.map((lang) => (
+              <button
+                key={lang.code}
+                onClick={() => { switchLocale(lang.code); setIsMobileMenuOpen(false) }}
+                className={`text-sm ${locale === lang.code ? "text-[#F6C400] font-bold" : "text-white"}`}
+              >
+                {lang.label}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
     </nav>
   )
 }

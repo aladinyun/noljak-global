@@ -1,7 +1,6 @@
 "use client"
 
 import { useEffect } from "react"
-import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
 import Link from "next/link"
 import { Cpu, Sparkles } from "lucide-react"
@@ -26,7 +25,6 @@ export default function PhilosophyPage() {
 
   return (
     <main className="min-h-screen">
-      <Navigation />
 
       {/* Section 1: Hero — Founder */}
       <section className="bg-[#0F1B3D] py-24 md:py-32">

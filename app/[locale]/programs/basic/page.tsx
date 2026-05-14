@@ -1,7 +1,6 @@
 "use client"
 
 import { useEffect } from "react"
-import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
 import Link from "next/link"
 
@@ -26,7 +25,6 @@ export default function BasicPage() {
 
   return (
     <main className="min-h-screen">
-      <Navigation />
 
       {/* Section 1: Hero */}
       <section className="relative min-h-[70vh] bg-[#5BB7E8] flex flex-col items-center justify-center px-4 pt-[80px] pb-20 overflow-hidden">

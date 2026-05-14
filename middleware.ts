@@ -1,32 +1,8 @@
-import { NextRequest, NextResponse } from 'next/server'
-import { verifyToken } from '@/lib/auth'
+import createMiddleware from 'next-intl/middleware'
+import { routing } from './routing'
 
-export async function middleware(request: NextRequest) {
-  const { pathname } = request.nextUrl
-
-  if (pathname === '/admin/login') {
-    return NextResponse.next()
-  }
-
-  if (pathname.startsWith('/admin')) {
-    const token = request.cookies.get('admin_token')?.value
-
-    if (!token) {
-      return NextResponse.redirect(new URL('/admin/login', request.url))
-    }
-
-    const payload = await verifyToken(token)
-
-    if (!payload) {
-      return NextResponse.redirect(new URL('/admin/login', request.url))
-    }
-
-    return NextResponse.next()
-  }
-
-  return NextResponse.next()
-}
+export default createMiddleware(routing)
 
 export const config = {
-  matcher: ['/admin/:path*'],
+  matcher: ['/((?!api|admin|_next|_vercel|.*\\..*).*)']
 }

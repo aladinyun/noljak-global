@@ -1,7 +1,6 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { Navigation } from '@/components/navigation'
 import { Footer } from '@/components/footer'
 import Link from 'next/link'
 
@@ -35,7 +34,6 @@ export default function NowNoljakPage() {
 
   return (
     <div className='min-h-screen bg-white'>
-      <Navigation />
       <section className='bg-white flex items-center justify-center py-20 pt-[160px]'>
         <div className='max-w-[1200px] mx-auto px-4 md:px-8 text-center'>
           <h1 className='font-heading font-bold text-[#0F1B3D] text-[36px] md:text-[64px] leading-tight mb-6'>
