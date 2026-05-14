@@ -3,8 +3,11 @@
 import { useEffect } from "react"
 import { Footer } from "@/components/footer"
 import Link from "next/link"
+import { useTranslations } from "next-intl"
 
 export default function GlobalBusinessPage() {
+  const t = useTranslations("globalBusiness")
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -22,43 +25,58 @@ export default function GlobalBusinessPage() {
     return () => observer.disconnect()
   }, [])
 
+  const features = [
+    { icon: "box", title: t("receive1Title"), desc: t("receive1Desc") },
+    { icon: "book", title: t("receive2Title"), desc: t("receive2Desc") },
+    { icon: "package", title: t("receive3Title"), desc: t("receive3Desc") },
+    { icon: "users", title: t("receive4Title"), desc: t("receive4Desc") },
+    { icon: "megaphone", title: t("receive5Title"), desc: t("receive5Desc") },
+    { icon: "chart", title: t("receive6Title"), desc: t("receive6Desc") },
+  ]
+
+  const steps = [
+    { num: "01", title: t("step1Title"), desc: t("step1Desc") },
+    { num: "02", title: t("step2Title"), desc: t("step2Desc") },
+    { num: "03", title: t("step3Title"), desc: t("step3Desc") },
+    { num: "04", title: t("step4Title"), desc: t("step4Desc") },
+    { num: "05", title: t("step5Title"), desc: t("step5Desc") },
+    { num: "06", title: t("step6Title"), desc: t("step6Desc") },
+  ]
+
   return (
     <main className="min-h-screen bg-white">
       {/* Section 1: Hero */}
       <section className="bg-[#0F1B3D] min-h-[80vh] flex items-center justify-center py-20 md:py-[120px] pt-[80px]">
         <div className="max-w-[1200px] mx-auto px-4 md:px-8 text-center">
-          
           <h1 className="fade-up opacity-0 translate-y-4 transition-all duration-500 delay-100 font-heading font-bold text-white text-[36px] md:text-[64px] leading-tight mb-6">
-            Bring Noljak to your city.
+            {t("hero")}
           </h1>
           <p className="fade-up opacity-0 translate-y-4 transition-all duration-500 delay-150 font-sans text-[#5F6B7A] text-lg md:text-[24px] max-w-[700px] mx-auto mb-12">
-            Join a growing global network of creative education centers in 11 countries and counting.
+            {t("heroSub")}
           </p>
 
-          {/* Stats */}
           <div className="fade-up opacity-0 translate-y-4 transition-all duration-500 delay-200 flex flex-col md:flex-row items-center justify-center gap-8 md:gap-0 mb-12">
             <div className="text-center px-8">
               <p className="font-heading font-bold text-white text-[48px] leading-none">400+</p>
-              <p className="font-sans text-[#5F6B7A] text-[14px] mt-2">Centers in Korea</p>
+              <p className="font-sans text-[#5F6B7A] text-[14px] mt-2">{t("centersInKorea")}</p>
             </div>
             <div className="hidden md:block w-px h-16 bg-white/20" />
             <div className="text-center px-8">
               <p className="font-heading font-bold text-white text-[48px] leading-none">11</p>
-              <p className="font-sans text-[#5F6B7A] text-[14px] mt-2">Countries</p>
+              <p className="font-sans text-[#5F6B7A] text-[14px] mt-2">{t("countries")}</p>
             </div>
             <div className="hidden md:block w-px h-16 bg-white/20" />
             <div className="text-center px-8">
               <p className="font-heading font-bold text-white text-[48px] leading-none">20+</p>
-              <p className="font-sans text-[#5F6B7A] text-[14px] mt-2">Years of Experience</p>
+              <p className="font-sans text-[#5F6B7A] text-[14px] mt-2">{t("yearsOfExp")}</p>
             </div>
           </div>
 
-          {/* CTA */}
           <Link
             href="#get-started"
             className="fade-up opacity-0 translate-y-4 transition-all duration-500 delay-[250ms] inline-block bg-[#F6C400] text-[#0F1B3D] font-bold px-8 py-4 rounded-full hover:bg-[#0F1B3D] hover:text-[#F6C400] transition-colors"
           >
-            Get Started
+            {t("getStarted")}
           </Link>
         </div>
       </section>
@@ -67,44 +85,30 @@ export default function GlobalBusinessPage() {
       <section className="bg-[#FFFDF5] py-20 md:py-[120px]">
         <div className="max-w-[1200px] mx-auto px-4 md:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-            {/* Left: Text */}
             <div>
               <p className="fade-up opacity-0 translate-y-4 transition-all duration-500 uppercase text-[#F6C400] text-[13px] font-bold tracking-[0.15em] mb-4">
-                WHY NOLJAK?
+                {t("whyLabel")}
               </p>
               <h2 className="fade-up opacity-0 translate-y-4 transition-all duration-500 delay-100 font-heading font-bold text-[#0F1B3D] text-[28px] md:text-[44px] leading-tight mb-6">
-                The world needs creative education now.
+                {t("whyTitle")}
               </h2>
               <p className="fade-up opacity-0 translate-y-4 transition-all duration-500 delay-150 font-sans text-[#5F6B7A] text-base md:text-lg leading-relaxed">
-                English and math are no longer enough. Parents worldwide are actively seeking creative education for their children. Noljak fills that gap — with a proven curriculum, a recognizable brand, and 20 years of expertise.
+                {t("whyDesc")}
               </p>
             </div>
 
-            {/* Right: 3 Stat Cards */}
             <div className="flex flex-col gap-4">
               <div className="fade-up opacity-0 translate-y-4 transition-all duration-500 delay-200 bg-[#F6C400] rounded-2xl p-8">
-                <p className="font-heading font-bold text-[#0F1B3D] text-lg mb-2">
-                  #1 Creative Art Education Brand in Korea
-                </p>
-                <p className="font-sans text-[#0F1B3D] text-sm">
-                  Trusted by 400+ centers nationwide
-                </p>
+                <p className="font-heading font-bold text-[#0F1B3D] text-lg mb-2">{t("stat1Title")}</p>
+                <p className="font-sans text-[#0F1B3D] text-sm">{t("stat1Desc")}</p>
               </div>
               <div className="fade-up opacity-0 translate-y-4 transition-all duration-500 delay-[250ms] bg-[#0F1B3D] rounded-2xl p-8">
-                <p className="font-heading font-bold text-white text-lg mb-2">
-                  Growing Global Demand
-                </p>
-                <p className="font-sans text-white text-sm">
-                  Parents in 11 countries choose Noljak
-                </p>
+                <p className="font-heading font-bold text-white text-lg mb-2">{t("stat2Title")}</p>
+                <p className="font-sans text-white text-sm">{t("stat2Desc")}</p>
               </div>
               <div className="fade-up opacity-0 translate-y-4 transition-all duration-500 delay-300 bg-white border border-[#E8ECF1] rounded-2xl p-8">
-                <p className="font-heading font-bold text-[#0F1B3D] text-lg mb-2">
-                  Proven Curriculum
-                </p>
-                <p className="font-sans text-[#5F6B7A] text-sm">
-                  6-step roadmap refined over 20 years
-                </p>
+                <p className="font-heading font-bold text-[#0F1B3D] text-lg mb-2">{t("stat3Title")}</p>
+                <p className="font-sans text-[#5F6B7A] text-sm">{t("stat3Desc")}</p>
               </div>
             </div>
           </div>
@@ -116,25 +120,18 @@ export default function GlobalBusinessPage() {
         <div className="max-w-[1200px] mx-auto px-4 md:px-8">
           <div className="text-center mb-16">
             <p className="fade-up opacity-0 translate-y-4 transition-all duration-500 uppercase text-[#F6C400] text-[13px] font-bold tracking-[0.15em] mb-4">
-              WHAT YOU RECEIVE
+              {t("receiveLabel")}
             </p>
             <h2 className="fade-up opacity-0 translate-y-4 transition-all duration-500 delay-100 font-heading font-bold text-[#0F1B3D] text-[28px] md:text-[44px] leading-tight">
-              Everything you need to run a world-class center.
+              {t("receiveTitle")}
             </h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[
-              { icon: "box", title: "Curriculum Package", desc: "Complete 6-step program materials, updated regularly." },
-              { icon: "book", title: "Teaching Guides", desc: "Detailed lesson plans for every single session." },
-              { icon: "package", title: "Art Kits", desc: "Curated real-object materials — no plastic kits." },
-              { icon: "users", title: "Teacher Training", desc: "Initial and ongoing professional development." },
-              { icon: "megaphone", title: "Brand & Marketing Support", desc: "Global brand assets and local marketing guidance." },
-              { icon: "chart", title: "Growth Consulting", desc: "Regular check-ins and performance briefings." },
-            ].map((item, index) => (
+            {features.map((item, index) => (
               <div
-                key={item.title}
-                className={`fade-up opacity-0 translate-y-4 transition-all duration-500 bg-[#FFFDF5] rounded-2xl p-8 hover:bg-[#F6C400]/10 hover:border hover:border-[#F6C400] border border-transparent`}
+                key={item.icon}
+                className="fade-up opacity-0 translate-y-4 transition-all duration-500 bg-[#FFFDF5] rounded-2xl p-8 hover:bg-[#F6C400]/10 hover:border hover:border-[#F6C400] border border-transparent"
                 style={{ transitionDelay: `${150 + index * 50}ms` }}
               >
                 <div className="w-8 h-8 mb-6 text-[#F6C400]">
@@ -174,12 +171,8 @@ export default function GlobalBusinessPage() {
                     </svg>
                   )}
                 </div>
-                <h3 className="font-heading font-bold text-[#0F1B3D] text-lg mb-2">
-                  {item.title}
-                </h3>
-                <p className="font-sans text-[#5F6B7A] text-sm">
-                  {item.desc}
-                </p>
+                <h3 className="font-heading font-bold text-[#0F1B3D] text-lg mb-2">{item.title}</h3>
+                <p className="font-sans text-[#5F6B7A] text-sm">{item.desc}</p>
               </div>
             ))}
           </div>
@@ -191,56 +184,41 @@ export default function GlobalBusinessPage() {
         <div className="max-w-[1200px] mx-auto px-4 md:px-8">
           <div className="text-center mb-16">
             <p className="fade-up opacity-0 translate-y-4 transition-all duration-500 uppercase text-[#F6C400] text-[13px] font-bold tracking-[0.15em] mb-4">
-              BUSINESS MODELS
+              {t("modelsLabel")}
             </p>
             <h2 className="fade-up opacity-0 translate-y-4 transition-all duration-500 delay-100 font-heading font-bold text-[#0F1B3D] text-[28px] md:text-[44px] leading-tight">
-              Find the model that fits your market.
+              {t("modelsTitle")}
             </h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {/* Card 1: Noljak Center */}
             <div className="fade-up opacity-0 translate-y-4 transition-all duration-500 delay-150 bg-white rounded-2xl shadow-lg overflow-hidden">
               <div className="h-1.5 bg-[#F6C400]" />
               <div className="p-10">
                 <span className="inline-block bg-[#F6C400] text-[#0F1B3D] font-bold text-xs px-3 py-1 rounded-full mb-4">
-                  Most Popular
+                  {t("mostPopular")}
                 </span>
-                <h3 className="font-heading font-bold text-[#0F1B3D] text-[24px] mb-4">
-                  Noljak Center
-                </h3>
-                <p className="font-sans text-[#5F6B7A] text-sm leading-relaxed">
-                  Open and operate a full Noljak Creative Center with complete brand and curriculum support.
-                </p>
+                <h3 className="font-heading font-bold text-[#0F1B3D] text-[24px] mb-4">{t("model1Title")}</h3>
+                <p className="font-sans text-[#5F6B7A] text-sm leading-relaxed">{t("model1Desc")}</p>
               </div>
             </div>
 
-            {/* Card 2: Licensing */}
             <div className="fade-up opacity-0 translate-y-4 transition-all duration-500 delay-200 bg-white rounded-2xl shadow-lg overflow-hidden">
               <div className="h-1.5 bg-[#5BB7E8]" />
               <div className="p-10">
-                <h3 className="font-heading font-bold text-[#0F1B3D] text-[24px] mb-4">
-                  Licensing
-                </h3>
-                <p className="font-sans text-[#5F6B7A] text-sm leading-relaxed">
-                  License Noljak&apos;s curriculum and tools to integrate into your existing education center.
-                </p>
+                <h3 className="font-heading font-bold text-[#0F1B3D] text-[24px] mb-4">{t("model2Title")}</h3>
+                <p className="font-sans text-[#5F6B7A] text-sm leading-relaxed">{t("model2Desc")}</p>
               </div>
             </div>
 
-            {/* Card 3: Master Franchise */}
             <div className="fade-up opacity-0 translate-y-4 transition-all duration-500 delay-[250ms] bg-white rounded-2xl shadow-lg overflow-hidden">
               <div className="h-1.5 bg-[#FF8A65]" />
               <div className="p-10">
                 <span className="inline-block bg-[#FF8A65] text-white font-bold text-xs px-3 py-1 rounded-full mb-4">
-                  For Investors
+                  {t("forInvestors")}
                 </span>
-                <h3 className="font-heading font-bold text-[#0F1B3D] text-[24px] mb-4">
-                  Master Franchise
-                </h3>
-                <p className="font-sans text-[#5F6B7A] text-sm leading-relaxed">
-                  Become Noljak&apos;s regional representative and develop the brand across your country or territory.
-                </p>
+                <h3 className="font-heading font-bold text-[#0F1B3D] text-[24px] mb-4">{t("model3Title")}</h3>
+                <p className="font-sans text-[#5F6B7A] text-sm leading-relaxed">{t("model3Desc")}</p>
               </div>
             </div>
           </div>
@@ -252,41 +230,25 @@ export default function GlobalBusinessPage() {
         <div className="max-w-[1200px] mx-auto px-4 md:px-8">
           <div className="text-center mb-16">
             <p className="fade-up opacity-0 translate-y-4 transition-all duration-500 uppercase text-[#F6C400] text-[13px] font-bold tracking-[0.15em] mb-4">
-              PARTNER JOURNEY
+              {t("journeyLabel")}
             </p>
             <h2 className="fade-up opacity-0 translate-y-4 transition-all duration-500 delay-100 font-heading font-bold text-white text-[28px] md:text-[44px] leading-tight">
-              From inquiry to opening — a clear path forward.
+              {t("journeyTitle")}
             </h2>
           </div>
 
-          {/* Timeline */}
           <div className="relative">
-            {/* Connector line (desktop) */}
             <div className="hidden lg:block absolute top-8 left-0 right-0 h-px border-t-2 border-dashed border-white/20" />
-
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8">
-              {[
-                { num: "01", title: "Inquiry", desc: "Submit your interest. Tell us about your city." },
-                { num: "02", title: "Consultation", desc: "We learn about your market and goals together." },
-                { num: "03", title: "Agreement", desc: "Clear terms, transparent partnership structure." },
-                { num: "04", title: "Training", desc: "Full teacher and operator training program." },
-                { num: "05", title: "Opening", desc: "Grand opening support and launch marketing." },
-                { num: "06", title: "Ongoing Support", desc: "Curriculum updates, consulting, and community." },
-              ].map((step, index) => (
+              {steps.map((step, index) => (
                 <div
                   key={step.num}
-                  className={`fade-up opacity-0 translate-y-4 transition-all duration-500 text-center lg:text-left`}
+                  className="fade-up opacity-0 translate-y-4 transition-all duration-500 text-center lg:text-left"
                   style={{ transitionDelay: `${150 + index * 50}ms` }}
                 >
-                  <p className="font-heading font-bold text-[#F6C400] text-[32px] mb-2">
-                    {step.num}
-                  </p>
-                  <h3 className="font-heading font-bold text-white text-lg mb-2">
-                    {step.title}
-                  </h3>
-                  <p className="font-sans text-[#5F6B7A] text-sm">
-                    {step.desc}
-                  </p>
+                  <p className="font-heading font-bold text-[#F6C400] text-[32px] mb-2">{step.num}</p>
+                  <h3 className="font-heading font-bold text-white text-lg mb-2">{step.title}</h3>
+                  <p className="font-sans text-[#5F6B7A] text-sm">{step.desc}</p>
                 </div>
               ))}
             </div>
@@ -299,77 +261,50 @@ export default function GlobalBusinessPage() {
         <div className="max-w-[1200px] mx-auto px-4 md:px-8">
           <div className="text-center mb-16">
             <p className="fade-up opacity-0 translate-y-4 transition-all duration-500 uppercase text-[#F6C400] text-[13px] font-bold tracking-[0.15em] mb-4">
-              PARTNER VOICES
+              {t("voicesLabel")}
             </p>
             <h2 className="fade-up opacity-0 translate-y-4 transition-all duration-500 delay-100 font-heading font-bold text-[#0F1B3D] text-[28px] md:text-[44px] leading-tight">
-              Real partners. Real results.
+              {t("voicesTitle")}
             </h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {/* Testimonial 1 */}
             <div className="fade-up opacity-0 translate-y-4 transition-all duration-500 delay-150 relative bg-white rounded-2xl p-10 shadow-lg">
               <span className="absolute top-6 left-6 font-heading text-[80px] leading-none text-[#F6C400]/20">
                 &ldquo;
               </span>
               <p className="font-sans text-[#5F6B7A] text-base leading-relaxed mb-6 relative z-10">
-                Noljak gave us a complete system — curriculum, training, and ongoing support. We opened with confidence.
+                {t("voice1Quote")}
               </p>
               <div className="flex items-center gap-2">
-                <img
-                  src="https://flagcdn.com/32x24/vn.png"
-                  width={24}
-                  height={18}
-                  alt="Vietnam flag"
-                  className="rounded-sm"
-                />
-                <p className="font-sans font-bold text-[#0F1B3D] text-sm">
-                  Partner, Vietnam
-                </p>
+                <img src="https://flagcdn.com/32x24/vn.png" width={24} height={18} alt="Vietnam flag" className="rounded-sm" />
+                <p className="font-sans font-bold text-[#0F1B3D] text-sm">{t("voice1Name")}</p>
               </div>
             </div>
 
-            {/* Testimonial 2 (highlighted) */}
             <div className="fade-up opacity-0 translate-y-4 transition-all duration-500 delay-200 relative bg-[#F6C400] rounded-2xl p-10 shadow-lg">
               <span className="absolute top-6 left-6 font-heading text-[80px] leading-none text-[#0F1B3D]/10">
                 &ldquo;
               </span>
               <p className="font-sans text-[#0F1B3D] text-base leading-relaxed mb-6 relative z-10">
-                Parents immediately understood the value. Children who used to resist art now ask to come every day.
+                {t("voice2Quote")}
               </p>
               <div className="flex items-center gap-2">
-                <img
-                  src="https://flagcdn.com/32x24/ph.png"
-                  width={24}
-                  height={18}
-                  alt="Philippines flag"
-                  className="rounded-sm"
-                />
-                <p className="font-sans font-bold text-[#0F1B3D] text-sm">
-                  Partner, Philippines
-                </p>
+                <img src="https://flagcdn.com/32x24/ph.png" width={24} height={18} alt="Philippines flag" className="rounded-sm" />
+                <p className="font-sans font-bold text-[#0F1B3D] text-sm">{t("voice2Name")}</p>
               </div>
             </div>
 
-            {/* Testimonial 3 */}
             <div className="fade-up opacity-0 translate-y-4 transition-all duration-500 delay-[250ms] relative bg-white rounded-2xl p-10 shadow-lg">
               <span className="absolute top-6 left-6 font-heading text-[80px] leading-none text-[#F6C400]/20">
                 &ldquo;
               </span>
               <p className="font-sans text-[#5F6B7A] text-base leading-relaxed mb-6 relative z-10">
-                The curriculum is unlike anything available in Germany. We had 40 students enrolled before opening day.
+                {t("voice3Quote")}
               </p>
               <div className="flex items-center gap-2">
-                <img
-                  src="https://flagcdn.com/32x24/de.png"
-                  width={24}
-                  height={18}
-                  alt="Germany flag"
-                  className="rounded-sm"
-                />
-                <p className="font-sans font-bold text-[#0F1B3D] text-sm">
-                  Partner, Germany
-                </p>
+                <img src="https://flagcdn.com/32x24/de.png" width={24} height={18} alt="Germany flag" className="rounded-sm" />
+                <p className="font-sans font-bold text-[#0F1B3D] text-sm">{t("voice3Name")}</p>
               </div>
             </div>
           </div>
@@ -380,25 +315,19 @@ export default function GlobalBusinessPage() {
       <section id="get-started" className="bg-white py-20 md:py-[120px]">
         <div className="max-w-[1200px] mx-auto px-4 md:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-            {/* Left: Text */}
             <div>
               <p className="fade-up opacity-0 translate-y-4 transition-all duration-500 uppercase text-[#F6C400] text-[13px] font-bold tracking-[0.15em] mb-4">
-                GET STARTED
+                {t("formLabel")}
               </p>
               <h2 className="fade-up opacity-0 translate-y-4 transition-all duration-500 delay-100 font-heading font-bold text-[#0F1B3D] text-[28px] md:text-[44px] leading-tight mb-6">
-                Let&apos;s talk about your city.
+                {t("formTitle")}
               </h2>
               <p className="fade-up opacity-0 translate-y-4 transition-all duration-500 delay-150 font-sans text-[#5F6B7A] text-base md:text-lg leading-relaxed mb-8">
-                Fill in the form and our global team will be in touch within 2 business days.
+                {t("formDesc")}
               </p>
 
-              {/* Reassurance rows */}
               <div className="fade-up opacity-0 translate-y-4 transition-all duration-500 delay-200 flex flex-col gap-3">
-                {[
-                  "No obligation — just a conversation",
-                  "Response within 2 business days",
-                  "Available in English, Korean, and Vietnamese",
-                ].map((text) => (
+                {[t("reassure1"), t("reassure2"), t("reassure3")].map((text) => (
                   <div key={text} className="flex items-center gap-3">
                     <svg className="w-5 h-5 text-[#F6C400]" viewBox="0 0 20 20" fill="currentColor">
                       <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
@@ -409,19 +338,18 @@ export default function GlobalBusinessPage() {
               </div>
             </div>
 
-            {/* Right: Form */}
             <div className="fade-up opacity-0 translate-y-4 transition-all duration-500 delay-[250ms] bg-white border border-[#E8ECF1] rounded-2xl p-10 shadow-lg">
               <form className="flex flex-col gap-5">
                 <div>
-                  <label className="block font-sans text-[#0F1B3D] text-sm font-medium mb-2">Name</label>
+                  <label className="block font-sans text-[#0F1B3D] text-sm font-medium mb-2">{t("fieldName")}</label>
                   <input
                     type="text"
                     className="w-full border border-[#E8ECF1] rounded-lg px-4 py-3 font-sans text-sm focus:outline-none focus:border-[#F6C400] transition-colors"
-                    placeholder="Your name"
+                    placeholder={t("fieldNamePlaceholder")}
                   />
                 </div>
                 <div>
-                  <label className="block font-sans text-[#0F1B3D] text-sm font-medium mb-2">Email</label>
+                  <label className="block font-sans text-[#0F1B3D] text-sm font-medium mb-2">{t("fieldEmail")}</label>
                   <input
                     type="email"
                     className="w-full border border-[#E8ECF1] rounded-lg px-4 py-3 font-sans text-sm focus:outline-none focus:border-[#F6C400] transition-colors"
@@ -429,7 +357,7 @@ export default function GlobalBusinessPage() {
                   />
                 </div>
                 <div>
-                  <label className="block font-sans text-[#0F1B3D] text-sm font-medium mb-2">Phone</label>
+                  <label className="block font-sans text-[#0F1B3D] text-sm font-medium mb-2">{t("fieldPhone")}</label>
                   <input
                     type="tel"
                     className="w-full border border-[#E8ECF1] rounded-lg px-4 py-3 font-sans text-sm focus:outline-none focus:border-[#F6C400] transition-colors"
@@ -438,44 +366,44 @@ export default function GlobalBusinessPage() {
                 </div>
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="block font-sans text-[#0F1B3D] text-sm font-medium mb-2">Country</label>
+                    <label className="block font-sans text-[#0F1B3D] text-sm font-medium mb-2">{t("fieldCountry")}</label>
                     <input
                       type="text"
                       className="w-full border border-[#E8ECF1] rounded-lg px-4 py-3 font-sans text-sm focus:outline-none focus:border-[#F6C400] transition-colors"
-                      placeholder="Country"
+                      placeholder={t("fieldCountry")}
                     />
                   </div>
                   <div>
-                    <label className="block font-sans text-[#0F1B3D] text-sm font-medium mb-2">City</label>
+                    <label className="block font-sans text-[#0F1B3D] text-sm font-medium mb-2">{t("fieldCity")}</label>
                     <input
                       type="text"
                       className="w-full border border-[#E8ECF1] rounded-lg px-4 py-3 font-sans text-sm focus:outline-none focus:border-[#F6C400] transition-colors"
-                      placeholder="City"
+                      placeholder={t("fieldCity")}
                     />
                   </div>
                 </div>
                 <div>
-                  <label className="block font-sans text-[#0F1B3D] text-sm font-medium mb-2">Business Type</label>
+                  <label className="block font-sans text-[#0F1B3D] text-sm font-medium mb-2">{t("fieldBusinessType")}</label>
                   <select className="w-full border border-[#E8ECF1] rounded-lg px-4 py-3 font-sans text-sm focus:outline-none focus:border-[#F6C400] transition-colors bg-white">
-                    <option value="">Select a type</option>
-                    <option value="new-center">New Center</option>
-                    <option value="licensing">Licensing</option>
-                    <option value="master-franchise">Master Franchise</option>
+                    <option value="">{t("fieldBusinessTypePlaceholder")}</option>
+                    <option value="new-center">{t("optionNewCenter")}</option>
+                    <option value="licensing">{t("optionLicensing")}</option>
+                    <option value="master-franchise">{t("optionMasterFranchise")}</option>
                   </select>
                 </div>
                 <div>
-                  <label className="block font-sans text-[#0F1B3D] text-sm font-medium mb-2">Message</label>
+                  <label className="block font-sans text-[#0F1B3D] text-sm font-medium mb-2">{t("fieldMessage")}</label>
                   <textarea
                     rows={4}
                     className="w-full border border-[#E8ECF1] rounded-lg px-4 py-3 font-sans text-sm focus:outline-none focus:border-[#F6C400] transition-colors resize-none"
-                    placeholder="Tell us about your plans..."
+                    placeholder={t("fieldMessagePlaceholder")}
                   />
                 </div>
                 <button
                   type="submit"
                   className="w-full bg-[#F6C400] text-[#0F1B3D] font-bold py-4 rounded-full hover:bg-[#0F1B3D] hover:text-[#F6C400] transition-colors"
                 >
-                  Send Inquiry
+                  {t("submit")}
                 </button>
               </form>
             </div>

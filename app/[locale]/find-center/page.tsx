@@ -5,6 +5,7 @@ import dynamic from "next/dynamic"
 import { Footer } from "@/components/footer"
 import Link from "next/link"
 import { Search, MapPin } from "lucide-react"
+import { useTranslations } from "next-intl"
 
 const WorldMap = dynamic(() => import("@/components/world-map"), { ssr: false })
 
@@ -24,8 +25,8 @@ type Center = {
   sort_order: number
 }
 
-
 export default function FindCenterPage() {
+  const t = useTranslations("findCenterPage")
   const [centers, setCenters] = useState<Center[]>([])
   const [loading, setLoading] = useState(true)
   const [searchQuery, setSearchQuery] = useState("")
@@ -41,13 +42,11 @@ export default function FindCenterPage() {
       .catch(() => setLoading(false))
   }, [])
 
-  // Scroll animation
   useEffect(() => {
     const elements = document.querySelectorAll(".fade-up")
     elements.forEach((el) => {
       el.classList.add("opacity-0", "translate-y-4")
     })
-
     const timer = setTimeout(() => {
       const observer = new IntersectionObserver(
         (entries) => {
@@ -62,13 +61,12 @@ export default function FindCenterPage() {
       document.querySelectorAll(".fade-up").forEach((el) => observer.observe(el))
       return () => observer.disconnect()
     }, 50)
-
     return () => clearTimeout(timer)
   }, [centers, activeRegion, searchQuery])
 
   const regionTabs = [
-    { id: "all", label: "All" },
-    { id: "korea", label: "Korea" },
+    { id: "all", label: t("tabAll") },
+    { id: "korea", label: t("tabKorea") },
     ...Array.from(new Set(centers.map(c => c.country)))
       .sort()
       .map(country => ({ id: country.toLowerCase(), label: country }))
@@ -95,11 +93,11 @@ export default function FindCenterPage() {
       {/* Section 1: Hero */}
       <section className="min-h-0 bg-[#FFFDF5] flex items-center justify-center pt-[160px] pb-16">
         <div className="max-w-[1200px] mx-auto px-4 md:px-8 text-center">
-                    <h1 className="fade-up opacity-0 translate-y-4 transition-all duration-500 delay-100 font-heading font-bold text-[#0F1B3D] text-[36px] md:text-[64px] leading-tight mb-6">
-            Find Noljak near you.
+          <h1 className="fade-up opacity-0 translate-y-4 transition-all duration-500 delay-100 font-heading font-bold text-[#0F1B3D] text-[36px] md:text-[64px] leading-tight mb-6">
+            {t("hero")}
           </h1>
           <p className="fade-up opacity-0 translate-y-4 transition-all duration-500 delay-150 font-sans text-[#5F6B7A] text-lg md:text-xl max-w-[600px] mx-auto">
-            Noljak Creative Centers are opening across the world. Find the one closest to you.
+            {t("heroSub")}
           </p>
         </div>
       </section>
@@ -111,7 +109,7 @@ export default function FindCenterPage() {
             <div className="relative w-full max-w-[560px]">
               <input
                 type="text"
-                placeholder="Search by country or city..."
+                placeholder={t("searchPlaceholder")}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="w-full h-14 border border-[#E8ECF1] rounded-full px-6 pr-20 font-sans text-base text-[#0F1B3D] placeholder:text-[#5F6B7A] focus:outline-none focus:border-[#F6C400] transition-colors"
@@ -121,7 +119,7 @@ export default function FindCenterPage() {
               </button>
             </div>
             <button className="mt-4 font-sans text-[#5BB7E8] text-sm hover:underline transition-all">
-              Or use current location
+              {t("useLocation")}
             </button>
           </div>
         </div>
@@ -153,55 +151,53 @@ export default function FindCenterPage() {
         <div className="max-w-[1200px] mx-auto px-4 md:px-8">
           <div className="text-center mb-12">
             <p className="fade-up opacity-0 translate-y-4 transition-all duration-500 uppercase text-[#F6C400] text-[13px] font-bold tracking-[0.15em] mb-4">
-              GLOBAL PRESENCE
+              {t("globalPresence")}
             </p>
             <h2 className="fade-up opacity-0 translate-y-4 transition-all duration-500 delay-100 font-heading font-bold text-[#0F1B3D] text-[28px] md:text-[44px]">
-              Noljak in 11 countries.
+              {t("mapTitle")}
             </h2>
           </div>
 
-          {/* Map Container */}
           <div className="fade-up opacity-0 translate-y-4 transition-all duration-500 delay-150 max-w-[900px] mx-auto mb-16">
             <WorldMap />
           </div>
 
-          {/* Stats */}
           <div className="fade-up opacity-0 translate-y-4 transition-all duration-500 delay-200 flex justify-center items-center gap-8 md:gap-16">
             <div className="text-center">
               <p className="font-heading font-bold text-[#F6C400] text-[36px] md:text-[48px]">11</p>
-              <p className="font-sans text-[#5F6B7A] text-sm">Countries</p>
+              <p className="font-sans text-[#5F6B7A] text-sm">{t("countries")}</p>
             </div>
             <div className="w-px h-12 bg-[#E8ECF1]" />
             <div className="text-center">
               <p className="font-heading font-bold text-[#F6C400] text-[36px] md:text-[48px]">400+</p>
-              <p className="font-sans text-[#5F6B7A] text-sm">Centers in Korea</p>
+              <p className="font-sans text-[#5F6B7A] text-sm">{t("centersInKorea")}</p>
             </div>
             <div className="w-px h-12 bg-[#E8ECF1]" />
             <div className="text-center">
               <p className="font-heading font-bold text-[#F6C400] text-[36px] md:text-[48px]">22</p>
-              <p className="font-sans text-[#5F6B7A] text-sm">Global Centers</p>
+              <p className="font-sans text-[#5F6B7A] text-sm">{t("globalCenters")}</p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Section 5: Center List grouped by country */}
+      {/* Section 5: Center List */}
       <section className="bg-[#FFFDF5] py-20">
         <div className="max-w-[1200px] mx-auto px-4 md:px-8">
           <h2 className="fade-up opacity-0 translate-y-4 transition-all duration-500 font-heading font-bold text-[#0F1B3D] text-[28px] md:text-[44px] mb-10">
-            Centers by region.
+            {t("centersByRegion")}
           </h2>
 
           {loading ? (
-            <div className="text-center py-20 text-[#5F6B7A]">Loading centers...</div>
+            <div className="text-center py-20 text-[#5F6B7A]">{t("loading")}</div>
           ) : activeRegion === "korea" ? (
             <div className="fade-up opacity-0 translate-y-4 transition-all duration-500 text-center py-20">
               <p className="font-sans font-bold text-[13px] text-[#F6C400] uppercase tracking-[0.15em] mb-4">KOREA</p>
               <h3 className="font-heading font-bold text-[#0F1B3D] text-[28px] md:text-[44px] mb-4">
-                400+ centers across Korea.
+                {t("koreaTitle")}
               </h3>
               <p className="font-sans text-[#5F6B7A] text-base md:text-lg max-w-[480px] mx-auto mb-10">
-                Find your nearest Noljak center on our Korean website.
+                {t("koreaSub")}
               </p>
               <a
                 href="http://noljakmyart.com/study/school.asp"
@@ -209,7 +205,7 @@ export default function FindCenterPage() {
                 rel="noopener noreferrer"
                 className="inline-block bg-[#F6C400] text-[#0F1B3D] font-bold px-8 py-3.5 rounded-full hover:bg-[#E5B600] transition-colors"
               >
-                Find a Center in Korea →
+                {t("findInKorea")}
               </a>
             </div>
           ) : filteredCenters.length > 0 ? (
@@ -218,9 +214,7 @@ export default function FindCenterPage() {
                 const countryCenters = filteredCenters.filter(c => c.country === country)
                 return (
                   <section key={country} id={country.toLowerCase()} className="scroll-mt-64">
-                    <h3 className="font-heading font-bold text-[#0F1B3D] text-xl md:text-2xl mb-4">
-                      {country}
-                    </h3>
+                    <h3 className="font-heading font-bold text-[#0F1B3D] text-xl md:text-2xl mb-4">{country}</h3>
                     <div className="flex flex-col gap-4">
                       {countryCenters.map((center, index) => (
                         <div
@@ -229,13 +223,9 @@ export default function FindCenterPage() {
                           style={{ transitionDelay: `${index * 50}ms` }}
                         >
                           <div>
-                            <p className="font-sans font-bold text-[13px] text-[#5F6B7A] uppercase mb-1">
-                              {center.country}
-                            </p>
+                            <p className="font-sans font-bold text-[13px] text-[#5F6B7A] uppercase mb-1">{center.country}</p>
                             <p className="font-sans text-[#5F6B7A] text-xs mb-2">{center.city}</p>
-                            <h3 className="font-heading font-bold text-[#0F1B3D] text-lg md:text-xl mb-2">
-                              {center.name}
-                            </h3>
+                            <h3 className="font-heading font-bold text-[#0F1B3D] text-lg md:text-xl mb-2">{center.name}</h3>
                             <p className="font-sans text-[#5F6B7A] text-sm mb-1">{center.address}</p>
                             {(center.phone || center.email) && (
                               <p className="font-sans text-[#5F6B7A] text-sm">
@@ -244,17 +234,12 @@ export default function FindCenterPage() {
                             )}
                           </div>
                           <a
-                            href={
-                              center.maps_url ||
-                              `https://maps.google.com/?q=${encodeURIComponent(
-                                center.address + ", " + center.city + ", " + center.country
-                              )}`
-                            }
+                            href={center.maps_url || `https://maps.google.com/?q=${encodeURIComponent(center.address + ", " + center.city + ", " + center.country)}`}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="inline-flex items-center justify-center px-5 py-2.5 border border-[#E8ECF1] rounded-lg font-sans font-bold text-[13px] text-[#0F1B3D] hover:bg-[#F6C400] hover:border-[#F6C400] transition-all whitespace-nowrap"
                           >
-                            Get Directions →
+                            {t("getDirections")}
                           </a>
                         </div>
                       ))}
@@ -266,17 +251,13 @@ export default function FindCenterPage() {
           ) : (
             <div className="fade-up opacity-0 translate-y-4 transition-all duration-500 text-center py-20">
               <MapPin className="w-16 h-16 text-[#E8ECF1] mx-auto mb-6" />
-              <h3 className="font-heading font-bold text-[#0F1B3D] text-2xl mb-3">
-                No Noljak center in your city yet.
-              </h3>
-              <p className="font-sans text-[#5F6B7A] text-base mb-8">
-                Be the first to bring Noljak to your community.
-              </p>
+              <h3 className="font-heading font-bold text-[#0F1B3D] text-2xl mb-3">{t("noCenter")}</h3>
+              <p className="font-sans text-[#5F6B7A] text-base mb-8">{t("noCenterSub")}</p>
               <Link
                 href="/global-business"
                 className="inline-block bg-[#F6C400] text-[#0F1B3D] font-bold px-8 py-3 rounded-full hover:bg-[#E5B600] transition-colors"
               >
-                Bring Noljak to Your City →
+                {t("bringNoljak")}
               </Link>
             </div>
           )}
@@ -287,23 +268,23 @@ export default function FindCenterPage() {
       <section className="bg-[#0F1B3D] py-20 md:py-[120px]">
         <div className="max-w-[1200px] mx-auto px-4 md:px-8 text-center">
           <h2 className="fade-up opacity-0 translate-y-4 transition-all duration-500 font-heading font-bold text-white text-[28px] md:text-[44px] mb-6">
-            Don&apos;t see your city?
+            {t("dontSeeCity")}
           </h2>
           <p className="fade-up opacity-0 translate-y-4 transition-all duration-500 delay-100 font-sans text-[#5F6B7A] text-base md:text-lg max-w-[600px] mx-auto mb-10">
-            Join our growing global network and bring Noljak&apos;s creative education to your community.
+            {t("dontSeeCitySub")}
           </p>
           <div className="fade-up opacity-0 translate-y-4 transition-all duration-500 delay-150 flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/global-business"
               className="px-8 py-3.5 bg-[#F6C400] text-[#0F1B3D] font-bold rounded-full hover:bg-[#0F1B3D] hover:text-[#F6C400] border-2 border-[#F6C400] transition-all"
             >
-              Start Global Business
+              {t("startBusiness")}
             </Link>
             <a
               href="mailto:contact@noljakedu.com"
               className="px-8 py-3.5 border-2 border-white text-white font-bold rounded-full hover:bg-white hover:text-[#0F1B3D] transition-all"
             >
-              Contact Us
+              {t("contactUs")}
             </a>
           </div>
         </div>
