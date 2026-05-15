@@ -64,7 +64,7 @@ export function Navigation() {
   const currentLangLabel = languages.find(l => l.code === locale)?.label || "EN"
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-[#0F1B3D] h-[60px] flex items-center px-6 md:px-12">
+    <nav className="fixed top-[44px] left-0 right-0 z-50 bg-[#0F1B3D] h-[60px] flex items-center px-6 md:px-12">
       {/* Logo */}
       <Link href={`${prefix}/`} className="text-white font-bold text-xl mr-10 font-heading">
         noljak

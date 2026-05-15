@@ -1,4 +1,4 @@
-import '../globals.css'
+import "../globals.css"
 
 export default function AdminLayout({
   children,
@@ -6,8 +6,12 @@ export default function AdminLayout({
   children: React.ReactNode
 }) {
   return (
-    <div className="admin-layout" style={{ isolation: 'isolate' }}>
-      {children}
-    </div>
+    <html lang="ko">
+      <body>
+        <div className="isolate">
+          {children}
+        </div>
+      </body>
+    </html>
   )
 }

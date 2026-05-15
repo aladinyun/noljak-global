@@ -21,7 +21,7 @@ export function AnnouncementBanner() {
   if (!isVisible || !banner) return null
 
   return (
-    <div className="fixed top-0 left-0 right-0 z-40 bg-[#F6C400] py-3 px-4">
+    <div className="fixed top-0 left-0 right-0 z-[60] bg-[#F6C400] py-3 px-4">
       <div className="w-full flex items-center justify-center relative">
         <button
           onClick={() => router.push(`/notice/${banner.id}`)}

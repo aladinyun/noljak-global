@@ -3,6 +3,7 @@ import { getMessages } from 'next-intl/server'
 import type { Metadata } from "next"
 import { Plus_Jakarta_Sans, Inter } from "next/font/google"
 import { Navigation } from "@/components/navigation"
+import { AnnouncementBanner } from "@/components/announcement-banner"
 import "../globals.css"
 
 const plusJakartaSans = Plus_Jakarta_Sans({
@@ -36,6 +37,7 @@ export default async function LocaleLayout({
     <html lang={locale} className={`${plusJakartaSans.variable} ${inter.variable}`}>
       <body>
         <NextIntlClientProvider messages={messages}>
+          <AnnouncementBanner />
           <Navigation />
           {children}
         </NextIntlClientProvider>
