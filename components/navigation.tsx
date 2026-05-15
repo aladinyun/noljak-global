@@ -41,22 +41,24 @@ export function Navigation() {
     }
   }
 
+  const prefix = locale === "en" ? "" : `/${locale}`
+
   const navLinks = [
-    { href: "/what-is-noljak", label: t("whatIsNoljak") },
+    { href: `${prefix}/what-is-noljak`, label: t("whatIsNoljak") },
     {
-      href: "/programs",
+      href: `${prefix}/programs`,
       label: t("programs"),
       dropdown: [
-        { href: "/programs/philosophy", label: t("philosophy") },
-        { href: "/programs/crekic", label: t("crekic") },
-        { href: "/programs/basic", label: t("basic") },
-        { href: "/programs/creator", label: t("creator") },
-        { href: "/programs/others", label: t("others") },
+        { href: `${prefix}/programs/philosophy`, label: t("philosophy") },
+        { href: `${prefix}/programs/crekic`, label: t("crekic") },
+        { href: `${prefix}/programs/basic`, label: t("basic") },
+        { href: `${prefix}/programs/creator`, label: t("creator") },
+        { href: `${prefix}/programs/others`, label: t("others") },
       ]
     },
-    { href: "/now-noljak", label: t("nowNoljak") },
-    { href: "/find-center", label: t("findCenter") },
-    { href: "/global-business", label: t("globalBusiness") },
+    { href: `${prefix}/now-noljak`, label: t("nowNoljak") },
+    { href: `${prefix}/find-center`, label: t("findCenter") },
+    { href: `${prefix}/global-business`, label: t("globalBusiness") },
   ]
 
   const currentLangLabel = languages.find(l => l.code === locale)?.label || "EN"
@@ -64,7 +66,7 @@ export function Navigation() {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-[#0F1B3D] h-[60px] flex items-center px-6 md:px-12">
       {/* Logo */}
-      <Link href="/" className="text-white font-bold text-xl mr-10 font-heading">
+      <Link href={`${prefix}/`} className="text-white font-bold text-xl mr-10 font-heading">
         noljak
       </Link>
 
