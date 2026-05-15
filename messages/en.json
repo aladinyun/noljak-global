@@ -51,7 +51,9 @@
                       "description":  "From Korea to Global and beyond, discover real classroom moments of observation, thinking, and creative expression.",
                       "all":  "All",
                       "seeMore":  "See More",
-                      "goTo":  "Go to"
+                      "goTo":  "Go to",
+                      "loading":  "Loading...",
+                      "empty":  "No cards available."
                   },
     "findCenter":  {
                        "title":  "Find Noljak near you.",

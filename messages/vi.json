@@ -51,7 +51,9 @@
                       "description":  "Từ Hàn Quốc đến toàn cầu, khám phá những khoảnh khắc lớp học thực tế về quan sát, tư duy và biểu đạt sáng tạo.",
                       "all":  "Tất cả",
                       "seeMore":  "Xem thêm",
-                      "goTo":  "Đến"
+                      "goTo":  "Đến",
+                      "loading":  "Đang tải...",
+                      "empty":  "Không có nội dung."
                   },
     "findCenter":  {
                        "title":  "Tìm Noljak gần bạn.",

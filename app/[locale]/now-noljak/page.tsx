@@ -3,8 +3,9 @@
 import { useEffect, useState } from 'react'
 import { Footer } from '@/components/footer'
 import Link from 'next/link'
+import { useTranslations } from 'next-intl'
 
-type Platform = 'All' | 'Instagram' | 'YouTube' | 'Facebook' | 'Medium' | 'Blog'
+type Platform = 'all' | 'Instagram' | 'YouTube' | 'Facebook' | 'Medium' | 'Blog'
 
 interface Card {
   id: string
@@ -16,9 +17,10 @@ interface Card {
 }
 
 export default function NowNoljakPage() {
+  const t = useTranslations("nowNoljak")
   const [cards, setCards] = useState<Card[]>([])
   const [loading, setLoading] = useState(true)
-  const [filter, setFilter] = useState<Platform>('All')
+  const [filter, setFilter] = useState<Platform>('all')
 
   useEffect(() => {
     fetch('/api/now-noljak')
@@ -29,18 +31,18 @@ export default function NowNoljakPage() {
       })
   }, [])
 
-  const filtered = filter === 'All' ? cards : cards.filter(c => c.platform === filter)
-  const platforms: Platform[] = ['All', 'Instagram', 'YouTube', 'Facebook', 'Medium', 'Blog']
+  const filtered = filter === 'all' ? cards : cards.filter(c => c.platform === filter)
+  const platforms: Platform[] = ['all', 'Instagram', 'YouTube', 'Facebook', 'Medium', 'Blog']
 
   return (
     <div className='min-h-screen bg-white'>
       <section className='bg-white flex items-center justify-center py-20 pt-[160px]'>
         <div className='max-w-[1200px] mx-auto px-4 md:px-8 text-center'>
           <h1 className='font-heading font-bold text-[#0F1B3D] text-[36px] md:text-[64px] leading-tight mb-6'>
-            See Noljak happening around the world.
+            {t("subtitle")}
           </h1>
           <p className='font-sans text-[#5F6B7A] text-lg md:text-xl max-w-[680px] mx-auto'>
-            From Korea to Global — real classroom moments of observation, thinking, and creative expression.
+            {t("description")}
           </p>
         </div>
       </section>
@@ -54,13 +56,13 @@ export default function NowNoljakPage() {
                 onClick={() => setFilter(p)}
                 className={`px-5 py-2 rounded-full text-sm font-medium transition ${filter === p ? 'bg-[#F6C400] text-[#0F1B3D]' : 'bg-[#F8F9FA] text-[#5F6B7A] hover:bg-[#F6C400]/20'}`}
               >
-                {p}
+                {p === 'all' ? t("all") : p}
               </button>
             ))}
           </div>
 
-          {loading && <p className='text-[#5F6B7A]'>불러오는 중...</p>}
-          {!loading && filtered.length === 0 && <p className='text-[#5F6B7A]'>등록된 카드가 없습니다.</p>}
+          {loading && <p className='text-[#5F6B7A]'>{t("loading")}</p>}
+          {!loading && filtered.length === 0 && <p className='text-[#5F6B7A]'>{t("empty")}</p>}
 
           <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
             {filtered.map(card => (
