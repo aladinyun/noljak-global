@@ -23,6 +23,7 @@ export function Navigation() {
   const locale = useLocale()
   const pathname = usePathname()
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null)
 
   const switchLocale = (newLocale: string) => {
     const locales = ["en", "ko", "vi"]
@@ -137,7 +138,32 @@ export function Navigation() {
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
         <div className="absolute top-[60px] left-0 right-0 bg-[#0F1B3D] flex flex-col p-6 gap-4 md:hidden">
-          {navLinks.map((item) => (
+          {navLinks.map((item) =>
+            item.dropdown ? (
+              <div key={item.href}>
+                <button
+                  className="text-white text-sm flex items-center gap-1 hover:text-[#F6C400] w-full text-left"
+                  onClick={() => setOpenDropdown(openDropdown === item.href ? null : item.href)}
+                >
+                  {item.label}
+                  <ChevronDown size={14} className={`ml-auto transition-transform ${openDropdown === item.href ? "rotate-180" : ""}`} />
+                </button>
+                {openDropdown === item.href && (
+                  <div className="flex flex-col gap-3 mt-3">
+                    {item.dropdown.map((sub) => (
+                      <Link
+                        key={sub.href}
+                        href={sub.href}
+                        className="text-white/70 text-sm pl-4 hover:text-[#F6C400]"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                      >
+                        {sub.label}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ) : (
             <Link
               key={item.href}
               href={item.href}

@@ -13,10 +13,29 @@ export function FindCenter() {
   const filterTabs = [
     { id: "kr", label: "Korea" },
     { id: "us", label: "USA" },
+    { id: "ca", label: "Canada" },
+    { id: "gb", label: "UK" },
     { id: "de", label: "Germany" },
+    { id: "au", label: "Australia" },
+    { id: "cn", label: "China" },
+    { id: "jp", label: "Japan" },
+    { id: "th", label: "Thailand" },
     { id: "vn", label: "Vietnam" },
     { id: "ph", label: "Philippines" },
-    { id: "others", label: t("others") },
+  ]
+
+  const mapPins = [
+    { id: "kr", left: "46%", top: "45%" },
+    { id: "jp", left: "49%", top: "46%" },
+    { id: "cn", left: "42%", top: "52%" },
+    { id: "th", left: "39%", top: "58%" },
+    { id: "vn", left: "41%", top: "57%" },
+    { id: "ph", left: "44%", top: "57%" },
+    { id: "au", left: "51%", top: "83%" },
+    { id: "de", left: "13%", top: "35%" },
+    { id: "gb", left: "10%", top: "33%" },
+    { id: "ca", left: "81%", top: "33%" },
+    { id: "us", left: "78%", top: "43%" },
   ]
 
   const stats = [
@@ -76,14 +95,31 @@ export function FindCenter() {
               className="w-full block"
               style={{ filter: "grayscale(30%) brightness(0.95)", display: "block" }}
             />
+            <div className="absolute inset-0 pointer-events-none">
+              {mapPins.map((pin) => (
+                <div
+                  key={pin.id}
+                  className="absolute"
+                  style={{ left: pin.left, top: pin.top, transform: "translate(-50%, -50%)" }}
+                >
+                  <span className="relative flex h-3 w-3">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#F6C400] opacity-75" />
+                    <span className="relative inline-flex rounded-full h-3 w-3 bg-[#F6C400] border-2 border-white" />
+                  </span>
+                  <span className="text-[10px] font-bold text-[#0F1B3D] text-center bg-white/80 rounded px-1 mt-0.5">
+                    {pin.id.toUpperCase()}
+                  </span>
+                </div>
+              ))}
+            </div>
           </div>
 
           {/* Row 4 — Filter Tabs */}
-          <div className="flex flex-wrap justify-center gap-2">
+          <div className="flex flex-wrap justify-center gap-2 mb-8">
             {filterTabs.map((tab) => (
               <button
                 key={tab.id}
-                className="px-6 py-2 rounded-full text-sm font-medium transition-all duration-200 bg-transparent border-[1.5px] border-[#0F1B3D] text-[#0F1B3D] hover:bg-[#0F1B3D]/5"
+                className="px-3 py-1 rounded-full text-xs font-medium transition-all duration-200 bg-transparent border-[1.5px] border-[#0F1B3D] text-[#0F1B3D] hover:bg-[#0F1B3D]/5"
               >
                 {tab.label}
               </button>
@@ -93,7 +129,7 @@ export function FindCenter() {
           {/* Row 5 — CTA Button */}
           <Button
             onClick={scrollToInquiry}
-            className="bg-[#F6C400] hover:bg-[#E5B600] text-[#0F1B3D] font-bold text-base px-10 py-4 h-auto rounded-full transition-all duration-300"
+            className="mt-4 bg-[#F6C400] hover:bg-[#E5B600] text-[#0F1B3D] font-bold text-base px-10 py-4 h-auto rounded-full transition-all duration-300"
           >
             {t("cta")}
           </Button>

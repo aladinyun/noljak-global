@@ -27,7 +27,7 @@ export function HeroSection() {
       <div className="relative z-10 flex flex-col items-center justify-center h-full px-6 pt-20">
         <div className="max-w-4xl mx-auto text-center">
           <h1 className="text-4xl md:text-5xl lg:text-[64px] font-bold text-white leading-tight tracking-tight font-[var(--font-heading)] animate-fade-in-up text-balance">
-            Learning begins with real experience.
+            {t("headline")}
           </h1>
 
           <p className="mt-6 text-lg md:text-xl text-white/90 italic max-w-2xl mx-auto leading-relaxed animate-fade-in-up [animation-delay:100ms]">
