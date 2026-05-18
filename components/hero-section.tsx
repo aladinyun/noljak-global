@@ -42,7 +42,7 @@ export function HeroSection() {
             <Button
               asChild
               size="lg"
-              className="bg-[#F6C400] hover:bg-[#0F1B3D] text-[#0F1B3D] hover:text-[#F6C400] font-bold px-8 py-6 text-base rounded-lg transition-all duration-300"
+              className="bg-[#F6C400] hover:bg-[#0F1B3D] text-[#0F1B3D] hover:text-[#F6C400] font-bold px-8 py-6 text-base rounded-lg transition-all duration-300 min-w-[200px]"
             >
               <Link href="#programs">{t("cta1")}</Link>
             </Button>
@@ -50,7 +50,7 @@ export function HeroSection() {
               asChild
               size="lg"
               variant="outline"
-              className="border-white text-[#0F1B3D] bg-white hover:bg-transparent hover:text-white font-bold px-8 py-6 text-base rounded-lg transition-all duration-300"
+              className="border-white text-[#0F1B3D] bg-white hover:bg-transparent hover:text-white font-bold px-8 py-6 text-base rounded-lg transition-all duration-300 min-w-[200px]"
             >
               <Link href="/programs/philosophy">{t("cta2")}</Link>
             </Button>
