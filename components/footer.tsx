@@ -80,7 +80,7 @@ export function Footer() {
             <Link href={`${prefix}/notice`} className="font-sans text-white text-sm hover:text-[#F6C400] transition-colors">
               Notice
             </Link>
-            <Link href="https://academy.noljak.global" target="_blank" rel="noopener noreferrer" className="font-sans text-white text-sm hover:text-[#F6C400] transition-colors">
+            <Link href="https://api.noljak.global/api/oauth/authorize?client_id=noljak_global_client&redirect_uri=https://www.noljak.global/auth/callback&response_type=code&scope=openid%20profile%20email%20academy&state=noljak_sso" target="_blank" rel="noopener noreferrer" className="font-sans text-white text-sm hover:text-[#F6C400] transition-colors">
               {t("partnerPortal")}
             </Link>
           </div>

@@ -104,7 +104,7 @@ export function Navigation() {
       </div>
 
       {/* Language Selector */}
-      <div className="hidden md:block ml-auto">
+      <div className="hidden md:flex items-center gap-3 ml-auto">
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <button className="text-white text-sm flex items-center gap-1 hover:text-[#F6C400] transition-colors">
