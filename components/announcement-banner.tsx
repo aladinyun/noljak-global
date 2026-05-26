@@ -2,21 +2,23 @@
 
 import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
+import { useLocale } from "next-intl"
 import { X } from "lucide-react"
 
 export function AnnouncementBanner() {
   const router = useRouter()
+  const locale = useLocale()
   const [isVisible, setIsVisible] = useState(true)
   const [banner, setBanner] = useState<{ id: string; banner_text: string } | null>(null)
 
   useEffect(() => {
-    fetch('/api/notices')
+    fetch(`/api/notices?locale=${locale}`)
       .then(res => res.json())
       .then(data => {
         const found = data.notices?.find((n: any) => n.is_banner && n.banner_text)
         if (found) setBanner({ id: found.id, banner_text: found.banner_text })
       })
-  }, [])
+  }, [locale])
 
   if (!isVisible || !banner) return null
 

@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { useTranslations } from "next-intl"
+import { useTranslations, useLocale } from "next-intl"
 
 const programs = [
   { name: "CreKiC", href: "/programs/crekic" },
@@ -19,6 +19,8 @@ const socialLinks = [
 
 export function Footer() {
   const t = useTranslations("footer")
+  const locale = useLocale()
+  const prefix = locale === "en" ? "" : `/${locale}`
 
   return (
     <footer className="bg-[#0F1B3D] py-20">
@@ -74,8 +76,11 @@ export function Footer() {
           </div>
 
           <div className="flex flex-col gap-4">
-            <h3 className="font-sans font-bold text-white text-base">{t("partner")}</h3>
-            <Link href="https://academy.noljak.global" target="_blank" rel="noopener noreferrer" className="font-sans text-white text-sm hover:text-[#F6C400] hover:underline transition-colors">
+            <h3 className="font-sans font-bold text-white text-base">More</h3>
+            <Link href={`${prefix}/notice`} className="font-sans text-white text-sm hover:text-[#F6C400] transition-colors">
+              Notice
+            </Link>
+            <Link href="https://academy.noljak.global" target="_blank" rel="noopener noreferrer" className="font-sans text-white text-sm hover:text-[#F6C400] transition-colors">
               {t("partnerPortal")}
             </Link>
           </div>

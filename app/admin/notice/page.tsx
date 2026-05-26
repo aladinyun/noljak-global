@@ -13,6 +13,7 @@ interface Notice {
   is_banner: boolean
   banner_text: string | null
   image_url: string | null
+  target_locale: string
   created_at: string
 }
 
@@ -25,7 +26,15 @@ const emptyForm = {
   is_banner: false,
   banner_text: '',
   image_url: '',
+  target_locale: 'all',
 }
+
+const localeOptions = [
+  { value: 'all', label: '공통 (All countries)' },
+  { value: 'ko', label: '한국 (Korea)' },
+  { value: 'vi', label: '베트남 (Vietnam)' },
+  { value: 'en', label: '영어권 (US / Global)' },
+]
 
 export default function AdminNoticePage() {
   const router = useRouter()
@@ -111,6 +120,7 @@ export default function AdminNoticePage() {
       is_banner: notice.is_banner,
       banner_text: notice.banner_text || '',
       image_url: notice.image_url || '',
+      target_locale: notice.target_locale || 'all',
     })
     setPreview(notice.image_url || null)
     window.scrollTo({ top: 0, behavior: 'smooth' })
@@ -202,6 +212,19 @@ export default function AdminNoticePage() {
               />
             </div>
 
+            <div className="flex flex-col gap-1.5">
+              <label className="text-sm font-medium text-[#0F1B3D]">게시 대상 (Publish Target)</label>
+              <select
+                value={form.target_locale}
+                onChange={e => setForm({ ...form, target_locale: e.target.value })}
+                className="px-4 py-3 border border-[#E8ECF1] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#F6C400] bg-white"
+              >
+                {localeOptions.map(opt => (
+                  <option key={opt.value} value={opt.value}>{opt.label}</option>
+                ))}
+              </select>
+            </div>
+
             <div className="flex gap-6">
               <label className="flex items-center gap-2 cursor-pointer">
                 <input
@@ -282,6 +305,11 @@ export default function AdminNoticePage() {
                     )}
                     {notice.image_url && (
                       <span className="text-xs bg-blue-50 text-blue-500 px-2 py-0.5 rounded-full">이미지</span>
+                    )}
+                    {notice.target_locale && notice.target_locale !== 'all' && (
+                      <span className="text-xs bg-purple-50 text-purple-600 px-2 py-0.5 rounded-full">
+                        {localeOptions.find(o => o.value === notice.target_locale)?.label ?? notice.target_locale}
+                      </span>
                     )}
                   </div>
                   <p className="text-[#5F6B7A] text-sm line-clamp-2">{notice.body}</p>

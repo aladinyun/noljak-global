@@ -21,7 +21,7 @@ export async function GET() {
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json()
-    const { title, body: noticeBody, cta_link, category, is_published, is_banner, banner_text } = body
+    const { title, body: noticeBody, cta_link, category, is_published, is_banner, banner_text, target_locale } = body
 
     if (!title || !noticeBody) {
       return NextResponse.json({ error: '제목과 내용을 입력해주세요.' }, { status: 400 })
@@ -38,6 +38,7 @@ export async function POST(request: NextRequest) {
         is_published: is_published || false,
         is_banner: is_banner || false,
         banner_text: banner_text || null,
+        target_locale: target_locale || 'all',
       })
       .select()
       .single()

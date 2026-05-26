@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
+import { useLocale } from 'next-intl'
 import { Footer } from '@/components/footer'
 
 interface Notice {
@@ -14,17 +15,18 @@ interface Notice {
 
 export default function NoticePage() {
   const router = useRouter()
+  const locale = useLocale()
   const [notices, setNotices] = useState<Notice[]>([])
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    fetch('/api/notices')
+    fetch(`/api/notices?locale=${locale}`)
       .then(res => res.json())
       .then(data => {
         setNotices(data.notices || [])
         setLoading(false)
       })
-  }, [])
+  }, [locale])
 
   return (
     <div className='min-h-screen bg-white'>
