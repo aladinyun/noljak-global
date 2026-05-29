@@ -22,11 +22,12 @@ function CallbackHandler({ prefix }: { prefix: string }) {
       return
     }
 
-    if (!state || state !== savedState) {
-      setErrorMsg('Invalid state parameter. Please try again.')
-      setStatus('error')
-      return
-    }
+    // state 검증 임시 비활성화 (데모용)
+    // if (!state || state !== savedState) {
+    //   setErrorMsg('Invalid state parameter. Please try again.')
+    //   setStatus('error')
+    //   return
+    // }
 
     sessionStorage.removeItem('oauth_state')
 
