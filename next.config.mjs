@@ -21,7 +21,7 @@ const nextConfig = {
         headers: [
           {
             key: 'Content-Security-Policy',
-            value: "form-action 'self' https://api.noljak.global;",
+            value: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https://api.noljak.global https://xoprreyipbecnampwchm.supabase.co; form-action 'self' https://api.noljak.global; frame-ancestors 'none';",
           },
         ],
       },
