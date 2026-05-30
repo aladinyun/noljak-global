@@ -1,12 +1,45 @@
 "use client"
 
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { Footer } from "@/components/footer"
 import Link from "next/link"
 import { useTranslations } from "next-intl"
 
 export default function GlobalBusinessPage() {
   const t = useTranslations("globalBusiness")
+
+  const [name, setName] = useState("")
+  const [email, setEmail] = useState("")
+  const [phone, setPhone] = useState("")
+  const [country, setCountry] = useState("")
+  const [city, setCity] = useState("")
+  const [businessType, setBusinessType] = useState("")
+  const [message, setMessage] = useState("")
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [isSubmitted, setIsSubmitted] = useState(false)
+  const [error, setError] = useState("")
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault()
+    setIsSubmitting(true)
+    setError("")
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, phone, country, city, businessType, message }),
+      })
+      if (!res.ok) {
+        const data = await res.json()
+        throw new Error(data.error || "Something went wrong")
+      }
+      setIsSubmitted(true)
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : "Something went wrong")
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -339,73 +372,105 @@ export default function GlobalBusinessPage() {
             </div>
 
             <div className="fade-up opacity-0 translate-y-4 transition-all duration-500 delay-[250ms] bg-white border border-[#E8ECF1] rounded-2xl p-10 shadow-lg">
-              <form className="flex flex-col gap-5">
-                <div>
-                  <label className="block font-sans text-[#0F1B3D] text-sm font-medium mb-2">{t("fieldName")}</label>
-                  <input
-                    type="text"
-                    className="w-full border border-[#E8ECF1] rounded-lg px-4 py-3 font-sans text-sm focus:outline-none focus:border-[#F6C400] transition-colors"
-                    placeholder={t("fieldNamePlaceholder")}
-                  />
+              {isSubmitted ? (
+                <div className="flex flex-col items-center justify-center py-12 text-center">
+                  <svg className="w-16 h-16 text-[#F6C400] mb-4" viewBox="0 0 64 64" fill="none" stroke="currentColor" strokeWidth="2">
+                    <circle cx="32" cy="32" r="30" />
+                    <path d="M20 32l9 9 15-18" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                  <p className="font-heading font-bold text-[#0F1B3D] text-xl">
+                    {"Thank you! We'll be in touch within 2 business days."}
+                  </p>
                 </div>
-                <div>
-                  <label className="block font-sans text-[#0F1B3D] text-sm font-medium mb-2">{t("fieldEmail")}</label>
-                  <input
-                    type="email"
-                    className="w-full border border-[#E8ECF1] rounded-lg px-4 py-3 font-sans text-sm focus:outline-none focus:border-[#F6C400] transition-colors"
-                    placeholder="your@email.com"
-                  />
-                </div>
-                <div>
-                  <label className="block font-sans text-[#0F1B3D] text-sm font-medium mb-2">{t("fieldPhone")}</label>
-                  <input
-                    type="tel"
-                    className="w-full border border-[#E8ECF1] rounded-lg px-4 py-3 font-sans text-sm focus:outline-none focus:border-[#F6C400] transition-colors"
-                    placeholder="+1 234 567 8900"
-                  />
-                </div>
-                <div className="grid grid-cols-2 gap-4">
+              ) : (
+                <form className="flex flex-col gap-5" onSubmit={handleSubmit}>
                   <div>
-                    <label className="block font-sans text-[#0F1B3D] text-sm font-medium mb-2">{t("fieldCountry")}</label>
+                    <label className="block font-sans text-[#0F1B3D] text-sm font-medium mb-2">{t("fieldName")}</label>
                     <input
                       type="text"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
                       className="w-full border border-[#E8ECF1] rounded-lg px-4 py-3 font-sans text-sm focus:outline-none focus:border-[#F6C400] transition-colors"
-                      placeholder={t("fieldCountry")}
+                      placeholder={t("fieldNamePlaceholder")}
                     />
                   </div>
                   <div>
-                    <label className="block font-sans text-[#0F1B3D] text-sm font-medium mb-2">{t("fieldCity")}</label>
+                    <label className="block font-sans text-[#0F1B3D] text-sm font-medium mb-2">{t("fieldEmail")}</label>
                     <input
-                      type="text"
+                      type="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
                       className="w-full border border-[#E8ECF1] rounded-lg px-4 py-3 font-sans text-sm focus:outline-none focus:border-[#F6C400] transition-colors"
-                      placeholder={t("fieldCity")}
+                      placeholder="your@email.com"
                     />
                   </div>
-                </div>
-                <div>
-                  <label className="block font-sans text-[#0F1B3D] text-sm font-medium mb-2">{t("fieldBusinessType")}</label>
-                  <select className="w-full border border-[#E8ECF1] rounded-lg px-4 py-3 font-sans text-sm focus:outline-none focus:border-[#F6C400] transition-colors bg-white">
-                    <option value="">{t("fieldBusinessTypePlaceholder")}</option>
-                    <option value="new-center">{t("optionNewCenter")}</option>
-                    <option value="licensing">{t("optionLicensing")}</option>
-                    <option value="master-franchise">{t("optionMasterFranchise")}</option>
-                  </select>
-                </div>
-                <div>
-                  <label className="block font-sans text-[#0F1B3D] text-sm font-medium mb-2">{t("fieldMessage")}</label>
-                  <textarea
-                    rows={4}
-                    className="w-full border border-[#E8ECF1] rounded-lg px-4 py-3 font-sans text-sm focus:outline-none focus:border-[#F6C400] transition-colors resize-none"
-                    placeholder={t("fieldMessagePlaceholder")}
-                  />
-                </div>
-                <button
-                  type="submit"
-                  className="w-full bg-[#F6C400] text-[#0F1B3D] font-bold py-4 rounded-full hover:bg-[#0F1B3D] hover:text-[#F6C400] transition-colors"
-                >
-                  {t("submit")}
-                </button>
-              </form>
+                  <div>
+                    <label className="block font-sans text-[#0F1B3D] text-sm font-medium mb-2">{t("fieldPhone")}</label>
+                    <input
+                      type="tel"
+                      value={phone}
+                      onChange={(e) => setPhone(e.target.value)}
+                      className="w-full border border-[#E8ECF1] rounded-lg px-4 py-3 font-sans text-sm focus:outline-none focus:border-[#F6C400] transition-colors"
+                      placeholder="+1 234 567 8900"
+                    />
+                  </div>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <label className="block font-sans text-[#0F1B3D] text-sm font-medium mb-2">{t("fieldCountry")}</label>
+                      <input
+                        type="text"
+                        value={country}
+                        onChange={(e) => setCountry(e.target.value)}
+                        className="w-full border border-[#E8ECF1] rounded-lg px-4 py-3 font-sans text-sm focus:outline-none focus:border-[#F6C400] transition-colors"
+                        placeholder={t("fieldCountry")}
+                      />
+                    </div>
+                    <div>
+                      <label className="block font-sans text-[#0F1B3D] text-sm font-medium mb-2">{t("fieldCity")}</label>
+                      <input
+                        type="text"
+                        value={city}
+                        onChange={(e) => setCity(e.target.value)}
+                        className="w-full border border-[#E8ECF1] rounded-lg px-4 py-3 font-sans text-sm focus:outline-none focus:border-[#F6C400] transition-colors"
+                        placeholder={t("fieldCity")}
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <label className="block font-sans text-[#0F1B3D] text-sm font-medium mb-2">{t("fieldBusinessType")}</label>
+                    <select
+                      value={businessType}
+                      onChange={(e) => setBusinessType(e.target.value)}
+                      className="w-full border border-[#E8ECF1] rounded-lg px-4 py-3 font-sans text-sm focus:outline-none focus:border-[#F6C400] transition-colors bg-white"
+                    >
+                      <option value="">{t("fieldBusinessTypePlaceholder")}</option>
+                      <option value="new-center">{t("optionNewCenter")}</option>
+                      <option value="licensing">{t("optionLicensing")}</option>
+                      <option value="master-franchise">{t("optionMasterFranchise")}</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label className="block font-sans text-[#0F1B3D] text-sm font-medium mb-2">{t("fieldMessage")}</label>
+                    <textarea
+                      rows={4}
+                      value={message}
+                      onChange={(e) => setMessage(e.target.value)}
+                      className="w-full border border-[#E8ECF1] rounded-lg px-4 py-3 font-sans text-sm focus:outline-none focus:border-[#F6C400] transition-colors resize-none"
+                      placeholder={t("fieldMessagePlaceholder")}
+                    />
+                  </div>
+                  {error && (
+                    <p className="font-sans text-red-500 text-sm">{error}</p>
+                  )}
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="w-full bg-[#F6C400] text-[#0F1B3D] font-bold py-4 rounded-full hover:bg-[#0F1B3D] hover:text-[#F6C400] transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+                  >
+                    {isSubmitting ? "Sending..." : t("submit")}
+                  </button>
+                </form>
+              )}
             </div>
           </div>
         </div>
