@@ -43,7 +43,7 @@ function CallbackHandler({ prefix }: { prefix: string }) {
       .then(data => {
         localStorage.setItem('noljak_partner_token', data.access_token)
         setStatus('success')
-        router.push(`${prefix}/partner-dashboard`)
+        router.push('https://noljakportal-ctmir2xf.manus.space/')
       })
       .catch(err => {
         setErrorMsg(err.message || 'Login failed. Please try again.')
