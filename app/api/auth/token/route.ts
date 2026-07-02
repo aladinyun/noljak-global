@@ -8,7 +8,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Missing authorization code' }, { status: 400 })
     }
 
-    const res = await fetch('https://api.noljak.global/api/oauth/token', {
+    const res = await fetch(`${process.env.ACADEMY_API_URL ?? 'https://api.noljak.global'}/api/oauth/token`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({

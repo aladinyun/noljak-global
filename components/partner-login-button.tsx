@@ -13,7 +13,7 @@ export function PartnerLoginButton() {
       state,
     })
 
-    window.location.href = `https://academy.noljak.global/oauth/authorize?${params}`
+    window.location.href = `https://api.noljak.global/api/oauth/authorize?${params}`
   }
 
   return (
