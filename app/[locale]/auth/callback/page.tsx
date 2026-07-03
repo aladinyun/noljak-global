@@ -43,7 +43,7 @@ function CallbackHandler({ prefix }: { prefix: string }) {
       .then(data => {
         localStorage.setItem('noljak_partner_token', data.access_token)
         setStatus('success')
-        router.push('https://academy.noljak.global')
+        router.push(`https://academy.noljak.global/sso-callback?token=${encodeURIComponent(data.access_token)}`)
       })
       .catch(err => {
         setErrorMsg(err.message || 'Login failed. Please try again.')
