@@ -1,6 +1,7 @@
 import { NextIntlClientProvider } from 'next-intl'
 import { getMessages } from 'next-intl/server'
 import type { Metadata } from "next"
+import { buildMetadata } from "@/lib/metadata"
 import { Plus_Jakarta_Sans, Inter } from "next/font/google"
 import { Navigation } from "@/components/navigation"
 import { AnnouncementBanner } from "@/components/announcement-banner"
@@ -18,9 +19,15 @@ const inter = Inter({
   display: "swap",
 })
 
-export const metadata: Metadata = {
-  title: "Noljak Global",
-  description: "A global creative education brand for ages 3–7",
+// Base metadata for the locale segment. This resolves the homepage (`/`) and acts as the
+// per-locale default; nested route layouts override title/description/alternates per page.
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}): Promise<Metadata> {
+  const { locale } = await params
+  return buildMetadata('home', locale)
 }
 
 export default async function LocaleLayout({
