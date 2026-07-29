@@ -11,6 +11,16 @@ const ENGLISH_ONLY_REDIRECTS = new Map(
     .flatMap((locale) => ENGLISH_ONLY_PATHS.map((path) => [`/${locale}${path}`, path]))
 )
 
+// Stale external links point at /about, a route this app never had. Redirect to its
+// closest semantic match, keeping the locale prefix so ko/vi visitors land on a
+// translation rather than English.
+const ABOUT_REDIRECTS = new Map(
+  routing.locales.map((locale) => {
+    const prefix = locale === routing.defaultLocale ? '' : `/${locale}`
+    return [`${prefix}/about`, `${prefix}/what-is-noljak`]
+  })
+)
+
 // Vercel's default project domain serves the same content as the canonical host, which
 // Search Console reports as duplicate pages. Kept as a literal rather than importing
 // SITE_URL from `lib/metadata` so middleware doesn't pull `next-intl/server` into the
@@ -31,6 +41,14 @@ export default function middleware(request: NextRequest) {
   if (canonicalPath) {
     const url = request.nextUrl.clone()
     url.pathname = canonicalPath
+    return NextResponse.redirect(url, 308)
+  }
+
+  // Trailing slash stripped here because inbound stale links use both /about and /about/.
+  const aboutTarget = ABOUT_REDIRECTS.get(request.nextUrl.pathname.replace(/\/+$/, ''))
+  if (aboutTarget) {
+    const url = request.nextUrl.clone()
+    url.pathname = aboutTarget
     return NextResponse.redirect(url, 308)
   }
 
