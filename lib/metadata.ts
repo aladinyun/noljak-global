@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import { getTranslations } from 'next-intl/server'
-import { routing } from '@/routing'
+import { ENGLISH_ONLY_PATHS, routing } from '@/routing'
 
 export const SITE_URL = 'https://www.noljak.global'
 export const SITE_NAME = 'Noljak Global'
@@ -71,13 +71,18 @@ export async function buildMetadata(routeKey: keyof typeof ROUTES, locale: strin
     if (r.descKey) description = t(r.descKey)
   }
 
-  const canonical = urlFor(locale, r.path)
-  const languages = languageAlternates(r.path)
+  // English-only pages always self-canonicalize to the unprefixed URL and advertise no
+  // alternates, because their prefixed URLs redirect here rather than serving a translation.
+  const englishOnly = ENGLISH_ONLY_PATHS.includes(r.path)
+  const canonical = urlFor(englishOnly ? routing.defaultLocale : locale, r.path)
+  const alternates = englishOnly
+    ? { canonical }
+    : { canonical, languages: languageAlternates(r.path) }
 
   return {
     title,
     description,
-    alternates: { canonical, languages },
+    alternates,
     openGraph: {
       title: title ?? SITE_NAME,
       description,

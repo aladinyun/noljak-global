@@ -1,8 +1,15 @@
 import createMiddleware from 'next-intl/middleware'
 import { NextResponse, type NextRequest } from 'next/server'
-import { routing } from './routing'
+import { ENGLISH_ONLY_PATHS, routing } from './routing'
 
 const intlMiddleware = createMiddleware(routing)
+
+// Prefixed URL -> unprefixed canonical, for pages that only exist in English.
+const ENGLISH_ONLY_REDIRECTS = new Map(
+  routing.locales
+    .filter((locale) => locale !== routing.defaultLocale)
+    .flatMap((locale) => ENGLISH_ONLY_PATHS.map((path) => [`/${locale}${path}`, path]))
+)
 
 // Vercel's default project domain serves the same content as the canonical host, which
 // Search Console reports as duplicate pages. Kept as a literal rather than importing
@@ -16,6 +23,15 @@ export default function middleware(request: NextRequest) {
   if (request.headers.get('host') === VERCEL_DEFAULT_HOST) {
     const { pathname, search } = request.nextUrl
     return NextResponse.redirect(new URL(`${pathname}${search}`, CANONICAL_ORIGIN), 308)
+  }
+
+  // Also before locale routing: next-intl would happily serve /ko/privacy-policy, so the
+  // prefixed URL has to be intercepted here rather than resolved as a localized route.
+  const canonicalPath = ENGLISH_ONLY_REDIRECTS.get(request.nextUrl.pathname)
+  if (canonicalPath) {
+    const url = request.nextUrl.clone()
+    url.pathname = canonicalPath
+    return NextResponse.redirect(url, 308)
   }
 
   return intlMiddleware(request)
