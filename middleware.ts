@@ -21,6 +21,14 @@ const ABOUT_REDIRECTS = new Map(
   })
 )
 
+// First-time visitors get routed to their country's language automatically.
+// Skipped once a locale is explicitly saved (NEXT_LOCALE cookie) or the URL
+// already carries a locale prefix — the user's own choice always wins.
+const GEO_LOCALE_MAP: Record<string, string> = {
+  KR: 'ko',
+  VN: 'vi',
+}
+
 // Vercel's default project domain serves the same content as the canonical host, which
 // Search Console reports as duplicate pages. Kept as a literal rather than importing
 // SITE_URL from `lib/metadata` so middleware doesn't pull `next-intl/server` into the
@@ -51,7 +59,23 @@ export default function middleware(request: NextRequest) {
     url.pathname = aboutTarget
     return NextResponse.redirect(url, 308)
   }
+// Geo-based default locale (first visit only; see GEO_LOCALE_MAP above).
+  const pathname = request.nextUrl.pathname
+  const hasLocalePrefix = routing.locales
+    .filter((l) => l !== routing.defaultLocale)
+    .some((l) => pathname === `/${l}` || pathname.startsWith(`/${l}/`))
+  const hasSavedLocale = request.cookies.has('NEXT_LOCALE')
+  const isEnglishOnly = ENGLISH_ONLY_PATHS.includes(pathname)
 
+  if (!hasLocalePrefix && !hasSavedLocale && !isEnglishOnly) {
+    const country = request.headers.get('x-vercel-ip-country')
+    const geoLocale = country ? GEO_LOCALE_MAP[country] : undefined
+    if (geoLocale) {
+      const url = request.nextUrl.clone()
+      url.pathname = `/${geoLocale}${pathname}`
+      return NextResponse.redirect(url, 307)
+    }
+  }
   return intlMiddleware(request)
 }
 
