@@ -3,11 +3,13 @@
 import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { useTranslations } from "next-intl"
+import { useTranslations, useLocale } from "next-intl"
 
 export function HeroSection() {
   const t = useTranslations("hero")
-
+  const locale = useLocale()
+  const prefix = locale === "en" ? "" : `/${locale}`
+  
   return (
     <section className="relative w-full h-svh min-h-[600px]">
       {/* Background Image */}
@@ -44,7 +46,7 @@ export function HeroSection() {
               size="lg"
               className="bg-[#F6C400] hover:bg-[#0F1B3D] text-[#0F1B3D] hover:text-[#F6C400] font-bold px-8 py-6 text-base rounded-lg transition-all duration-300 min-w-[200px]"
             >
-              <Link href="/find-center">{t("cta1")}</Link>
+              <Link href={`${prefix}/find-center`}>{t("cta1")}</Link>
             </Button>
             <Button
               asChild
