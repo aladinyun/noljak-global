@@ -100,7 +100,7 @@ export default function GlobalBusinessPage() {
             </div>
             <div className="hidden md:block w-px h-16 bg-white/20" />
             <div className="text-center px-8">
-              <p className="font-heading font-bold text-white text-[48px] leading-none">20+</p>
+              <p className="font-heading font-bold text-white text-[48px] leading-none">15+</p>
               <p className="font-sans text-[#5F6B7A] text-[14px] mt-2">{t("yearsOfExp")}</p>
             </div>
           </div>
