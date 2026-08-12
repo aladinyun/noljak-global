@@ -128,7 +128,7 @@ export default function FindCenterPage() {
       {/* Section 3: Region Filter Tabs */}
       <section className="bg-white py-8">
         <div className="max-w-[1200px] mx-auto px-4 md:px-8">
-          <div className="fade-up opacity-0 translate-y-4 transition-all duration-500 flex justify-center gap-2 overflow-x-auto pb-2">
+          <div className="fade-up opacity-0 translate-y-4 transition-all duration-500 flex md:justify-center justify-start gap-2 overflow-x-auto pb-2">
             {regionTabs.map((tab) => (
               <button
                 key={tab.id}
