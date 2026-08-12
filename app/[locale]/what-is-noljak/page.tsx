@@ -133,7 +133,7 @@ export default function WhatIsNoljak() {
             {t("sloganDesc")}
           </p>
           <p className="fade-up opacity-0 translate-y-4 transition-all duration-500 delay-[250ms] font-sans italic text-[#5F6B7A] text-[16px]">
-            생각하는 관찰이 창의적인 표현을 만듭니다.
+            {t("sloganTagline")}
           </p>
         </div>
       </section>
