@@ -6,7 +6,7 @@ nav.crekic,CreKiC,크키크,
 nav.basic,Basic,베이직,
 nav.creator,Creator,크리에이터,
 nav.others,Others,기타,
-nav.nowNoljak,Now Noljak,지금 놀작은,
+nav.nowNoljak,Now Noljak,놀작 소식,"지금 놀작은 → 놀작 소식 (nowNoljak.title과 표현 통일, 대표 확인 2026-08-13)"
 nav.findCenter,Find Center,센터 찾기,
 nav.globalBusiness,Global Business,놀작 창업하기,
 hero.tagline,"Where Children Observe, Think, and Create","아이들이 관찰하고, 생각하고, 창작하는 곳",
@@ -16,14 +16,14 @@ hero.cta1,Find a Center,센터 찾기,
 hero.cta2,Explore Programs,프로그램 보기,
 whatIsNoljak.headline,"Creative education for young children — starting from Korea, it's Noljak!",생각하는 관찰로 시작하는 어린이 창의교육 — 한국에서 시작된 놀작!,
 whatIsNoljak.card1Title,From Korea,한국에서 시작된,
-whatIsNoljak.card1Desc,"A creative education brand born in Korea, now growing globally.","한국에서 시작한 창의미술교육 브랜드, 이제 세계의 아이들과 함께 하고 있습니다.",
+whatIsNoljak.card1Desc,"A creative education brand born in Korea, now growing globally.","한국에서 시작한 창의미술교육 브랜드, 이제 세계의 아이들과 함께하고 있습니다.","""함께 하고"" → ""함께하고"" 붙여쓰기 (합성동사, 대표 확인 2026-08-13)"
 whatIsNoljak.card2Title,For Ages 3–Elementary,3세~초등 대상,
 whatIsNoljak.card2Desc,Designed for young children from age 3 through early elementary.,3세부터 초등 저학년까지의 아동 발달에 기초해 설계되었습니다.,
 whatIsNoljak.card3Title,Art & Creativity,미술과 창의성,
-whatIsNoljak.card3Desc,Art is the medium. Thinking and creating is the goal.,미술로 자신만의 생각을 자신있게 표현하는 것이 목표입니다.,
-whatIsNoljak.supportingMessage,Noljak nurtures the creativity of children in 11 countries worldwide through a systematic curriculum grounded in a clear educational philosophy.,놀작은 명확한 교육철학을 바탕으로 한 체계적인 커리큘럼으로 전 세계 11개국 아이들과 함께 합니다.,
+whatIsNoljak.card3Desc,Art is the medium. Thinking and creating is the goal.,미술로 나만의 생각을 자신 있게 표현하는 것이 목표입니다.,"""자신만의...자신있게"" 반복 해소 + ""자신있게""→""자신 있게"" 띄어쓰기 수정 (대표 확인 2026-08-13)"
+whatIsNoljak.supportingMessage,Noljak nurtures the creativity of children in 11 countries worldwide through a systematic curriculum grounded in a clear educational philosophy.,놀작은 명확한 교육철학을 바탕으로 한 체계적인 커리큘럼으로 전 세계 11개국 아이들과 함께합니다.,"""함께 합니다"" → ""함께합니다"" 붙여쓰기 (합성동사, 대표 확인 2026-08-13)"
 programs.crekicLabel,CreKiC Course,크키크 과정,
-programs.crekicHeadline,Where learning begins with the whole body.,감각 정서 언어 올인원 에듀퍼포먼스 프로그램,
+programs.crekicHeadline,Where learning begins with the whole body.,감각 정서 언어 올인원 에듀퍼포먼스 프로그램,"원문과 다른 한국어 카피 — 예외로 유지 확정 (대표 확인 2026-08-13, TRANSLATION_NOTES.md 기록)"
 programs.crekicAge,Ages 3–4,3~4세,
 programs.crekicDesc,"Children grow through sensory play, emotional expression, and performance-based art activities.","감각 놀이, 감정 표현, 퍼포먼스 기반 미술 활동을 통해 아이들이 성장합니다.",
 programs.crekicCta,Explore CreKiC →,크키크 알아보기 →,
@@ -37,7 +37,7 @@ programs.creatorHeadline,Ideas become original creations.,아이디어가 나만
 programs.creatorAge,Ages 7–Elementary,7세~초등,
 programs.creatorDesc,Children expand their thinking through multi-layered projects and present their own original creative works.,아이들은 다층적인 프로젝트를 통해 사고를 확장하고 자신만의 창의적 작품을 발표합니다.,
 programs.creatorCta,Explore Creator →,크리에이터 알아보기 →,
-nowNoljak.title,Now Noljak,놀작 지금,
+nowNoljak.title,Now Noljak,놀작 소식,"놀작 지금 → 놀작 소식 (nav.nowNoljak과 표현 통일, 대표 확인 2026-08-13)"
 nowNoljak.subtitle,See Noljak happening around the world.,전 세계에서 일어나는 놀작을 만나보세요.,
 nowNoljak.description,"From Korea to Global and beyond, discover real classroom moments of observation, thinking, and creative expression.","한국에서 전 세계로, 관찰과 생각, 창의적 표현의 실제 수업 순간을 발견하세요.",
 nowNoljak.all,All,전체,
