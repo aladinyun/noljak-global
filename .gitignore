@@ -3,3 +3,4 @@ node_modules
 .git
 .vercel
 .env*.local
+_bridge_write_test.txt
