@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { useLocale } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 import { Footer } from '@/components/footer'
 
 interface Notice {
@@ -16,6 +16,7 @@ interface Notice {
 export default function NoticePage() {
   const router = useRouter()
   const locale = useLocale()
+  const t = useTranslations('notice')
   const [notices, setNotices] = useState<Notice[]>([])
   const [loading, setLoading] = useState(true)
 
@@ -34,9 +35,9 @@ export default function NoticePage() {
         <h1 className='text-4xl font-bold text-[#0F1B3D] mb-2'>Notice</h1>
         <p className='text-[#5F6B7A] text-lg mb-12'>NOLJAK Announcements</p>
 
-        {loading && <p className='text-[#5F6B7A]'>불러오는 중...</p>}
+        {loading && <p className='text-[#5F6B7A]'>{t('loading')}</p>}
         {!loading && notices.length === 0 && (
-          <p className='text-[#5F6B7A]'>등록된 공지가 없습니다.</p>
+          <p className='text-[#5F6B7A]'>{t('empty')}</p>
         )}
 
         <div className='flex flex-col divide-y divide-[#E8ECF1]'>
@@ -57,11 +58,14 @@ export default function NoticePage() {
               )}
               <div className='flex-1'>
                 <p className='text-[#5F6B7A] text-sm mb-2'>
-                  {new Date(notice.created_at).toLocaleDateString('en-US', {
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric',
-                  })}
+                  {new Date(notice.created_at).toLocaleDateString(
+                    locale === 'ko' ? 'ko-KR' : locale === 'vi' ? 'vi-VN' : 'en-US',
+                    {
+                      year: 'numeric',
+                      month: 'long',
+                      day: 'numeric',
+                    }
+                  )}
                 </p>
                 <h2 className='text-[#0F1B3D] text-xl font-bold mb-2'>{notice.title}</h2>
                 <p className='text-[#5F6B7A] text-sm line-clamp-2'>{notice.body}</p>

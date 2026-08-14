@@ -463,5 +463,12 @@
                        "ctaDesc":  "Explore our core courses or find a Noljak center near you.",
                        "ctaBtn1":  "Explore Core Programs",
                        "ctaBtn2":  "Find a Center"
-                   }
+                   },
+    "notice":  {
+                   "loading":  "Loading...",
+                   "empty":  "No notices available.",
+                   "backToList":  "← Back to List",
+                   "notFound":  "Notice not found.",
+                   "readMore":  "Read More →"
+               }
 }

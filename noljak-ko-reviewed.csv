@@ -82,7 +82,7 @@ findCenterPage.startBusiness,Start Global Business,글로벌 비즈니스 시작
 findCenterPage.contactUs,Contact Us,문의하기,
 findCenterPage.tabAll,All,전체,
 findCenterPage.tabKorea,Korea,한국,
-globalBusiness.hero,Bring Noljak to your city.,놀작을 시작헤보세요.,
+globalBusiness.hero,Bring Noljak to your city.,놀작을 시작해보세요.,"오타 수정: 시작헤보세요→시작해보세요 (2026-08-14 발견, 즉시 수정)"
 globalBusiness.heroSub,Join a growing global network of creative education centers in 11 countries and counting.,11개국에 걸쳐 성장하는 창의미술 교육 센터의 글로벌 네트워크에 함께 하세요.,
 globalBusiness.centersInKorea,Centers in Korea,한국의 센터,
 globalBusiness.countries,Countries,국가,
@@ -434,3 +434,8 @@ othersPage.ctaBtn1,Explore Core Programs,프로그램 자세히 보기,
 othersPage.ctaBtn2,Find a Center,센터 찾기,
 hero.headline,Learning begins with real experience.,Learning begins with real experience.,
 whatIsNoljakPage.sloganTagline,Thoughtful observation leads to creative expression.,생각하는 관찰이 창의적인 표현을 만듭니다.,
+notice.loading,Loading...,불러오는 중...,신규 추가 - 페이지 틀 다국어 미적용 버그 수정 (대표 확인 2026-08-14)
+notice.empty,No notices available.,등록된 공지가 없습니다.,신규 추가 - 페이지 틀 다국어 미적용 버그 수정 (대표 확인 2026-08-14)
+notice.backToList,← Back to List,← 목록으로,신규 추가 - 페이지 틀 다국어 미적용 버그 수정 (대표 확인 2026-08-14)
+notice.notFound,Notice not found.,공지를 찾을 수 없습니다.,신규 추가 - 페이지 틀 다국어 미적용 버그 수정 (대표 확인 2026-08-14)
+notice.readMore,Read More →,자세히 보기 →,신규 추가 - 페이지 틀 다국어 미적용 버그 수정 (대표 확인 2026-08-14)

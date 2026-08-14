@@ -463,5 +463,12 @@
                        "ctaDesc":  "Khám phá các khóa học cốt lõi hoặc tìm trung tâm Noljak gần bạn.",
                        "ctaBtn1":  "Khám phá Chương trình Cốt lõi",
                        "ctaBtn2":  "Tìm Trung tâm"
-                   }
+                   },
+    "notice":  {
+                   "loading":  "Đang tải...",
+                   "empty":  "Không có thông báo nào.",
+                   "backToList":  "← Quay lại danh sách",
+                   "notFound":  "Không tìm thấy thông báo.",
+                   "readMore":  "Xem thêm →"
+               }
 }

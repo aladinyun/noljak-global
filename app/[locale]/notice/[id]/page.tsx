@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { useParams, useRouter } from 'next/navigation'
+import { useLocale, useTranslations } from 'next-intl'
 import { Footer } from '@/components/footer'
 
 interface Notice {
@@ -16,6 +17,8 @@ interface Notice {
 export default function NoticeDetailPage() {
   const { id } = useParams()
   const router = useRouter()
+  const locale = useLocale()
+  const t = useTranslations('notice')
   const [notice, setNotice] = useState<Notice | null>(null)
   const [loading, setLoading] = useState(true)
 
@@ -33,7 +36,7 @@ export default function NoticeDetailPage() {
     return (
       <div className='min-h-screen bg-white'>
         <main className='max-w-3xl mx-auto px-6 py-20'>
-          <p className='text-[#5F6B7A]'>불러오는 중...</p>
+          <p className='text-[#5F6B7A]'>{t('loading')}</p>
         </main>
       </div>
     )
@@ -43,9 +46,9 @@ export default function NoticeDetailPage() {
     return (
       <div className='min-h-screen bg-white'>
         <main className='max-w-3xl mx-auto px-6 py-20'>
-          <p className='text-[#5F6B7A]'>공지를 찾을 수 없습니다.</p>
+          <p className='text-[#5F6B7A]'>{t('notFound')}</p>
           <button onClick={() => router.push('/notice')} className='mt-4 text-[#F6C400] hover:underline text-sm'>
-            ← 목록으로
+            {t('backToList')}
           </button>
         </main>
       </div>
@@ -59,15 +62,18 @@ export default function NoticeDetailPage() {
           onClick={() => router.push('/notice')}
           className='text-[#5F6B7A] hover:text-[#0F1B3D] text-sm mb-8 inline-block transition'
         >
-          ← 목록으로
+          {t('backToList')}
         </button>
 
         <p className='text-[#5F6B7A] text-sm mb-3'>
-          {new Date(notice.created_at).toLocaleDateString('en-US', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric',
-          })}
+          {new Date(notice.created_at).toLocaleDateString(
+            locale === 'ko' ? 'ko-KR' : locale === 'vi' ? 'vi-VN' : 'en-US',
+            {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric',
+            }
+          )}
         </p>
 
         <h1 className='text-[#0F1B3D] text-3xl font-bold mb-8'>{notice.title}</h1>
@@ -93,7 +99,7 @@ export default function NoticeDetailPage() {
             rel='noopener noreferrer'
             className='inline-block mt-8 bg-[#F6C400] text-[#0F1B3D] font-bold px-6 py-3 rounded-xl hover:bg-[#e5b500] transition'
           >
-            자세히 보기 →
+            {t('readMore')}
           </a>
         )}
       </main>
