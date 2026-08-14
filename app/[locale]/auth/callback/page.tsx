@@ -4,6 +4,7 @@ import { Suspense, useEffect, useState } from 'react'
 import { useSearchParams, useRouter } from 'next/navigation'
 import { useLocale } from 'next-intl'
 import Link from 'next/link'
+import { consumeStoredState } from '@/lib/oauth-state'
 
 function CallbackHandler({ prefix }: { prefix: string }) {
   const searchParams = useSearchParams()
@@ -14,7 +15,9 @@ function CallbackHandler({ prefix }: { prefix: string }) {
   useEffect(() => {
     const code = searchParams.get('code')
     const state = searchParams.get('state')
-    const savedState = sessionStorage.getItem('oauth_state')
+    // 저장된 state 는 읽는 즉시 삭제된다(1회용). code 검사보다 먼저 호출해
+    // 어떤 경로로 중단되더라도 재사용되지 않게 한다.
+    const savedState = consumeStoredState()
 
     if (!code) {
       setErrorMsg('Authorization code not found.')
@@ -22,14 +25,14 @@ function CallbackHandler({ prefix }: { prefix: string }) {
       return
     }
 
-    // state 검증 임시 비활성화 (데모용)
-    // if (!state || state !== savedState) {
-    //   setErrorMsg('Invalid state parameter. Please try again.')
-    //   setStatus('error')
-    //   return
-    // }
-
-    sessionStorage.removeItem('oauth_state')
+    // CSRF 방어: 로그인을 시작한 브라우저가 저장해 둔 state 와 돌아온 state 가
+    // 정확히 일치해야만 진행한다. 값이 없거나 다르면 우리가 시작한 로그인이 아니므로
+    // 여기서 확실히 거부한다 (공격자가 심어 둔 authorization code 일 수 있음).
+    if (!state || !savedState || state !== savedState) {
+      setErrorMsg('Invalid state parameter. Please try again.')
+      setStatus('error')
+      return
+    }
 
     fetch('/api/auth/token', {
       method: 'POST',

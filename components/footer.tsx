@@ -2,6 +2,7 @@
 
 import Link from "next/link"
 import { useTranslations, useLocale } from "next-intl"
+import { startPartnerLogin } from "@/lib/oauth-state"
 
 const programs = [
   { name: "CreKiC", href: "/programs/crekic" },
@@ -80,9 +81,20 @@ export function Footer() {
             <Link href={`${prefix}/notice`} className="font-sans text-white text-sm hover:text-[#F6C400] transition-colors">
               Notice
             </Link>
-            <Link href="https://api.noljak.global/api/oauth/authorize?client_id=noljak_global_client&redirect_uri=https://www.noljak.global/auth/callback&response_type=code&scope=openid%20profile%20email%20academy&state=noljak_sso" target="_blank" rel="noopener noreferrer" className="font-sans text-white text-sm hover:text-[#F6C400] transition-colors">
+            {/*
+              원장 SSO 로그인. 예전에는 state 를 "noljak_sso" 로 고정한 정적 링크였다.
+              고정값은 CSRF 방어가 되지 않을 뿐 아니라, 로그인 시작 시점에 브라우저에
+              아무것도 저장하지 않아 콜백에서 대조할 값 자체가 없었다
+              (그래서 콜백의 state 검증이 "데모용"으로 꺼져 있었다).
+              이제 클릭할 때 무작위 state 를 만들어 저장한 뒤 이동한다.
+            */}
+            <button
+              type="button"
+              onClick={() => startPartnerLogin(true)}
+              className="font-sans text-white text-sm hover:text-[#F6C400] transition-colors text-center md:text-left"
+            >
               {t("partnerPortal")}
-            </Link>
+            </button>
           </div>
         </div>
       </div>
