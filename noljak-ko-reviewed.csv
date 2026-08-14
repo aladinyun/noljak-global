@@ -64,12 +64,12 @@ findCenterPage.searchPlaceholder,Search by country or city...,국가 또는 도�
 findCenterPage.useLocation,Or use current location,현재 위치 사용,
 findCenterPage.globalPresence,GLOBAL PRESENCE,글로벌 현황,
 findCenterPage.mapTitle,Noljak in 11 countries.,11개국의 놀작.,
-findCenterPage.countries,Countries,개국,
-findCenterPage.centersInKorea,Centers in Korea,개 센터 (한국),
+findCenterPage.countries,Countries,국가,"""개국""→""국가"" (숫자와 별도 줄에 표시되는 구조라 단위 접미사 불필요, 대표 확인 2026-08-13)"
+findCenterPage.centersInKorea,Centers in Korea,한국 센터,"""개 센터 (한국)""→""한국 센터"" (글로벌 센터와 대칭 구조로 통일, 대표 확인 2026-08-13)"
 findCenterPage.globalCenters,Global Centers,글로벌 센터,
 findCenterPage.centersByRegion,Centers by region.,지역별 센터.,
 findCenterPage.loading,Loading centers...,센터 정보를 불러오는 중...,
-findCenterPage.koreaTitle,400+ centers across Korea.,한국 전역 400개 이상의 센터.,
+findCenterPage.koreaTitle,400+ centers across Korea.,한국 전역 400개 이상의 교육원.,"""센터""→""교육원"" (같은 섹션 내 koreaSub/findInKorea와 용어 통일, 대표 확인 2026-08-13)"
 findCenterPage.koreaSub,Find your nearest Noljak center on our Korean website.,한국 웹사이트에서 가장 가까운 놀작 교육원을 찾아보세요.,
 findCenterPage.findInKorea,Find a Center in Korea →,한국 교육원 찾기 →,
 findCenterPage.getDirections,Get Directions →,길 찾기 →,
