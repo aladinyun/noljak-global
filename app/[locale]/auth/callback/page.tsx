@@ -44,7 +44,9 @@ function CallbackHandler({ prefix }: { prefix: string }) {
         return res.json()
       })
       .then(data => {
-        localStorage.setItem('noljak_partner_token', data.access_token)
+        // 토큰은 academy.noljak.global 로 넘기기만 하고 이 오리진에는 남기지 않는다.
+        // (예전에는 localStorage 에 'noljak_partner_token' 으로 저장했지만 읽는 곳이 없어,
+        //  마케팅 사이트 오리진에 액세스 토큰 노출면만 넓히는 코드였다.)
         setStatus('success')
         router.push(`https://academy.noljak.global/sso-callback?token=${encodeURIComponent(data.access_token)}`)
       })
