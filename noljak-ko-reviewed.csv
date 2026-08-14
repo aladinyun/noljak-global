@@ -91,7 +91,7 @@ globalBusiness.getStarted,Get Started,시작하기,
 globalBusiness.whyLabel,WHY NOLJAK?,왜 놀작인가요?,
 globalBusiness.whyTitle,The world needs creative education now.,세상은 지금 창의 교육이 필요합니다.,
 globalBusiness.whyDesc,"English and math are no longer enough. Parents worldwide are actively seeking creative education for their children. Noljak fills that gap — with a proven curriculum, a recognizable brand, and 15 years of expertise.","영어와 수학만으로는 충분하지 않습니다. 전 세계 부모들은 자녀를 위한 핵심 경쟁력으로 창의 교육을 적극 찾고 있습니다. 놀작은 검증된 커리큘럼, 체계적인 오픈과 운영 지원, 15년의 전문성으로 그 수요의 선택이 되고 있습니다.",
-globalBusiness.stat1Title,#1 Creative Art Education Brand in Korea,한국 1위 창의 미술 교육 브랜드,
+globalBusiness.stat1Title,#1 Creative Art Education Brand in Korea,한국 1위 창의미술교육 브랜드,"""창의 미술 교육""→""창의미술교육"" 사이트 전체 표기 통일 (대표 확인 2026-08-14)"
 globalBusiness.stat1Desc,Trusted by 400+ centers nationwide,전국 400개 이상 센터의 신뢰,
 globalBusiness.stat2Title,Growing Global Demand,증가하는 글로벌 수요,
 globalBusiness.stat2Desc,Parents in 11 countries choose Noljak,11개국 학부모들이 놀작을 선택합니다,
@@ -104,7 +104,7 @@ globalBusiness.receive1Desc,"Complete 6-step program materials, updated regularl
 globalBusiness.receive2Title,Teaching Guides,교수 가이드,
 globalBusiness.receive2Desc,Detailed lesson plans for every single session.,매 수업을 위한 상세한 수업 계획서.,
 globalBusiness.receive3Title,Art Kits,미술 키트,
-globalBusiness.receive3Desc,Curated real-object materials — no plastic kits.,선택의 이유가 있는 실물 주제,
+globalBusiness.receive3Desc,Curated real-object materials — no plastic kits.,선택의 이유가 있는 실물 주제,"""no plastic kits"" 강조 누락 - 의도된 로컬 카피로 확정, 수정 없음 (대표 확인 2026-08-14)"
 globalBusiness.receive4Title,Teacher Training,교사 연수,
 globalBusiness.receive4Desc,Initial and ongoing professional development.,교사 교육과 성장 지원,
 globalBusiness.receive5Title,Brand & Marketing Support,브랜드 및 마케팅 지원,
@@ -120,9 +120,9 @@ globalBusiness.model2Title,Licensing,라이선싱,
 globalBusiness.model2Desc,License Noljak's curriculum and tools to integrate into your existing education center.,놀작의 커리큘럼과 도구를 라이선스하여 기존 교육 센터에 통합하세요.,
 globalBusiness.forInvestors,For Investors,투자자용,
 globalBusiness.model3Title,Master Franchise,마스터 프랜차이즈,
-globalBusiness.model3Desc,Become Noljak's regional representative and develop the brand across your country or territory.,놀작의 지역 대표가 되어 당신의 국가나 지역에서 놀작과 성장하세요!,
+globalBusiness.model3Desc,Become Noljak's regional representative and develop the brand across your country or territory.,놀작의 지역 대표가 되어 선생님의 국가나 지역에서 놀작과 성장하세요!,"""당신""→""선생님"" 호칭 통일 (같은 페이지 modelsTitle과 일치, 대표 확인 2026-08-14)"
 globalBusiness.journeyLabel,PARTNER JOURNEY,파트너 되기,
-globalBusiness.journeyTitle,From inquiry to opening — a clear path forward.,문의부터 개원까지 — 매뉴얼에 의한 과정.,
+globalBusiness.journeyTitle,From inquiry to opening — a clear path forward.,문의부터 개원까지 — 명확한 절차.,"""매뉴얼에 의한 과정""→""명확한 절차"" 딱딱한 표현 개선 (대표 확인 2026-08-14)"
 globalBusiness.step1Title,Inquiry,문의,
 globalBusiness.step1Desc,Submit your interest. Tell us about your city.,제출하기. 개설 희망 지역을 알려주세요.,
 globalBusiness.step2Title,Consultation,상담,
@@ -162,7 +162,7 @@ globalBusiness.optionLicensing,Licensing,라이선싱,
 globalBusiness.optionMasterFranchise,Master Franchise,마스터 프랜차이즈,
 globalBusiness.fieldMessage,Message,메시지,
 globalBusiness.fieldMessagePlaceholder,Tell us about your plans...,귀하의 계획을 알려주세요...,
-globalBusiness.submit,Send Inquiry,확인,
+globalBusiness.submit,Send Inquiry,문의 보내기,"""확인""→""문의 보내기"" (제출 버튼 의미 불명확 문제 수정, 대표 확인 2026-08-14)"
 whatIsNoljakPage.headline,Noljak is the world's only art-based creative education for the AI generation.,놀작은 AI 시대를 위한 세계 유일의 미술 기반 창의교육입니다.,
 whatIsNoljakPage.body1,"Noljak is a creative education program rooted in Thinking Observation — designed for children ages 3 to elementary school. Through small-group, project-based art classes, we help children develop the creativity that will define their success in the AI era.","놀작은 생각하는 관찰에 뿌리를 둔 창의교육 프로그램으로, 3세부터 초등학생까지를 대상으로 합니다. 소그룹 프로젝트 기반 미술 수업을 통해 AI 시대의 성공을 결정짓는 창의성을 키워줍니다.",
 whatIsNoljakPage.body2,"English and math matter. But in the end, creativity is the real competitive edge. And creativity has a golden time — it starts early, and it starts with Noljak.",영어와 수학도 중요합니다. 하지만 아이의 미래엔 결국 창의성과 정서가 핵심 경쟁력입니다. 그리고 창의성 발달에는 골든 타임이 있습니다. 그때 놀작에서 시작하세요.,"""그 때""→""그때"" 붙여쓰기 (시간명사, 대표 확인 2026-08-13)"
