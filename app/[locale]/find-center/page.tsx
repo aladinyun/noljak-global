@@ -25,6 +25,32 @@ type Center = {
   sort_order: number
 }
 
+// 국가 탭 · "Centers by region" 그룹이 공유하는 고정 노출 순서 (알파벳순 아님).
+// Korea 탭은 아래 regionTabs에서 별도로 맨 앞에 붙는다.
+const COUNTRY_ORDER = [
+  "USA",
+  "Vietnam",
+  "Philippines",
+  "UK",
+  "Germany",
+  "Canada",
+  "China",
+  "Japan",
+  "Thailand",
+  "Australia",
+]
+
+// 목록에 없는 신규 국가는 뒤쪽에 알파벳순으로 붙인다.
+const sortByCountryOrder = (countries: string[]) =>
+  [...countries].sort((a, b) => {
+    const ia = COUNTRY_ORDER.indexOf(a)
+    const ib = COUNTRY_ORDER.indexOf(b)
+    if (ia === -1 && ib === -1) return a.localeCompare(b)
+    if (ia === -1) return 1
+    if (ib === -1) return -1
+    return ia - ib
+  })
+
 export default function FindCenterPage() {
   const t = useTranslations("findCenterPage")
   const [centers, setCenters] = useState<Center[]>([])
@@ -67,8 +93,7 @@ export default function FindCenterPage() {
   const regionTabs = [
     { id: "all", label: t("tabAll") },
     { id: "korea", label: t("tabKorea") },
-    ...Array.from(new Set(centers.map(c => c.country)))
-      .sort()
+    ...sortByCountryOrder(Array.from(new Set(centers.map(c => c.country))))
       .map(country => ({ id: country.toLowerCase(), label: country }))
   ]
 
@@ -86,7 +111,7 @@ export default function FindCenterPage() {
     return matchesRegion && matchesSearch
   })
 
-  const uniqueCountries = Array.from(new Set(filteredCenters.map(c => c.country)))
+  const uniqueCountries = sortByCountryOrder(Array.from(new Set(filteredCenters.map(c => c.country))))
 
   return (
     <main className="min-h-screen bg-[#FFFDF5]">
