@@ -67,11 +67,25 @@ const COUNTRY_ISO: Record<string, string> = {
   Korea: "KR",
 }
 
-// ISO alpha-2 → 유니코드 지역 표시 기호(국기 이모지). 미등록 국가는 빈 문자열.
-const flagOf = (country: string) => {
+// 국기 이모지는 Windows Chrome/Edge에 글리프가 없어 "US" 같은 2글자로 보이므로
+// flagcdn.com의 SVG를 쓴다. 국가마다 실제 비율이 달라(US 1.9:1, DE 5:3) 고정
+// 박스 + object-contain으로 정렬을 맞춘다. 로드 실패 시 자리만 남기고 숨긴다.
+const CountryFlag = ({ country }: { country: string }) => {
   const iso = COUNTRY_ISO[country]
-  if (!iso) return ""
-  return String.fromCodePoint(...[...iso].map(ch => 0x1f1e6 + ch.charCodeAt(0) - 65))
+  if (!iso) return null
+  return (
+    <img
+      src={`https://flagcdn.com/${iso.toLowerCase()}.svg`}
+      alt=""
+      aria-hidden="true"
+      loading="lazy"
+      width={20}
+      height={14}
+      referrerPolicy="no-referrer"
+      className="inline-block w-5 h-[14px] object-contain align-[-2px] rounded-[2px]"
+      onError={(e) => { e.currentTarget.style.visibility = "hidden" }}
+    />
+  )
 }
 
 // 기존 "Get Directions" 링크와 동일한 규칙 (maps_url 없으면 주소로 검색)
@@ -158,6 +172,10 @@ export default function FindCenterPage() {
     country,
     centers: filteredCenters.filter(c => c.country === country),
   }))
+
+  // 압축 티어 구조는 "훑어보기"용이므로 필터도 검색도 없는 기본 개요일 때만 쓴다.
+  // 특정 국가 탭을 고르거나 검색하면 주소·연락처까지 담긴 상세 카드로 보여준다.
+  const isOverview = activeRegion === "all" && searchQuery.trim() === ""
 
   // 표시 형태는 하드코딩이 아니라 센터 수로 결정한다.
   //  - 최다 국가 1곳 → 네이비 하이라이트 카드
@@ -361,7 +379,61 @@ export default function FindCenterPage() {
                 {t("findInKorea")}
               </a>
             </div>
-          ) : filteredCenters.length > 0 ? (
+          ) : filteredCenters.length === 0 ? (
+            <div className="fade-up opacity-0 translate-y-4 transition-all duration-500 text-center py-20">
+              <MapPin className="w-16 h-16 text-[#E8ECF1] mx-auto mb-6" />
+              <h3 className="font-heading font-bold text-[#0F1B3D] text-2xl mb-3">{t("noCenter")}</h3>
+              <p className="font-sans text-[#5F6B7A] text-base mb-8">{t("noCenterSub")}</p>
+              <Link
+                href="/global-business"
+                className="inline-block bg-[#F6C400] text-[#0F1B3D] font-bold px-8 py-3 rounded-full hover:bg-[#E5B600] transition-colors"
+              >
+                {t("bringNoljak")}
+              </Link>
+            </div>
+          ) : !isOverview ? (
+            /* 국가 탭 선택 또는 검색 중 — 주소·연락처까지 담긴 상세 카드 */
+            <div className="flex flex-col gap-12">
+              {countryGroups.map((group) => (
+                <section key={group.country} id={group.country.toLowerCase()} className="scroll-mt-64">
+                  <h3 className="font-heading font-bold text-[#0F1B3D] text-xl md:text-2xl mb-4 flex items-center gap-2.5">
+                    <CountryFlag country={group.country} />
+                    {group.country}
+                  </h3>
+                  <div className="flex flex-col gap-4">
+                    {group.centers.map((center, index) => (
+                      <div
+                        key={center.id}
+                        className="fade-up opacity-0 translate-y-4 transition-all duration-500 bg-white rounded-2xl p-6 md:p-7 flex flex-col md:flex-row md:items-center md:justify-between gap-4"
+                        style={{ transitionDelay: `${index * 50}ms` }}
+                      >
+                        <div>
+                          <p className="font-sans font-bold text-[13px] text-[#5F6B7A] uppercase mb-1">{center.country}</p>
+                          <p className="font-sans text-[#5F6B7A] text-xs mb-2">{cityLabel(center)}</p>
+                          <h3 className="font-heading font-bold text-[#0F1B3D] text-lg md:text-xl mb-2">{center.name}</h3>
+                          <p className="font-sans text-[#5F6B7A] text-sm mb-1">{center.address}</p>
+                          {(center.phone || center.email) && (
+                            <p className="font-sans text-[#5F6B7A] text-sm">
+                              {[center.phone, center.email].filter(Boolean).join(" / ")}
+                            </p>
+                          )}
+                        </div>
+                        <a
+                          href={mapsHref(center)}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center justify-center px-5 py-2.5 border border-[#E8ECF1] rounded-lg font-sans font-bold text-[13px] text-[#0F1B3D] hover:bg-[#F6C400] hover:border-[#F6C400] transition-all whitespace-nowrap"
+                        >
+                          {t("getDirections")}
+                        </a>
+                      </div>
+                    ))}
+                  </div>
+                </section>
+              ))}
+            </div>
+          ) : (
+            /* "All" 기본 개요 — 센터 수 기준 압축 티어 구조 */
             <div className="flex flex-col gap-10">
               {/* 1단계: 센터가 가장 많은 국가 — 네이비 하이라이트 카드 */}
               {highlightGroup && (
@@ -370,7 +442,7 @@ export default function FindCenterPage() {
                   className="fade-up opacity-0 translate-y-4 transition-all duration-500 scroll-mt-64 bg-[#0F1B3D] rounded-2xl p-8 md:p-10"
                 >
                   <p className="font-sans font-bold text-[13px] text-[#F6C400] uppercase tracking-[0.15em] mb-4">
-                    <span aria-hidden="true">{flagOf(highlightGroup.country)}</span>{" "}
+                    <CountryFlag country={highlightGroup.country} />{" "}
                     {highlightGroup.country} ·{" "}
                     {t("centersCount", { count: highlightGroup.centers.length })}
                   </p>
@@ -389,7 +461,7 @@ export default function FindCenterPage() {
                       style={{ transitionDelay: `${index * 50}ms` }}
                     >
                       <p className="font-sans font-bold text-[13px] text-[#5F6B7A] tracking-[0.12em] mb-3">
-                        <span aria-hidden="true">{flagOf(group.country)}</span>{" "}
+                        <CountryFlag country={group.country} />{" "}
                         <span className="uppercase">{group.country}</span> ·{" "}
                         {t("centersCount", { count: group.centers.length })}
                       </p>
@@ -418,7 +490,7 @@ export default function FindCenterPage() {
                           title={`${center.name} — ${t("getDirections")}`}
                           className="scroll-mt-64 inline-flex items-center gap-2 bg-white border border-[#E8ECF1] rounded-full px-5 py-2.5 font-sans text-sm text-[#0F1B3D] hover:border-[#F6C400] transition-colors"
                         >
-                          <span aria-hidden="true">{flagOf(group.country)}</span>
+                          <CountryFlag country={group.country} />
                           <span className="font-medium">{group.country}</span>
                           <span className="text-[#5F6B7A]">· {cityLabel(center)}</span>
                         </a>
@@ -427,18 +499,6 @@ export default function FindCenterPage() {
                   </div>
                 </div>
               )}
-            </div>
-          ) : (
-            <div className="fade-up opacity-0 translate-y-4 transition-all duration-500 text-center py-20">
-              <MapPin className="w-16 h-16 text-[#E8ECF1] mx-auto mb-6" />
-              <h3 className="font-heading font-bold text-[#0F1B3D] text-2xl mb-3">{t("noCenter")}</h3>
-              <p className="font-sans text-[#5F6B7A] text-base mb-8">{t("noCenterSub")}</p>
-              <Link
-                href="/global-business"
-                className="inline-block bg-[#F6C400] text-[#0F1B3D] font-bold px-8 py-3 rounded-full hover:bg-[#E5B600] transition-colors"
-              >
-                {t("bringNoljak")}
-              </Link>
             </div>
           )}
         </div>
