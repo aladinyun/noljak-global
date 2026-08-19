@@ -97,7 +97,10 @@
                            "startBusiness":  "글로벌 비즈니스 시작",
                            "contactUs":  "문의하기",
                            "tabAll":  "전체",
-                           "tabKorea":  "한국"
+                           "tabKorea":  "한국",
+                           "centersCount":  "센터 {count}개",
+                           "alsoExpandingTo":  "이런 곳에도 있어요",
+                           "showLess":  "접기"
                        },
     "globalBusiness":  {
                            "hero":  "놀작을 시작해보세요.",

@@ -97,7 +97,10 @@
                            "startBusiness":  "Start Global Business",
                            "contactUs":  "Contact Us",
                            "tabAll":  "All",
-                           "tabKorea":  "Korea"
+                           "tabKorea":  "Korea",
+                           "centersCount":  "{count} centers",
+                           "alsoExpandingTo":  "Also expanding to",
+                           "showLess":  "Show less"
                        },
     "globalBusiness":  {
                            "hero":  "Bring Noljak to your city.",

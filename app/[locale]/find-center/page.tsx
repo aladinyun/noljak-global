@@ -52,12 +52,51 @@ const sortByCountryOrder = (countries: string[]) =>
     return ia - ib
   })
 
+// DB의 country 문자열 표기를 그대로 키로 쓴다 (예: "USA", "UK" — ISO 코드가 아님)
+const COUNTRY_ISO: Record<string, string> = {
+  USA: "US",
+  Vietnam: "VN",
+  Philippines: "PH",
+  UK: "GB",
+  Germany: "DE",
+  Canada: "CA",
+  China: "CN",
+  Japan: "JP",
+  Thailand: "TH",
+  Australia: "AU",
+  Korea: "KR",
+}
+
+// ISO alpha-2 → 유니코드 지역 표시 기호(국기 이모지). 미등록 국가는 빈 문자열.
+const flagOf = (country: string) => {
+  const iso = COUNTRY_ISO[country]
+  if (!iso) return ""
+  return String.fromCodePoint(...[...iso].map(ch => 0x1f1e6 + ch.charCodeAt(0) - 65))
+}
+
+// 기존 "Get Directions" 링크와 동일한 규칙 (maps_url 없으면 주소로 검색)
+const mapsHref = (c: Center) =>
+  c.maps_url ||
+  `https://maps.google.com/?q=${encodeURIComponent(c.address + ", " + c.city + ", " + c.country)}`
+
+// city에 앞뒤 공백이 섞인 레코드가 있어 표시 단계에서 정리한다
+const cityLabel = (c: Center) => c.city?.trim() || c.name
+
+// 압축 표시에서 도시명을 몇 개까지 펼쳐 보여줄지
+const CITY_PREVIEW = 3
+
 export default function FindCenterPage() {
   const t = useTranslations("findCenterPage")
   const [centers, setCenters] = useState<Center[]>([])
   const [loading, setLoading] = useState(true)
   const [searchQuery, setSearchQuery] = useState("")
   const [activeRegion, setActiveRegion] = useState("all")
+  const [expandedCountries, setExpandedCountries] = useState<string[]>([])
+
+  const toggleExpanded = (country: string) =>
+    setExpandedCountries(prev =>
+      prev.includes(country) ? prev.filter(c => c !== country) : [...prev, country]
+    )
 
   useEffect(() => {
     fetch('/api/centers')
@@ -113,6 +152,79 @@ export default function FindCenterPage() {
   })
 
   const uniqueCountries = sortByCountryOrder(Array.from(new Set(filteredCenters.map(c => c.country))))
+
+  // 국가별 그룹 (COUNTRY_ORDER 순서 유지)
+  const countryGroups = uniqueCountries.map(country => ({
+    country,
+    centers: filteredCenters.filter(c => c.country === country),
+  }))
+
+  // 표시 형태는 하드코딩이 아니라 센터 수로 결정한다.
+  //  - 최다 국가 1곳 → 네이비 하이라이트 카드
+  //  - 2개소 이상   → 흰 카드
+  //  - 1개소        → 칩
+  // 모든 국가가 1개소뿐이면 하이라이트 없이 전부 칩으로 압축한다.
+  // 최다가 동수면 COUNTRY_ORDER에서 앞선 국가가 하이라이트가 된다.
+  const maxCount = countryGroups.reduce((m, g) => Math.max(m, g.centers.length), 0)
+  const highlightGroup =
+    maxCount >= 2 ? countryGroups.find(g => g.centers.length === maxCount) ?? null : null
+  const cardGroups = countryGroups.filter(g => g !== highlightGroup && g.centers.length >= 2)
+  const chipGroups = countryGroups.filter(g => g !== highlightGroup && g.centers.length === 1)
+
+  // 도시명을 가운뎃점으로 나열하고 각 도시를 해당 센터의 지도 링크로 연결한다.
+  // CITY_PREVIEW를 넘으면 "+N"으로 접고, 눌러서 펼칠 수 있게 해
+  // 압축 상태에서도 모든 센터의 지도 링크에 도달할 수 있게 한다.
+  const renderCityList = (
+    group: { country: string; centers: Center[] },
+    tone: "onNavy" | "onWhite"
+  ) => {
+    const expanded = expandedCountries.includes(group.country)
+    const shown = expanded ? group.centers : group.centers.slice(0, CITY_PREVIEW)
+    const hidden = group.centers.length - shown.length
+    const linkClass =
+      tone === "onNavy"
+        ? "underline-offset-4 hover:underline hover:text-[#F6C400] transition-colors"
+        : "underline-offset-4 hover:underline hover:text-[#0F1B3D] transition-colors"
+    const moreClass =
+      tone === "onNavy"
+        ? "font-bold text-[#F6C400] hover:underline underline-offset-4"
+        : "font-bold text-[#5F6B7A] hover:text-[#0F1B3D] hover:underline underline-offset-4"
+
+    return (
+      <p className={tone === "onNavy" ? "text-white text-base md:text-lg" : "text-[#5F6B7A] text-sm"}>
+        {shown.map((c, i) => (
+          <span key={c.id}>
+            {i > 0 && <span className="opacity-40 mx-1.5">·</span>}
+            <a
+              href={mapsHref(c)}
+              target="_blank"
+              rel="noopener noreferrer"
+              title={`${c.name} — ${t("getDirections")}`}
+              className={linkClass}
+            >
+              {cityLabel(c)}
+            </a>
+          </span>
+        ))}
+        {hidden > 0 && (
+          <>
+            <span className="opacity-40 mx-1.5">·</span>
+            <button type="button" onClick={() => toggleExpanded(group.country)} className={moreClass}>
+              +{hidden}
+            </button>
+          </>
+        )}
+        {expanded && group.centers.length > CITY_PREVIEW && (
+          <>
+            <span className="opacity-40 mx-1.5">·</span>
+            <button type="button" onClick={() => toggleExpanded(group.country)} className={moreClass}>
+              {t("showLess")}
+            </button>
+          </>
+        )}
+      </p>
+    )
+  }
 
   return (
     <main className="min-h-screen bg-[#FFFDF5]">
@@ -250,44 +362,71 @@ export default function FindCenterPage() {
               </a>
             </div>
           ) : filteredCenters.length > 0 ? (
-            <div className="flex flex-col gap-12">
-              {uniqueCountries.map((country) => {
-                const countryCenters = filteredCenters.filter(c => c.country === country)
-                return (
-                  <section key={country} id={country.toLowerCase()} className="scroll-mt-64">
-                    <h3 className="font-heading font-bold text-[#0F1B3D] text-xl md:text-2xl mb-4">{country}</h3>
-                    <div className="flex flex-col gap-4">
-                      {countryCenters.map((center, index) => (
-                        <div
-                          key={center.id}
-                          className="fade-up opacity-0 translate-y-4 transition-all duration-500 bg-white rounded-2xl p-6 md:p-7 flex flex-col md:flex-row md:items-center md:justify-between gap-4"
-                          style={{ transitionDelay: `${index * 50}ms` }}
+            <div className="flex flex-col gap-10">
+              {/* 1단계: 센터가 가장 많은 국가 — 네이비 하이라이트 카드 */}
+              {highlightGroup && (
+                <section
+                  id={highlightGroup.country.toLowerCase()}
+                  className="fade-up opacity-0 translate-y-4 transition-all duration-500 scroll-mt-64 bg-[#0F1B3D] rounded-2xl p-8 md:p-10"
+                >
+                  <p className="font-sans font-bold text-[13px] text-[#F6C400] uppercase tracking-[0.15em] mb-4">
+                    <span aria-hidden="true">{flagOf(highlightGroup.country)}</span>{" "}
+                    {highlightGroup.country} ·{" "}
+                    {t("centersCount", { count: highlightGroup.centers.length })}
+                  </p>
+                  {renderCityList(highlightGroup, "onNavy")}
+                </section>
+              )}
+
+              {/* 2단계: 센터 2개 이상 국가 — 흰 카드 */}
+              {cardGroups.length > 0 && (
+                <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                  {cardGroups.map((group, index) => (
+                    <section
+                      key={group.country}
+                      id={group.country.toLowerCase()}
+                      className="fade-up opacity-0 translate-y-4 transition-all duration-500 scroll-mt-64 bg-white border border-[#E8ECF1] rounded-2xl p-6 md:p-7"
+                      style={{ transitionDelay: `${index * 50}ms` }}
+                    >
+                      <p className="font-sans font-bold text-[13px] text-[#5F6B7A] tracking-[0.12em] mb-3">
+                        <span aria-hidden="true">{flagOf(group.country)}</span>{" "}
+                        <span className="uppercase">{group.country}</span> ·{" "}
+                        {t("centersCount", { count: group.centers.length })}
+                      </p>
+                      {renderCityList(group, "onWhite")}
+                    </section>
+                  ))}
+                </div>
+              )}
+
+              {/* 3단계: 센터 1개뿐인 국가 — 알약형 칩으로 압축 */}
+              {chipGroups.length > 0 && (
+                <div className="fade-up opacity-0 translate-y-4 transition-all duration-500">
+                  <p className="font-sans font-bold text-[13px] text-[#5F6B7A] uppercase tracking-[0.15em] mb-4">
+                    {t("alsoExpandingTo")}
+                  </p>
+                  <div className="flex flex-wrap gap-2.5">
+                    {chipGroups.map((group) => {
+                      const center = group.centers[0]
+                      return (
+                        <a
+                          key={group.country}
+                          id={group.country.toLowerCase()}
+                          href={mapsHref(center)}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          title={`${center.name} — ${t("getDirections")}`}
+                          className="scroll-mt-64 inline-flex items-center gap-2 bg-white border border-[#E8ECF1] rounded-full px-5 py-2.5 font-sans text-sm text-[#0F1B3D] hover:border-[#F6C400] transition-colors"
                         >
-                          <div>
-                            <p className="font-sans font-bold text-[13px] text-[#5F6B7A] uppercase mb-1">{center.country}</p>
-                            <p className="font-sans text-[#5F6B7A] text-xs mb-2">{center.city}</p>
-                            <h3 className="font-heading font-bold text-[#0F1B3D] text-lg md:text-xl mb-2">{center.name}</h3>
-                            <p className="font-sans text-[#5F6B7A] text-sm mb-1">{center.address}</p>
-                            {(center.phone || center.email) && (
-                              <p className="font-sans text-[#5F6B7A] text-sm">
-                                {[center.phone, center.email].filter(Boolean).join(" / ")}
-                              </p>
-                            )}
-                          </div>
-                          <a
-                            href={center.maps_url || `https://maps.google.com/?q=${encodeURIComponent(center.address + ", " + center.city + ", " + center.country)}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center justify-center px-5 py-2.5 border border-[#E8ECF1] rounded-lg font-sans font-bold text-[13px] text-[#0F1B3D] hover:bg-[#F6C400] hover:border-[#F6C400] transition-all whitespace-nowrap"
-                          >
-                            {t("getDirections")}
-                          </a>
-                        </div>
-                      ))}
-                    </div>
-                  </section>
-                )
-              })}
+                          <span aria-hidden="true">{flagOf(group.country)}</span>
+                          <span className="font-medium">{group.country}</span>
+                          <span className="text-[#5F6B7A]">· {cityLabel(center)}</span>
+                        </a>
+                      )
+                    })}
+                  </div>
+                </div>
+              )}
             </div>
           ) : (
             <div className="fade-up opacity-0 translate-y-4 transition-all duration-500 text-center py-20">

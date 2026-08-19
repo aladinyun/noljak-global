@@ -97,7 +97,10 @@
                            "startBusiness":  "Bắt đầu kinh doanh toàn cầu",
                            "contactUs":  "Liên hệ",
                            "tabAll":  "Tất cả",
-                           "tabKorea":  "Hàn Quốc"
+                           "tabKorea":  "Hàn Quốc",
+                           "centersCount":  "{count} trung tâm",
+                           "alsoExpandingTo":  "Đang mở rộng tới",
+                           "showLess":  "Thu gọn"
                        },
     "globalBusiness":  {
                            "hero":  "Đưa Noljak đến thành phố của bạn.",
