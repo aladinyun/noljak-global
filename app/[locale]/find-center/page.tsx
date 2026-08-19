@@ -129,7 +129,7 @@ export default function FindCenterPage() {
           {/* 배너: 카드/보더/그림자 없이 페이지 배경 위에 그대로 얹는다 */}
           <div className="fade-up opacity-0 translate-y-4 transition-all duration-500 delay-200 mt-8 md:mt-14">
             <Image
-              src="/images/find-center-hero--kids.png"
+              src="/images/find-center-hero--kids.webp"
               alt="Six children from Korea, USA, China, Vietnam, Germany, and the Philippines holding colorful NOLJAK letters"
               width={1672}
               height={941}
